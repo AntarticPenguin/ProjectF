@@ -17,10 +17,18 @@ public class MapObject : MonoBehaviour
     }
 
 	Vector2 _position;
+	protected int _tileX;
+	protected int _tileY;
 
 	public void SetPosition(Vector2 position)
 	{
 		_position = position;
 		transform.localPosition = _position;
+	}
+
+	public void SetTilePosition(int tileX, int tileY)
+	{
+		_tileX = tileX;
+		_tileY = tileY;
 	}
 }

@@ -15,13 +15,4 @@ public class TileObject : MapObject
 	{
 
 	}
-
-	int _tileX;
-	int _tileY;
-
-	public void SetTilePosition(int x, int y)
-	{
-		_tileX = x;
-		_tileY = y;
-	}
 }

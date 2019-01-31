@@ -40,23 +40,6 @@ public class TileMap : MonoBehaviour
 
 		CreateTiles(eTileLayer.GROUND);
 		//CreateTiles(eTileLayer.MIDDLE_GROUND);
-
-		TileMap map = GameManager.Instance.GetMap();
-
-		//test create character
-		string filePath = "Prefabs/CharacterSample";
-		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
-		GameObject characterObject = Instantiate(charPrefabs);
-		characterObject.transform.SetParent(map.transform);
-		characterObject.transform.localPosition = Vector3.zero;
-		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
-
-		MapObject character = characterObject.AddComponent<MapObject>();
-		map.GetTileCell(0, 0).AddObject(character, eTileLayer.GROUND, 255);
-
-		Camera.main.transform.SetParent(character.transform);
-		Camera.main.transform.localPosition = new Vector3(0.0f, 0.0f, Camera.main.transform.localPosition.z);
-		Camera.main.transform.localScale = Vector3.one;
 	}
 
 	void CreateTiles(eTileLayer layer)
@@ -80,6 +63,7 @@ public class TileMap : MonoBehaviour
 				// y = 0.514x + (열 + 층수)
 				float xPos = _xInterval * x + _xStartPos;
 				float yPos = 0.514f * (xPos + _xInterval * (y + (int)layer)) + (_yInterval * (y + (int)layer));
+				GetTileCell(x, y).Init(x, y);
 				GetTileCell(x, y).SetPosition(new Vector2(xPos, yPos));
 				GetTileCell(x, y).AddObject(tileObject, layer, sortingOrder);
 				--sortingOrder;
