@@ -9,6 +9,15 @@ public enum eTileLayer
 	MAXCOUNT,
 }
 
+public enum eTileDirection
+{
+	NORTH_WEST,
+	NORTH_EAST,
+	SOUTH_EAST,
+	SOUTH_WEST,
+	NONE,
+}
+
 public class EnumSet
 {
  

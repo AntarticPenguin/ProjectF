@@ -47,8 +47,8 @@ public class TileCell
 		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
 		Vector3 upPoint = new Vector2(_position.x, _position.y + _height / 2);
 
-		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);
-		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);
+		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);	//타일 아래변 두개 기울기
+		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);		//타일 윗변 두개 기울기
 
 		if (CheckUpsideSlope(downTan, downPoint, charPosition) == false)
 			return false;
@@ -60,6 +60,26 @@ public class TileCell
 			return false;
 
 		return true;
+	}
+
+	public eTileDirection CheckTileDirection(Vector2 charPosition)
+	{
+		Vector2 leftPoint = new Vector2(_position.x - _width / 2, _position.y);
+		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
+		Vector3 upPoint = new Vector2(_position.x, _position.y + _height / 2);
+
+		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);  //타일 아래변 두개 기울기
+		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);        //타일 윗변 두개 기울기
+
+		if (CheckUpsideSlope(downTan, downPoint, charPosition) == false)
+			return eTileDirection.SOUTH_WEST;
+		if (CheckUpsideSlope(-downTan, downPoint, charPosition) == false)
+			return eTileDirection.SOUTH_EAST;
+		if (CheckUpsideSlope(upTan, upPoint, charPosition) == true)
+			return eTileDirection.NORTH_WEST;
+		if (CheckUpsideSlope(-upTan, upPoint, charPosition) == true)
+			return eTileDirection.NORTH_EAST;
+		return eTileDirection.NONE;
 	}
 
 	bool CheckUpsideSlope(float slope, Vector2 onSlopePosition, Vector2 charPosition)

@@ -31,8 +31,8 @@ public class MainGameScene : MonoBehaviour
 	{
 		TileMap map = GameManager.Instance.GetMap();
 		//string filePath = "Prefabs/CharacterSample";
-		//string filePath = "Prefabs/CharacterSample2";
-		string filePath = "Prefabs/CharacterSample3";
+		string filePath = "Prefabs/CharacterSample2";
+		//string filePath = "Prefabs/CharacterSample3";
 		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
 		GameObject characterObject = Instantiate(charPrefabs);
 		characterObject.transform.SetParent(map.transform);

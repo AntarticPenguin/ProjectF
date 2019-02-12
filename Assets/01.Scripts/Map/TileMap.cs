@@ -75,4 +75,18 @@ public class TileMap : MonoBehaviour
 	{
 		return _tileCellList[y, x];
 	}
+
+	public bool CanMoveTileCell(int x, int y)
+	{
+		if (x < 0)
+			return false;
+		if (_width <= x)
+			return false;
+		if (y < 0)
+			return false;
+		if (_height <= y)
+			return false;
+
+		return true;
+	}
 }

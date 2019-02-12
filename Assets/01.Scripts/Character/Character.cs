@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MapObject
 {
-	public float _speed = 1.0f;
+	public float _speed = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,21 +44,51 @@ public class Character : MapObject
 
 		Vector2 position = _speed * direction.normalized * Time.deltaTime;
 		Vector2 nextPosition = (Vector2)transform.position + position;
-		if (map.GetTileCell(_tileX, _tileY).CheckOnTile(nextPosition))
-		{
-			//transform.Translate(position);
-			//transform.position += position;
-			transform.position += new Vector3(position.x, position.y, 0.0f);
-		}
-		else
-		{
-			Debug.Log("Can't Move!!");
-		}
-		//transform.position += new Vector3(position.x, position.y, 0.0f);
+
+		//1. 다음 포지션 체크
+		//	- 타일을 나갈 경우 어느방향으로 나갔는지 확인
+		//	- 해당 타일에 갈 수 있는 지 체크(타일 범위 밖 or 물체가 있어서 block)
+
+		//2. 1에서 갈 수 있다면, 위치 세팅 및 타일 위치 업데이트
+		UpdateNextPosition(nextPosition);
 	}
 
 	public void Init()
 	{
 
+	}
+
+	void UpdateNextPosition(Vector2 nextPosition)
+	{
+		TileMap map = GameManager.Instance.GetMap();
+		eTileDirection nextDirection = map.GetTileCell(_tileX, _tileY).CheckTileDirection(nextPosition);
+		int nextTileX = _tileX;
+		int nextTileY = _tileY;
+		switch (nextDirection)
+		{
+			case eTileDirection.NORTH_WEST:
+				nextTileY++;
+				break;
+			case eTileDirection.NORTH_EAST:
+				nextTileX++;
+				break;
+			case eTileDirection.SOUTH_EAST:
+				nextTileY--;
+				break;
+			case eTileDirection.SOUTH_WEST:
+				nextTileX--;
+				break;
+			case eTileDirection.NONE:
+				break;
+			default:
+				break;
+		}
+
+		if (map.CanMoveTileCell(nextTileX, nextTileY))
+		{
+			_tileX = nextTileX;
+			_tileY = nextTileY;
+			transform.position = new Vector3(nextPosition.x, nextPosition.y, 0.0f);
+		}
 	}
 }
