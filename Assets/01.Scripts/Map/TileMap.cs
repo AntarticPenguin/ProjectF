@@ -52,9 +52,7 @@ public class TileMap : MonoBehaviour
 			for (int x = 0; x < _width; ++x)
 			{
 				GameObject tileGameObject = Instantiate(_tileObjectPrefab);
-				tileGameObject.transform.SetParent(transform);
-				tileGameObject.transform.localPosition = Vector3.zero;
-				tileGameObject.transform.localScale = Vector3.one;
+				tileGameObject.InitTransformAsChild(transform);
 
 				TileObject tileObject = tileGameObject.GetComponent<TileObject>();
 				tileObject.SetTilePosition(x, y);

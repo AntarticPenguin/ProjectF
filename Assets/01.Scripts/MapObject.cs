@@ -31,4 +31,7 @@ public class MapObject : MonoBehaviour
 		_tileX = tileX;
 		_tileY = tileY;
 	}
+
+	public int GetTileX() { return _tileX; }
+	public int GetTileY() { return _tileY; }
 }

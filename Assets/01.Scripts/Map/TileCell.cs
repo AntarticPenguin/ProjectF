@@ -41,28 +41,7 @@ public class TileCell
 		return _position;
 	}
 
-	public bool CheckOnTile(Vector2 charPosition)
-	{
-		Vector2 leftPoint = new Vector2(_position.x - _width / 2, _position.y);
-		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
-		Vector3 upPoint = new Vector2(_position.x, _position.y + _height / 2);
-
-		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);	//타일 아래변 두개 기울기
-		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);		//타일 윗변 두개 기울기
-
-		if (CheckUpsideSlope(downTan, downPoint, charPosition) == false)
-			return false;
-		if (CheckUpsideSlope(-downTan, downPoint, charPosition) == false)
-			return false;
-		if (CheckUpsideSlope(upTan, upPoint, charPosition) == true)
-			return false;
-		if (CheckUpsideSlope(-upTan, upPoint, charPosition) == true)
-			return false;
-
-		return true;
-	}
-
-	public eTileDirection CheckTileDirection(Vector2 charPosition)
+	public eTileDirection CheckTileDirection(Vector2 destination)
 	{
 		Vector2 leftPoint = new Vector2(_position.x - _width / 2, _position.y);
 		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
@@ -71,23 +50,23 @@ public class TileCell
 		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);  //타일 아래변 두개 기울기
 		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);        //타일 윗변 두개 기울기
 
-		if (CheckUpsideSlope(downTan, downPoint, charPosition) == false)
+		if (CheckUpsideSlope(downTan, downPoint, destination) == false)
 			return eTileDirection.SOUTH_WEST;
-		if (CheckUpsideSlope(-downTan, downPoint, charPosition) == false)
+		if (CheckUpsideSlope(-downTan, downPoint, destination) == false)
 			return eTileDirection.SOUTH_EAST;
-		if (CheckUpsideSlope(upTan, upPoint, charPosition) == true)
+		if (CheckUpsideSlope(upTan, upPoint, destination) == true)
 			return eTileDirection.NORTH_WEST;
-		if (CheckUpsideSlope(-upTan, upPoint, charPosition) == true)
+		if (CheckUpsideSlope(-upTan, upPoint, destination) == true)
 			return eTileDirection.NORTH_EAST;
 		return eTileDirection.NONE;
 	}
 
-	bool CheckUpsideSlope(float slope, Vector2 onSlopePosition, Vector2 charPosition)
+	bool CheckUpsideSlope(float slope, Vector2 onSlopePosition, Vector2 destination)
 	{
 		//직선식에 대입해서
 		//0보다 작으면 위(true)
 		//0보다 크면 아래(false)
-		bool upSide = slope * (charPosition.x - onSlopePosition.x) - (charPosition.y - onSlopePosition.y) < 0;
+		bool upSide = slope * (destination.x - onSlopePosition.x) - (destination.y - onSlopePosition.y) < 0;
 		return upSide;
 	}
 }

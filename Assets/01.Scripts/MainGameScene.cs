@@ -30,13 +30,14 @@ public class MainGameScene : MonoBehaviour
 	Character CreateCharacter()
 	{
 		TileMap map = GameManager.Instance.GetMap();
+
 		//string filePath = "Prefabs/CharacterSample";
 		string filePath = "Prefabs/CharacterSample2";
 		//string filePath = "Prefabs/CharacterSample3";
+
 		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
 		GameObject characterObject = Instantiate(charPrefabs);
-		characterObject.transform.SetParent(map.transform);
-		characterObject.transform.localPosition = Vector3.zero;
+		characterObject.InitTransformAsChild(map.transform);
 		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
 
 		Character character = characterObject.AddComponent<Character>();

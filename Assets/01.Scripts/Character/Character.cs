@@ -5,63 +5,71 @@ using UnityEngine;
 public class Character : MapObject
 {
 	public float _speed = 10.0f;
+	Transform _transform;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		_transform = GetComponent<Transform>();
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
-
+		Init();
     }
 
     // Update is called once per frame
     void Update()
     {
-		Vector2 direction= new Vector2();
-
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			direction += new Vector2(0.0f, 1.0f);
-		}
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			direction += new Vector2(0.0f, -1.0f);
-		}
-
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			direction += new Vector2(-1.0f, 0.0f);
-		}
-		else if(Input.GetKey(KeyCode.RightArrow))
-		{
-			direction += new Vector2(1.0f, 0.0f);
-		}
-
-		TileMap map = GameManager.Instance.GetMap();
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			Debug.Log("TileX: " + _tileX + ", TileY: " + _tileY + ", " + map.GetTileCell(_tileX, _tileY).GetPosition() +
-				", " + "Char: " + transform.position);
-		}
-
-		Vector2 position = _speed * direction.normalized * Time.deltaTime;
-		Vector2 nextPosition = (Vector2)transform.position + position;
-
-		//1. 다음 포지션 체크
-		//	- 타일을 나갈 경우 어느방향으로 나갔는지 확인
-		//	- 해당 타일에 갈 수 있는 지 체크(타일 범위 밖 or 물체가 있어서 block)
-
-		//2. 1에서 갈 수 있다면, 위치 세팅 및 타일 위치 업데이트
-		UpdateNextPosition(nextPosition);
+		if (eStateType.NONE != _curState.GetNextState())
+			ChangeState(_curState.GetNextState());
+		_curState.Update();
 	}
 
 	public void Init()
 	{
-
+		InitState();
 	}
 
-	void UpdateNextPosition(Vector2 nextPosition)
+	#region STATE
+	State _curState;
+	Dictionary<eStateType, State> _stateMap = new Dictionary<eStateType, State>();
+
+	void InitState()
+	{
+		ReplaceState(eStateType.IDLE, new IdleState());
+		ReplaceState(eStateType.MOVE, new MoveState());
+
+		_curState = _stateMap[eStateType.IDLE];
+	}
+
+	void ReplaceState(eStateType changeType, State replaceState)
+	{
+		if(_stateMap.ContainsKey(changeType))
+		{
+			_stateMap.Remove(changeType);
+		}
+
+		State state = replaceState;
+		state.Init(this);
+		_stateMap[changeType] = state;
+	}
+
+	void ChangeState(eStateType nextState)
+	{
+		if (null != _curState)
+			_curState.Stop();
+
+		_curState = _stateMap[nextState];
+		_curState.Start();
+	}
+
+	#endregion
+
+	public void UpdateNextPosition(Vector2 destination)
 	{
 		TileMap map = GameManager.Instance.GetMap();
-		eTileDirection nextDirection = map.GetTileCell(_tileX, _tileY).CheckTileDirection(nextPosition);
+		eTileDirection nextDirection = map.GetTileCell(_tileX, _tileY).CheckTileDirection(destination);
 		int nextTileX = _tileX;
 		int nextTileY = _tileY;
 		switch (nextDirection)
@@ -88,7 +96,10 @@ public class Character : MapObject
 		{
 			_tileX = nextTileX;
 			_tileY = nextTileY;
-			transform.position = new Vector3(nextPosition.x, nextPosition.y, 0.0f);
+			transform.position = new Vector3(destination.x, destination.y, 0.0f);
 		}
 	}
+
+	public Transform GetTransform() { return _transform; }
+	public float GetSpeed() { return _speed; }
 }
