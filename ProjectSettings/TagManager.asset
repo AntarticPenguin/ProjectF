@@ -44,6 +44,6 @@ TagManager:
   - name: GROUND
     uniqueID: 696829551
     locked: 0
-  - name: MIDDLE_GROUND
+  - name: ON_GROUND
     uniqueID: 1726549507
     locked: 0

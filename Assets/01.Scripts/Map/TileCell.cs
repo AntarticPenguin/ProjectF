@@ -11,24 +11,67 @@ public class TileCell
 	float _width = 103.0f / 100;
 	float _height = 49.6f / 100;
 
-	public void Init(int tileX, int tileY)
+	List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
+
+	public void Init()
 	{
-		_tileX = tileX;
-		_tileY = tileY;
+		for(int i = 0;i < (int)eTileLayer.MAXCOUNT; i++)
+		{
+			List<MapObject> mapObjects = new List<MapObject>();
+			_mapObjectListByLayer.Add(mapObjects);
+		}
 	}
 
-	public void AddObject(MapObject mapObject, eTileLayer layer, int sortingOrder)
+	public void AddObject(MapObject mapObject, eTileLayer layer)
 	{
-		mapObject.GetComponent<SpriteRenderer>().sortingOrder = sortingOrder;
+		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
+		mapObjectList.Add(mapObject);
+
 		int sortingLayerID = SortingLayer.NameToID(layer.ToString());
 		mapObject.GetComponent<SpriteRenderer>().sortingLayerID = sortingLayerID;
-
-		mapObject.SetPosition(_position);
 		mapObject.SetTilePosition(_tileX, _tileY);
+	}
 
-		//float width = mapObject.GetComponent<SpriteRenderer>().bounds.size.x;
-		//float height = mapObject.GetComponent<SpriteRenderer>().bounds.size.y;
-		//Debug.Log("width: " + width + ", height: " + height);
+	public void RemoveObject(MapObject mapObject)
+	{
+		eTileLayer currentLayer = mapObject.GetCurrentLayer();
+		if(eTileLayer.NONE != currentLayer)
+		{
+			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)currentLayer];
+			mapObjectList.Remove(mapObject);
+		}
+		else
+		{
+			Debug.Log("TileLayer is NONE");
+		}
+	}
+
+	public void SetObject(MapObject mapObject, eTileLayer layer, int sortingOrder)
+	{
+		AddObject(mapObject, layer);
+
+		mapObject.GetComponent<SpriteRenderer>().sortingOrder = sortingOrder;
+		mapObject.SetPosition(_position);
+		mapObject.SetCurrentLayer(layer);
+	}
+
+	public void PrintObjectList()
+	{
+		{
+			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.GROUND];
+			for (int i = 0; i < mapObjectList.Count; i++)
+			{
+				Debug.Log("GROUND: " + mapObjectList[i].name);
+			}
+		}
+
+		{
+			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
+			for (int i = 0; i < mapObjectList.Count; i++)
+			{
+				Debug.Log("ON_GROUND: " + mapObjectList[i].name);
+			}
+		}
 	}
 
 	public void SetPosition(Vector2 position)
@@ -40,6 +83,32 @@ public class TileCell
 	{
 		return _position;
 	}
+
+	public void SetTilePosition(int tileX, int tileY)
+	{
+		_tileX = tileX;
+		_tileY = tileY;
+	}
+
+	public sTileProperties GetProperties(eTileLayer layer)
+	{
+		sTileProperties tileProperties = new sTileProperties();
+		tileProperties._speed = 0.0f;
+
+		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
+		for(int i = 0; i < mapObjectList.Count; i++)
+		{
+			if (eMapObjectType.TILEOBJECT == mapObjectList[i].GetMapObjectType())
+			{
+				TileObject tileObject = mapObjectList[i].GetComponent<TileObject>();
+				tileProperties = tileObject.GetProperties();
+				return tileProperties;
+			}
+		}
+		return tileProperties;
+	}
+
+	#region Check Tile Boundary
 
 	public eTileDirection CheckTileDirection(Vector2 destination)
 	{
@@ -69,4 +138,6 @@ public class TileCell
 		bool upSide = slope * (destination.x - onSlopePosition.x) - (destination.y - onSlopePosition.y) < 0;
 		return upSide;
 	}
+
+	#endregion
 }

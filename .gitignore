@@ -48,4 +48,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 # Unity Asset store
-./Asset/02.Resource/DoNotUpload
+*.png

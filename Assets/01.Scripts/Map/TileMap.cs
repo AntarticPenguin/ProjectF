@@ -45,7 +45,6 @@ public class TileMap : MonoBehaviour
 	void CreateTiles(eTileLayer layer)
 	{
 		int sortingOrder = _width * _height;
-
 		for (int y = 0; y < _height; ++y)
 		{
 			_xStartPos = _xInterval * -y;
@@ -56,14 +55,17 @@ public class TileMap : MonoBehaviour
 
 				TileObject tileObject = tileGameObject.GetComponent<TileObject>();
 				tileObject.SetTilePosition(x, y);
+				//tileObject.SetTileProperties(-2.0f);
 
 				// x행, y열
 				// y = 0.514x + (열 + 층수)
 				float xPos = _xInterval * x + _xStartPos;
 				float yPos = 0.514f * (xPos + _xInterval * (y + (int)layer)) + (_yInterval * (y + (int)layer));
-				GetTileCell(x, y).Init(x, y);
+				GetTileCell(x, y).Init();
+				GetTileCell(x, y).SetTilePosition(x, y);
 				GetTileCell(x, y).SetPosition(new Vector2(xPos, yPos));
-				GetTileCell(x, y).AddObject(tileObject, layer, sortingOrder);
+				//GetTileCell(x, y).AddObject(tileObject, layer, sortingOrder);
+				GetTileCell(x, y).SetObject(tileObject, layer, sortingOrder);
 				--sortingOrder;
 			}
 		}

@@ -2,13 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum eStateType
-{
-	NONE,
-	IDLE,
-	MOVE,
-}
-
 public class State
 {
 	protected eStateType _nextState = eStateType.NONE;

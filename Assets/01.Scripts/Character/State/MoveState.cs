@@ -34,7 +34,15 @@ public class MoveState : State
 			return;
 		}
 
-		Vector2 position = _character.GetSpeed() * direction.normalized * Time.deltaTime;
+		_character.ChangeAnimationByDirection(direction);
+
+		//TEST tile properties
+		TileMap map = GameManager.Instance.GetMap();
+		TileCell tileCell = map.GetTileCell(_character.GetTileX(), _character.GetTileY());
+		var tileProperties = tileCell.GetProperties(eTileLayer.GROUND);
+		float speed = _character.GetSpeed() + tileProperties._speed;
+
+		Vector2 position = speed * direction.normalized * Time.deltaTime;
 		Vector2 destination = (Vector2)(_character.GetTransform().position) + position;
 
 		_character.UpdateNextPosition(destination);
@@ -43,7 +51,6 @@ public class MoveState : State
 	public override void Start()
 	{
 		base.Start();
-		Debug.Log("State: " + eStateType.MOVE.ToString());
 	}
 
 	public override void Stop()

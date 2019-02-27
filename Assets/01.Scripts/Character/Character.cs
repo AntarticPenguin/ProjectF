@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Character : MapObject
 {
-	public float _speed = 10.0f;
+	float _speed = 10.0f;
+	int _hp = 100;
 	Transform _transform;
+	Animator _animator;
 
 	private void Awake()
 	{
@@ -15,8 +17,8 @@ public class Character : MapObject
 	// Start is called before the first frame update
 	void Start()
     {
-		Init();
-    }
+		_objectType = eMapObjectType.CHARACTER;
+	}
 
     // Update is called once per frame
     void Update()
@@ -29,13 +31,14 @@ public class Character : MapObject
 	public void Init()
 	{
 		InitState();
+		_animator = GetComponent<Animator>();
 	}
-
+	
 	#region STATE
-	State _curState;
-	Dictionary<eStateType, State> _stateMap = new Dictionary<eStateType, State>();
+	protected State _curState;
+	protected Dictionary<eStateType, State> _stateMap = new Dictionary<eStateType, State>();
 
-	void InitState()
+	public virtual void InitState()
 	{
 		ReplaceState(eStateType.IDLE, new IdleState());
 		ReplaceState(eStateType.MOVE, new MoveState());
@@ -43,7 +46,7 @@ public class Character : MapObject
 		_curState = _stateMap[eStateType.IDLE];
 	}
 
-	void ReplaceState(eStateType changeType, State replaceState)
+	public void ReplaceState(eStateType changeType, State replaceState)
 	{
 		if(_stateMap.ContainsKey(changeType))
 		{
@@ -94,6 +97,8 @@ public class Character : MapObject
 
 		if (map.CanMoveTileCell(nextTileX, nextTileY))
 		{
+			map.GetTileCell(_tileX, _tileY).RemoveObject(this);
+			map.GetTileCell(nextTileX, nextTileY).AddObject(this, _currentLayer);
 			_tileX = nextTileX;
 			_tileY = nextTileY;
 			transform.position = new Vector3(destination.x, destination.y, 0.0f);
@@ -102,4 +107,53 @@ public class Character : MapObject
 
 	public Transform GetTransform() { return _transform; }
 	public float GetSpeed() { return _speed; }
+
+	#region Status
+	void DecreaseHp(int damage)
+	{
+		_hp -= damage;
+		if (_hp <= 0)
+			_hp = 0;
+	}
+	#endregion
+
+	#region Message
+	public override void ReceiveMessage(MessageParam msgParam)
+	{
+		switch(msgParam.message)
+		{
+			case "Attack":
+				DecreaseHp(msgParam.attackPoint);
+				break;
+			default:
+				break;
+		}
+	}
+	#endregion
+
+	public void ChangeAnimationByDirection(Vector2 direction)
+	{
+		string trigger = "";
+		int x = (int)direction.x;
+		int y = (int)direction.y;
+
+		if ((x == 1) && (y == -1))
+			trigger = "SOUTH_EAST";
+		else if ((x == -1) && (y == -1))
+			trigger = "SOUTH_WEST";
+		else if ((x == 1) && (y == 1))
+			trigger = "NORTH_EAST";
+		else if ((x == -1) && (y == 1))
+			trigger = "NORTH_WEST";
+		else if ((x == 0) && (y == -1))
+			trigger = "SOUTH";
+		else if ((x == 0) && (y == 1))
+			trigger = "NORTH";
+		else if ((x == 1) && (y == 0))
+			trigger = "EAST";
+		else if ((x == -1) && (y == 0))
+			trigger = "WEST";
+
+		_animator.SetTrigger(trigger);
+	}
 }
