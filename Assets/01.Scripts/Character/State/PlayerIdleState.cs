@@ -18,14 +18,21 @@ public class PlayerIdleState : State
 			return;
 		}
 
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			_nextState = eStateType.ATTACK;
+			return;
+		}
+			
+
 		//TEST: Print tile position
 		TileMap map = GameManager.Instance.GetMap();
 		if (Input.GetKeyDown(KeyCode.T))
 		{
-			//sTilePosition tilePos = _character.GetTilePosition();
-			//Debug.Log(tilePos.ToString());
+			sTilePosition tilePos = _character.GetTilePosition();
+			Debug.Log(tilePos.ToString());
 
-			map.GetTileCell(0, 0).PrintObjectList();
+			//map.GetTileCell(0, 0).PrintObjectList();
 		}
 	}
 

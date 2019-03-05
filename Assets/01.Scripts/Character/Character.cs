@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MapObject
 {
-	float _speed = 10.0f;
+	float _speed = 8.0f;
 	int _hp = 100;
 	Transform _transform;
 	Animator _animator;
@@ -42,6 +42,7 @@ public class Character : MapObject
 	{
 		ReplaceState(eStateType.IDLE, new IdleState());
 		ReplaceState(eStateType.MOVE, new MoveState());
+		ReplaceState(eStateType.ATTACK, new AttackState());
 
 		_curState = _stateMap[eStateType.IDLE];
 	}
@@ -123,7 +124,8 @@ public class Character : MapObject
 		switch(msgParam.message)
 		{
 			case "Attack":
-				DecreaseHp(msgParam.attackPoint);
+				Debug.Log("Sender: " + msgParam.sender.name);
+				//DecreaseHp(msgParam.attackPoint);
 				break;
 			default:
 				break;
@@ -131,29 +133,56 @@ public class Character : MapObject
 	}
 	#endregion
 
-	public void ChangeAnimationByDirection(Vector2 direction)
+	eDirection _lookAt;
+	public void UpdateDirectionWithAnimation(Vector2 direction)
 	{
 		string trigger = "";
 		int x = (int)direction.x;
 		int y = (int)direction.y;
 
 		if ((x == 1) && (y == -1))
+		{
 			trigger = "SOUTH_EAST";
+			_lookAt = eDirection.SOUTH_EAST;
+		}
 		else if ((x == -1) && (y == -1))
+		{
 			trigger = "SOUTH_WEST";
+			_lookAt = eDirection.SOUTH_WEST;
+		}
 		else if ((x == 1) && (y == 1))
+		{
 			trigger = "NORTH_EAST";
+			_lookAt = eDirection.NORTH_EAST;
+		}
 		else if ((x == -1) && (y == 1))
+		{
 			trigger = "NORTH_WEST";
+			_lookAt = eDirection.NORTH_WEST;
+		}
 		else if ((x == 0) && (y == -1))
+		{
 			trigger = "SOUTH";
+			_lookAt = eDirection.SOUTH;
+		}
 		else if ((x == 0) && (y == 1))
+		{
 			trigger = "NORTH";
+			_lookAt = eDirection.NORTH;
+		}
 		else if ((x == 1) && (y == 0))
+		{
 			trigger = "EAST";
+			_lookAt = eDirection.EAST;
+		}
 		else if ((x == -1) && (y == 0))
+		{
 			trigger = "WEST";
+			_lookAt = eDirection.WEST;
+		}
 
 		_animator.SetTrigger(trigger);
 	}
+
+	public eDirection LookAt() { return _lookAt; }
 }

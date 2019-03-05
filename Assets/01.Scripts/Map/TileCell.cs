@@ -22,6 +22,7 @@ public class TileCell
 		}
 	}
 
+	//타일셀 정보에 추가
 	public void AddObject(MapObject mapObject, eTileLayer layer)
 	{
 		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
@@ -32,6 +33,7 @@ public class TileCell
 		mapObject.SetTilePosition(_tileX, _tileY);
 	}
 
+	//타일셀 정보에서 제거
 	public void RemoveObject(MapObject mapObject)
 	{
 		eTileLayer currentLayer = mapObject.GetCurrentLayer();
@@ -46,6 +48,7 @@ public class TileCell
 		}
 	}
 
+	//타일셀 정보 추가 및 포지션까지 세팅
 	public void SetObject(MapObject mapObject, eTileLayer layer, int sortingOrder)
 	{
 		AddObject(mapObject, layer);
@@ -53,6 +56,19 @@ public class TileCell
 		mapObject.GetComponent<SpriteRenderer>().sortingOrder = sortingOrder;
 		mapObject.SetPosition(_position);
 		mapObject.SetCurrentLayer(layer);
+	}
+
+	public MapObject FindObjectByType(eMapObjectType mapObjectType)
+	{
+		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
+		for(int i = 0; i < mapObjects.Count; i++)
+		{
+			if(eMapObjectType.ENEMY == mapObjects[i].GetMapObjectType())
+			{
+				return mapObjects[i];
+			}
+		}
+		return null;
 	}
 
 	public void PrintObjectList()

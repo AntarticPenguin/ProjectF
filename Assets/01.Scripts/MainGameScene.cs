@@ -15,14 +15,16 @@ public class MainGameScene : MonoBehaviour
 	void Start()
     {
 		Character player = CreateCharacter("Player", "Isolet_Test");
-		//Character enemy = CreateCharacter("Enemy", "EnemySample");
+		Character enemy = CreateCharacter("Enemy", "EnemySample");
+		player.name = "Player";
+		enemy.name = "Enemy";
 
 		Camera.main.transform.SetParent(player.transform);
 		Camera.main.transform.localPosition = new Vector3(0.0f, 0.0f, Camera.main.transform.localPosition.z);
 		Camera.main.transform.localScale = Vector3.one;
 
 		player.Init();
-		//enemy.Init();
+		enemy.Init();
 	}
 
     // Update is called once per frame

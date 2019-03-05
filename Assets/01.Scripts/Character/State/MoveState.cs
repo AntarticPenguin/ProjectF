@@ -28,13 +28,19 @@ public class MoveState : State
 			direction += new Vector2(1.0f, 0.0f);
 		}
 
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			_nextState = eStateType.ATTACK;
+			return;
+		}
+
 		if(direction.Equals(Vector2.zero))
 		{
 			_nextState = eStateType.IDLE;
 			return;
 		}
 
-		_character.ChangeAnimationByDirection(direction);
+		_character.UpdateDirectionWithAnimation(direction);
 
 		//TEST tile properties
 		TileMap map = GameManager.Instance.GetMap();

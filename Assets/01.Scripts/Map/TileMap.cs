@@ -73,6 +73,10 @@ public class TileMap : MonoBehaviour
 
 	public TileCell GetTileCell(int x, int y)
 	{
+		if (_width <= x || x < 0)
+			return null;
+		if (_height <= y || y < 0)
+			return null;
 		return _tileCellList[y, x];
 	}
 
