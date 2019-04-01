@@ -6,25 +6,16 @@ public class MainGameScene : MonoBehaviour
 {
 	public TileMap _tileMap;
 
-	void Awake()
+	private void Awake()
 	{
 		GameManager.Instance.SetMap(_tileMap);
+		_tileMap.Init();
 	}
 
 	// Start is called before the first frame update
 	void Start()
     {
-		Character player = CreateCharacter("Player", "Isolet_Test");
-		Character enemy = CreateCharacter("Enemy", "EnemySample");
-		player.name = "Player";
-		enemy.name = "Enemy";
-
-		Camera.main.transform.SetParent(player.transform);
-		Camera.main.transform.localPosition = new Vector3(0.0f, 0.0f, Camera.main.transform.localPosition.z);
-		Camera.main.transform.localScale = Vector3.one;
-
-		player.Init();
-		enemy.Init();
+		Init();
 	}
 
     // Update is called once per frame
@@ -32,6 +23,19 @@ public class MainGameScene : MonoBehaviour
     {
 		MessageSystem.Instance.ProcessMessage();
     }
+
+	void Init()
+	{
+		Character player = CreateCharacter("Player", "Isolet_Test");
+		player.name = "Player";
+
+		player.Init();
+		player.BecomeViewer();
+
+		//Character enemy = CreateCharacter("Enemy", "EnemySample");
+		//enemy.name = "Enemy";
+		//enemy.Init();
+	}
 
 	Character CreateCharacter(string scriptName, string resourceName)
 	{
@@ -43,6 +47,7 @@ public class MainGameScene : MonoBehaviour
 		GameObject characterObject = Instantiate(charPrefabs);
 		characterObject.InitTransformAsChild(map.transform);
 		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
+
 
 		Character character = null;
 		switch(scriptName)
@@ -57,6 +62,7 @@ public class MainGameScene : MonoBehaviour
 				break;
 		}
 		map.GetTileCell(0, 0).SetObject(character, eTileLayer.ON_GROUND, 0);
+		
 
 		return character;
 	}

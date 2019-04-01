@@ -7,15 +7,16 @@ public class TileCell
 	Vector2 _position;
 	int _tileX;
 	int _tileY;
+	static int pixelPerUnit = 100;
 
-	float _width = 103.0f / 100;
-	float _height = 49.6f / 100;
+	float _width = 103.0f / pixelPerUnit;
+	float _height = 49.6f / pixelPerUnit;	//타일 윗면의 아래꼭지점부터 위까지의 높이
 
 	List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
 
 	public void Init()
 	{
-		for(int i = 0;i < (int)eTileLayer.MAXCOUNT; i++)
+		for(int i = 0; i < (int)eTileLayer.MAXCOUNT; i++)
 		{
 			List<MapObject> mapObjects = new List<MapObject>();
 			_mapObjectListByLayer.Add(mapObjects);
@@ -41,6 +42,7 @@ public class TileCell
 		{
 			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)currentLayer];
 			mapObjectList.Remove(mapObject);
+			//Debug.Log("Remove from " + mapObject.GetTileX() + ", " + mapObject.GetTileY());
 		}
 		else
 		{
@@ -71,23 +73,27 @@ public class TileCell
 		return null;
 	}
 
-	public void PrintObjectList()
+	public string PrintObjectList()
 	{
-		{
-			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.GROUND];
-			for (int i = 0; i < mapObjectList.Count; i++)
-			{
-				Debug.Log("GROUND: " + mapObjectList[i].name);
-			}
-		}
+		string str = "";
+		//{
+		//	List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.GROUND];
+		//	for (int i = 0; i < mapObjectList.Count; i++)
+		//	{
+		//		Debug.Log("GROUND: " + mapObjectList[i].name);
+		//	}
+		//}
 
 		{
 			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
+			str += "ON_GROUND: ";
 			for (int i = 0; i < mapObjectList.Count; i++)
 			{
-				Debug.Log("ON_GROUND: " + mapObjectList[i].name);
+				str += ", " + mapObjectList[i].name;
 			}
 		}
+
+		return str;
 	}
 
 	public void SetPosition(Vector2 position)
@@ -126,7 +132,7 @@ public class TileCell
 
 	#region Check Tile Boundary
 
-	public eTileDirection CheckTileDirection(Vector2 destination)
+	public eTileDirection CheckTileBoundary(Vector2 destination)
 	{
 		Vector2 leftPoint = new Vector2(_position.x - _width / 2, _position.y);
 		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
@@ -143,7 +149,7 @@ public class TileCell
 			return eTileDirection.NORTH_WEST;
 		if (CheckUpsideSlope(-upTan, upPoint, destination) == true)
 			return eTileDirection.NORTH_EAST;
-		return eTileDirection.NONE;
+		return eTileDirection.IN_TILE;
 	}
 
 	bool CheckUpsideSlope(float slope, Vector2 onSlopePosition, Vector2 destination)

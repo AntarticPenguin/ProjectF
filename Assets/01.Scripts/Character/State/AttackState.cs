@@ -15,8 +15,8 @@ public class AttackState : State
 
 		eDirection lookDirection = _character.LookAt();
 		sTilePosition curTilePos = _character.GetTilePosition();
-		int attackTileX = curTilePos._tileX;
-		int attackTileY = curTilePos._tileY;
+		int attackTileX = curTilePos.tileX;
+		int attackTileY = curTilePos.tileY;
 		switch(lookDirection)
 		{
 			case eDirection.NORTH:

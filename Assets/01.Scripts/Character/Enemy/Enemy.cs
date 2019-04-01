@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-	void Start()
+	private void Awake()
 	{
 		_objectType = eMapObjectType.ENEMY;
+	}
+
+	void Start()
+	{
+		
 	}
 
 	public override void InitState()
 	{
 		base.InitState();
-	}
+	}							
 }

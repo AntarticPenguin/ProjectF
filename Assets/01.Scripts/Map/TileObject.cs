@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class TileObject : MapObject
 {
+	private void Awake()
+	{
+		_objectType = eMapObjectType.TILEOBJECT;
+	}
+
 	// Start is called before the first frame update
 	void Start()
 	{
-		_objectType = eMapObjectType.TILEOBJECT;
+		
 	}
 
 	// Update is called once per frame

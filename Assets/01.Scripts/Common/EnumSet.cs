@@ -16,7 +16,7 @@ public enum eTileDirection
 	NORTH_EAST,
 	SOUTH_EAST,
 	SOUTH_WEST,
-	NONE,
+	IN_TILE,
 }
 
 public enum eDirection
@@ -48,26 +48,13 @@ public enum eStateType
 	ATTACK,
 }
 
-public struct sTilePosition
+public enum eBoundary
 {
-	public int _tileX;
-	public int _tileY;
-
-	public override string ToString()
-	{
-		string str = "TileX: " + _tileX + ", TileY: " + _tileY;
-		return str;
-	}
-}
-
-public struct sTileProperties
-{
-	public float _speed;
-
-	public sTileProperties(float speed)
-	{
-		_speed = speed;
-	}
+	UP = 0,
+	DOWN,
+	LEFT,
+	RIGHT,
+	MAX,
 }
 
 public class EnumSet

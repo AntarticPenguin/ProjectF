@@ -7,7 +7,7 @@ public class TileMap : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		InitTiles();
+		
 	}
 
 	// Update is called once per frame
@@ -26,9 +26,14 @@ public class TileMap : MonoBehaviour
 
 	public GameObject _tileObjectPrefab;
 
+	public void Init()
+	{
+		InitTiles();
+	}
+
 	void InitTiles()
 	{
-		_tileCellList = new TileCell[_width, _height];
+		_tileCellList = new TileCell[_height, _width];
 
 		for(int y = 0; y < _height; ++y)
 		{
@@ -52,6 +57,7 @@ public class TileMap : MonoBehaviour
 			{
 				GameObject tileGameObject = Instantiate(_tileObjectPrefab);
 				tileGameObject.InitTransformAsChild(transform);
+				//tileGameObject.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
 
 				TileObject tileObject = tileGameObject.GetComponent<TileObject>();
 				tileObject.SetTilePosition(x, y);

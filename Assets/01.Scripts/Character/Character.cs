@@ -11,17 +11,17 @@ public class Character : MapObject
 
 	private void Awake()
 	{
-		_transform = GetComponent<Transform>();
+		_objectType = eMapObjectType.CHARACTER;
 	}
 
 	// Start is called before the first frame update
 	void Start()
     {
-		_objectType = eMapObjectType.CHARACTER;
+		
 	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
 		if (eStateType.NONE != _curState.GetNextState())
 			ChangeState(_curState.GetNextState());
@@ -30,8 +30,24 @@ public class Character : MapObject
 
 	public void Init()
 	{
+		_transform = GetComponent<Transform>();
+		_boundary = GetComponent<SpriteRenderer>().bounds.size.x;
+		Debug.Log("boundary size: " + _boundary.ToString("F4"));
+
 		InitState();
 		_animator = GetComponent<Animator>();
+
+		//up, down, left, right
+		_boundaryPos.Add(new Vector2(0.0f, _boundary));
+		_boundaryPos.Add(new Vector2(0.0f, -_boundary));
+		_boundaryPos.Add(new Vector2(-_boundary, 0.0f));
+		_boundaryPos.Add(new Vector2(_boundary, 0.0f));
+
+		for(int i = 0; i < (int)eBoundary.MAX; i++)
+		{
+			sTilePosition tilePosition = new sTilePosition(-1, -1);
+			_boundaryMap[(eBoundary)i] = tilePosition;
+		}
 	}
 	
 	#region STATE
@@ -70,41 +86,51 @@ public class Character : MapObject
 
 	#endregion
 
+	#region POSITION AND BOUNDARY
+	float _boundary;
+	Dictionary<eBoundary, sTilePosition> _boundaryMap = new Dictionary<eBoundary, sTilePosition>();
+	List<Vector2> _boundaryPos = new List<Vector2>();		//캐릭터 중심좌표를 기준으로 경계
+
 	public void UpdateNextPosition(Vector2 destination)
 	{
 		TileMap map = GameManager.Instance.GetMap();
-		eTileDirection nextDirection = map.GetTileCell(_tileX, _tileY).CheckTileDirection(destination);
-		int nextTileX = _tileX;
-		int nextTileY = _tileY;
-		switch (nextDirection)
-		{
-			case eTileDirection.NORTH_WEST:
-				nextTileY++;
-				break;
-			case eTileDirection.NORTH_EAST:
-				nextTileX++;
-				break;
-			case eTileDirection.SOUTH_EAST:
-				nextTileY--;
-				break;
-			case eTileDirection.SOUTH_WEST:
-				nextTileX--;
-				break;
-			case eTileDirection.NONE:
-				break;
-			default:
-				break;
-		}
+		eTileDirection boundaryDirection = map.GetTileCell(_tileX, _tileY).CheckTileBoundary(destination);
+		sTilePosition nextTilePos = new sTilePosition(_tileX, _tileY);
+		TileHelper.GetNextTilePosByTileDirection(boundaryDirection, ref nextTilePos);
 
-		if (map.CanMoveTileCell(nextTileX, nextTileY))
+		if (map.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY))
 		{
 			map.GetTileCell(_tileX, _tileY).RemoveObject(this);
-			map.GetTileCell(nextTileX, nextTileY).AddObject(this, _currentLayer);
-			_tileX = nextTileX;
-			_tileY = nextTileY;
+			map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).AddObject(this, _currentLayer);
+			_tileX = nextTilePos.tileX;
+			_tileY = nextTilePos.tileY;
 			transform.position = new Vector3(destination.x, destination.y, 0.0f);
 		}
+
+		//UpdateBoundary();
 	}
+
+	void UpdateBoundary()
+	{
+		/*
+		 *		밟고 있는 타일셀을 일단 검사
+		 *		검사를 마친 후, 타일셀들에 AddObject 호출
+		 */
+		TileMap map = GameManager.Instance.GetMap();
+		for(int direction = 0; direction < (int)eBoundary.MAX; direction++)
+		{
+			Vector2 pos = (Vector2)transform.position + _boundaryPos[direction];
+			eTileDirection boundaryDirection = map.GetTileCell(_tileX, _tileY).CheckTileBoundary(pos);
+			if(eTileDirection.IN_TILE == boundaryDirection)		//안에서 -> 안으로
+			{
+				sTilePosition tilePos = new sTilePosition(-1, -1);
+				_boundaryMap[(eBoundary)direction] = tilePos;
+			}
+
+			Debug.Log(((eBoundary)direction).ToString() + ": OK");
+		}
+	}
+	#endregion
 
 	public Transform GetTransform() { return _transform; }
 	public float GetSpeed() { return _speed; }

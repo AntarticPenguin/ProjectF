@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class MapObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+	private void Awake()
+	{
 		_objectType = eMapObjectType.NONE;
 		_currentLayer = eTileLayer.NONE;
+	}
+
+	// Start is called before the first frame update
+	void Start()
+    {
+	
     }
 
     // Update is called once per frame
@@ -38,9 +43,7 @@ public class MapObject : MonoBehaviour
 	public int GetTileY() { return _tileY; }
 	public sTilePosition GetTilePosition()
 	{
-		sTilePosition tilePos;
-		tilePos._tileX = _tileX;
-		tilePos._tileY = _tileY;
+		sTilePosition tilePos = new sTilePosition(_tileX, _tileY);
 		return tilePos;
 	}
 
@@ -61,4 +64,12 @@ public class MapObject : MonoBehaviour
 	}
 
 	#endregion
+
+
+	public void BecomeViewer()
+	{
+		Camera.main.transform.SetParent(transform);
+		Camera.main.transform.localPosition = new Vector3(0.0f, 0.0f, Camera.main.transform.localPosition.z);
+		Camera.main.transform.localScale = Vector3.one;
+	}
 }

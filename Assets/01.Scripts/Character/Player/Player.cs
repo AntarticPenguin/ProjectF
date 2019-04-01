@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Player : Character
 {
-	void Start()
+	private void Awake()
 	{
 		_objectType = eMapObjectType.PLAYER;
+	}
+
+	void Start()
+	{
+		
 	}
 
 	public override void InitState()
@@ -16,4 +21,6 @@ public class Player : Character
 
 		_curState = _stateMap[eStateType.IDLE];
 	}
+
+
 }
