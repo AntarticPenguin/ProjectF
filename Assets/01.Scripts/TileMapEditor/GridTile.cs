@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
+	static int _globalSortingOrder = 9999;
+	static int _MaxSortingOrder = 10000;
+	int _sortingOrder;
+
 	public PolygonCollider2D _collider;
-	public Material _material;
-	List<LineRenderer> _lineRenderers = new List<LineRenderer>();
+	Material _whiteMat = null;
+	Material _redMat = null;
+	public List<LineRenderer> _lineRenderers = new List<LineRenderer>();
 
 	private void Awake()
 	{
 		_collider = gameObject.AddComponent<PolygonCollider2D>();
-		_material = new Material(Shader.Find("Mobile/Particles/Additive"));
+		_whiteMat = Resources.Load<Material>("Materials/whiteLineMat");
+		_redMat = Resources.Load<Material>("Materials/redLineMat");
 	}
 
 	// Start is called before the first frame update
@@ -33,11 +39,12 @@ public class GridTile : MonoBehaviour
 			GameObject go = new GameObject("line" + i.ToString());
 			LineRenderer li = go.AddComponent<LineRenderer>();
 			li.transform.SetParent(transform);
-			li.material = _material;
+			li.material = _whiteMat;
 			li.sortingLayerID = SortingLayer.NameToID("ON_GROUND");
-			li.sortingOrder = 0;
+			li.sortingOrder = _globalSortingOrder;
 			li.startWidth = 0.02f;
 			li.endWidth = 0.02f;
+			_sortingOrder = _globalSortingOrder;
 
 			_lineRenderers.Add(li);
 		}
@@ -52,6 +59,8 @@ public class GridTile : MonoBehaviour
 
 		DrawLine(_lineRenderers[3], new Vector3(transform.position.x - width / 2, transform.position.y + height / 2, 0),
 			new Vector3(transform.position.x, transform.position.y, 0));
+
+		--_globalSortingOrder;
 	}
 
 	void DrawLine(LineRenderer li, Vector3 start, Vector3 end)
@@ -69,7 +78,6 @@ public class GridTile : MonoBehaviour
 		points[2] = new Vector2(0, 0);
 		points[3] = new Vector2((sizeX / 2.0f), (sizeY / 2.0f));
 		_collider.SetPath(0, points);
-		//_collider.points = points;
 	}
 
 	private void OnMouseOver()
@@ -78,6 +86,8 @@ public class GridTile : MonoBehaviour
 		{
 			_lineRenderers[i].startWidth = 0.04f;
 			_lineRenderers[i].endWidth = 0.04f;
+			_lineRenderers[i].material = _redMat;
+			_lineRenderers[i].sortingOrder = _MaxSortingOrder;
 		}
 	}
 
@@ -87,6 +97,8 @@ public class GridTile : MonoBehaviour
 		{
 			_lineRenderers[i].startWidth = 0.02f;
 			_lineRenderers[i].endWidth = 0.02f;
+			_lineRenderers[i].material = _whiteMat;
+			_lineRenderers[i].sortingOrder = _sortingOrder;
 		}
 	}
 

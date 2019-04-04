@@ -6,15 +6,15 @@ using UnityEditor;
 public class TileMapEditor : MonoBehaviour
 {
 	public GameObject _sampleTileObject;
+	public GameObject _gridPrefab;
+
 	public Grid _grid;
 	public int _width;
 	public int _height;
-
 	public float _dragSpeed = 4.0f;
+
 	Vector3 _cameraOldPos;
 	bool _bDrag;
-
-	public GameObject _gridPrefab;
 
 	List<GridTile> _gridTiles = new List<GridTile>();
 
@@ -83,18 +83,13 @@ public class TileMapEditor : MonoBehaviour
 
 		if (Input.GetMouseButtonUp(1))
 			_bDrag = false;
+
+		float wheelInput = Input.GetAxis("Mouse ScrollWheel");
+		if (wheelInput > 0 || wheelInput < 0)
+		{
+			Camera.main.orthographicSize += -wheelInput;
+		}
 	}
-
-	//private void OnGUI()
-	//{
-	//	Texture2D texture = new Texture2D(1, 1);
-	//	texture.SetPixel(0, 0, Color.red);
-	//	texture.Apply();
-
-	//	GUIStyle _rectStyle = new GUIStyle();
-	//	_rectStyle.normal.background = texture;
-	//	GUI.Box(new Rect(0, 0, 10, 10), GUIContent.none, _rectStyle);
-	//}
 
 	public void OpenFile()
 	{
