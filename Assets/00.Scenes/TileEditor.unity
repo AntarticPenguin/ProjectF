@@ -865,8 +865,8 @@ MonoBehaviour:
   _dropDownMenu: {fileID: 802742506}
   _dropDownContainer: {fileID: 714718722}
   _grid: {fileID: 774858257}
-  _width: 5
-  _height: 5
+  _width: 16
+  _height: 16
   _dragSpeed: 4
 --- !u!4 &694008616
 Transform:
@@ -992,10 +992,10 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 48, y: 48}
+  m_CellSize: {x: 64, y: 64}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
-  m_ConstraintCount: 4
+  m_ConstraintCount: 3
 --- !u!1 &774858256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1021,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774858256}
   m_Enabled: 1
-  m_CellSize: {x: 1.1, y: 0.5, z: 1}
+  m_CellSize: {x: 1.02, y: 0.51, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 2
   m_CellSwizzle: 0
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 6
   m_Viewport: {fileID: 1872258350}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1330722806}
@@ -1314,11 +1314,25 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Brick
+      m_Image: {fileID: 0}
+    - m_Text: Dirt
+      m_Image: {fileID: 0}
     - m_Text: Grass
+      m_Image: {fileID: 0}
+    - m_Text: Lava
+      m_Image: {fileID: 0}
+    - m_Text: Sand
       m_Image: {fileID: 0}
     - m_Text: Snow
       m_Image: {fileID: 0}
-    - m_Text: Grass
+    - m_Text: Stairs
+      m_Image: {fileID: 0}
+    - m_Text: Stone
+      m_Image: {fileID: 0}
+    - m_Text: Water
+      m_Image: {fileID: 0}
+    - m_Text: Wood
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2260,6 +2274,7 @@ GameObject:
   - component: {fileID: 1541343407}
   - component: {fileID: 1541343409}
   - component: {fileID: 1541343408}
+  - component: {fileID: 1541343410}
   m_Layer: 5
   m_Name: TilePanel
   m_TagString: Untagged
@@ -2302,7 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2326,6 +2341,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541343406}
   m_CullTransparentMesh: 0
+--- !u!114 &1541343410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541343406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 694008615}
+          m_MethodName: MouseOnMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 694008615}
+          m_MethodName: MouseExitMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1816961372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,7 +2538,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grass
+  m_Text: Brick
 --- !u!222 &1859515084
 CanvasRenderer:
   m_ObjectHideFlags: 0

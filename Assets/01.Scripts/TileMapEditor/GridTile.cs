@@ -119,13 +119,13 @@ public class GridTile : MonoBehaviour
 	{
 		if (null == _curTileObject)
 		{
-			GameObject prefab = Resources.Load<GameObject>("Prefabs/TestSample2");
+			GameObject prefab = Resources.Load<GameObject>("Prefabs/TilePrefab");
 			_curTileObject = Instantiate(prefab);
 			_curTileObject.GetComponent<SpriteRenderer>().sprite = InSprite;
 			_curTileObject.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("GROUND");
 			_curTileObject.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
 			Vector3 pos = transform.position;
-			pos += new Vector3(0.0f, 0.27f, 0.0f);
+			pos.y += 0.51f / 2;
 			_curTileObject.transform.SetParent(transform);
 			_curTileObject.transform.position = pos;
 		}

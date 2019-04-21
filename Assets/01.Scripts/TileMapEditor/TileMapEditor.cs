@@ -6,15 +6,15 @@ using UnityEngine.UI;
 using System.IO;
 using System.Text;
 
-public enum eTileAsset
-{
-	Grass,
-	Snow,
-	MAX,
-}
-
 public class TileMapEditor : MonoBehaviour
 {
+	enum eMouseOn
+	{
+		WORKSPACE,
+		MENU,
+	}
+	eMouseOn _eMouseOn;
+
 	public GameObject _sampleTileObject;
 	public GameObject _gridPrefab;
 	public Dropdown _dropDownMenu;
@@ -36,6 +36,7 @@ public class TileMapEditor : MonoBehaviour
 	private void Awake()
 	{
 		_bDrag = false;
+		_eMouseOn = eMouseOn.WORKSPACE;
 		_gridSizeX = _grid.cellSize.x;
 		_gridSizeY = _grid.cellSize.y;
 	}
@@ -74,12 +75,12 @@ public class TileMapEditor : MonoBehaviour
 			_bDrag = false;
 
 		float wheelInput = Input.GetAxis("Mouse ScrollWheel");
-		if (wheelInput > 0 || wheelInput < 0)
+		if (eMouseOn.WORKSPACE == _eMouseOn && (wheelInput > 0 || wheelInput < 0))
 		{
 			Camera.main.orthographicSize += -wheelInput;
 		}
 
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButton(0))
 		{
 			if (null != _selectedObject)
 			{
@@ -120,6 +121,9 @@ public class TileMapEditor : MonoBehaviour
 			}
 			_gridTiles.Add(tempList);
 		}
+
+		_width = width;
+		_height = height;
 	}
 
 	void ResetGridTiles()
@@ -149,7 +153,7 @@ public class TileMapEditor : MonoBehaviour
 
 			for (int index = 0; index < sprites.Length; index++)
 			{
-				GameObject go = Resources.Load<GameObject>("Prefabs/UI/ListElementBtn");
+				GameObject go = Resources.Load<GameObject>("Prefabs/Editor/UI/ListElementBtn");
 				GameObject btnPrefab = Instantiate(go);
 				btnPrefab.transform.SetParent(_dropDownContainer.transform);
 				btnPrefab.name = sprites[index].name;
@@ -182,33 +186,25 @@ public class TileMapEditor : MonoBehaviour
 		if (0 != path.Length)
 		{
 			ResetGridTiles();
-			StreamReader sr = new StreamReader(path);
+			CSVParser csvParser = new CSVParser();
+			csvParser.ReadCSV(path);
+			int[] mapSize = csvParser.GetMapSize();
+
+			InitGridTiles(mapSize[0], mapSize[1]);
+
+			List<List<string>> mapData = csvParser.GetMapData();
+			for(int row = 0; row < mapData.Count; row++)
 			{
-				//parsing map size
-				string records = sr.ReadLine();
-				string[] tokens = records.Split(',');
-				int width = int.Parse(tokens[1]);
-				int height = int.Parse(tokens[2]);
-				InitGridTiles(width, height);
-			}
-			{
-				//parsing map data
-				sr.ReadLine();			//skip first line
-				int row = 0;
-				while (!sr.EndOfStream)
+				List<string> rowData = mapData[row];
+				for(int index = 0; index < rowData.Count; index++)
 				{
-					string records = sr.ReadLine();
-					string[] tokens = records.Split(',');
-					for(int i = 0; i < tokens.Length; i++)
-					{
-						GridTile tile = _gridTiles[row][i].GetComponent<GridTile>();
-						string spriteName = tokens[i];
-						if (spriteName.Equals("none"))
-							continue;
-						Sprite sprite = _spriteMap[spriteName];
-						tile.SetTileObjectBySprite(sprite);
-					}
-					row++;
+					GridTile tile = _gridTiles[row][index].GetComponent<GridTile>();
+					string spriteName = rowData[index];
+					if (spriteName.Equals("none"))
+						continue;
+
+					Sprite sprite = _spriteMap[spriteName];
+					tile.SetTileObjectBySprite(sprite);
 				}
 			}
 		}
@@ -216,66 +212,19 @@ public class TileMapEditor : MonoBehaviour
 
 	public void SaveFile()
 	{
-		string path = EditorUtility.SaveFilePanel("SaveFile", "", "", "csv");
+		string assetPath = Application.dataPath;    //Get path "/Assets"
+		string path = EditorUtility.SaveFilePanel("SaveFile", assetPath + "/Resources/MapData", "", "csv");
 		if(0 != path.Length)
 		{
-			List<List<string>> rowData = new List<List<string>>();
-			{
-				//ex)mapSize width, height
-				List<string> rowTemp = new List<string>();
-				rowTemp.Add("mapSize");
-				rowTemp.Add(_width.ToString());
-				rowTemp.Add(_height.ToString());
-				rowData.Add(rowTemp);
-			}
-			{
-				//ex)mapData
-				List<string> rowTemp = new List<string>();
-				rowTemp.Add("mapData");
-				rowData.Add(rowTemp);
-			}
-			{
-				for(int y = 0; y < _height; y++)
-				{
-					List<string> rowTemp = new List<string>();
-					for (int x = 0; x < _width; x++)
-					{
-						string tileName = _gridTiles[y][x].GetComponent<GridTile>()._spriteName;
-						rowTemp.Add(tileName);
-					}
-					rowData.Add(rowTemp);
-				}
-			}
-			{
-				//output with delimeter ","
-				StringBuilder sb = new StringBuilder();
-				for (int i = 0; i < rowData.Count; i++)
-				{
-					for(int j = 0; j < rowData[i].Count; j++)
-					{
-						if(j != rowData[i].Count - 1)
-						{
-							sb.Append(rowData[i][j] + ",");
-						}
-						else
-						{
-							sb.AppendLine(rowData[i][j]);
-						}
-					}
-				}
-				
-				StreamWriter outStream = File.CreateText(path);
-				outStream.Write(sb);
-				outStream.Close();
-
-				Debug.Log("Save completed: " + path);
-			}
+			CSVParser csvParser = new CSVParser();
+			csvParser.SaveCSV(_width, _height, _gridTiles, path);
+			AssetDatabase.Refresh();
 		}
 	}
 
 	public void TurnOnOffGrid()
 	{
-		for(int y = 0; y < _height; y++)
+		for (int y = 0; y < _height; y++)
 		{
 			for(int x = 0; x < _width; x++)
 			{
@@ -309,5 +258,16 @@ public class TileMapEditor : MonoBehaviour
 	{
 		_selectedObject = btn;
 	}
+
+	public void MouseOnMenu()
+	{
+		_eMouseOn = eMouseOn.MENU;
+	}
+
+	public void MouseExitMenu()
+	{
+		_eMouseOn = eMouseOn.WORKSPACE;
+	}
+
 	#endregion
 }

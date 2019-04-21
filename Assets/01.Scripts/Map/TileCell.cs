@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class TileCell
 {
+	static int pixelPerUnit = 128;
+
 	Vector2 _position;
 	int _tileX;
 	int _tileY;
-	static int pixelPerUnit = 100;
+	bool _bCanMove;
 
-	float _width = 103.0f / pixelPerUnit;
-	float _height = 49.6f / pixelPerUnit;	//타일 윗면의 아래꼭지점부터 위까지의 높이
+	//Grid쓰니까 이제 필요없음
+	//float _width = 103.0f / pixelPerUnit;
+	//float _height = 49.6f / pixelPerUnit;   //타일 윗면의 아래꼭지점부터 위까지의 높이
 
 	List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
 
@@ -21,6 +24,7 @@ public class TileCell
 			List<MapObject> mapObjects = new List<MapObject>();
 			_mapObjectListByLayer.Add(mapObjects);
 		}
+		_bCanMove = true;
 	}
 
 	//타일셀 정보에 추가
@@ -112,6 +116,16 @@ public class TileCell
 		_tileY = tileY;
 	}
 
+	public void SetCanMove(bool canMove)
+	{
+		_bCanMove = canMove;
+	}
+
+	public bool CanMove()
+	{
+		return _bCanMove;
+	}
+
 	public sTileProperties GetProperties(eTileLayer layer)
 	{
 		sTileProperties tileProperties = new sTileProperties();
@@ -134,9 +148,13 @@ public class TileCell
 
 	public eTileDirection CheckTileBoundary(Vector2 destination)
 	{
-		Vector2 leftPoint = new Vector2(_position.x - _width / 2, _position.y);
-		Vector2 downPoint = new Vector2(_position.x, _position.y - _height / 2);
-		Vector3 upPoint = new Vector2(_position.x, _position.y + _height / 2);
+		Grid grid = GameManager.Instance.GetMap().GetGrid();
+		float width = grid.cellSize.x;
+		float height = grid.cellSize.y;
+
+		Vector2 leftPoint = new Vector2(_position.x - width / 2, _position.y);
+		Vector2 downPoint = new Vector2(_position.x, _position.y - height / 2);
+		Vector3 upPoint = new Vector2(_position.x, _position.y + height / 2);
 
 		float downTan = (downPoint.y - leftPoint.y) / (downPoint.x - leftPoint.x);  //타일 아래변 두개 기울기
 		float upTan = (upPoint.y - leftPoint.y) / (upPoint.x - leftPoint.x);        //타일 윗변 두개 기울기

@@ -37,9 +37,9 @@ public class PlayerIdleState : State
 
 		if(Input.GetKeyDown(KeyCode.F1))
 		{
-			for(int y = 0; y < map._height; y++)
+			for(int y = 0; y < map.GetHeight(); y++)
 			{
-				for (int x = 0; x < map._width; x++)
+				for (int x = 0; x < map.GetWidth(); x++)
 				{
 					TileCell tileCell = map.GetTileCell(x, y);
 					Debug.Log("tileX: " + x + ", tileY: " + y + "=> " + tileCell.PrintObjectList());

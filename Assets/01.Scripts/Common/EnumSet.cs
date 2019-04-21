@@ -57,6 +57,21 @@ public enum eBoundary
 	MAX,
 }
 
+enum eTileAsset
+{
+	Brick,
+	Dirt,
+	Grass,
+	Lava,
+	Sand,
+	Snow,
+	Stairs,
+	Stone,
+	Water,
+	Wood,
+	MAX,
+}
+
 public class EnumSet
 {
  

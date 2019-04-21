@@ -16,25 +16,32 @@ public class TileMap : MonoBehaviour
 
 	}
 
-	public int _width = 5;
-	public int _height = 5;
-	float _xInterval = 0.545f;
-	float _yInterval = 0.28f;
-	float _xStartPos = 0.0f;
+	int _width;
+	int _height;
 
 	TileCell[,] _tileCellList;
 
+	[SerializeField]
+	private Grid _grid;
+
 	public GameObject _tileObjectPrefab;
+	public TextAsset _mapCSV;
 
 	public void Init()
 	{
+		CSVParser csvParser = new CSVParser();
+		csvParser.ReadCSVByName(_mapCSV.name);
+		int[] mapSize = csvParser.GetMapSize();
+		_width = mapSize[0];
+		_height = mapSize[1];
+
 		InitTiles();
+		CreateTiles(csvParser.GetMapData(), eTileLayer.GROUND);
 	}
 
 	void InitTiles()
 	{
 		_tileCellList = new TileCell[_height, _width];
-
 		for(int y = 0; y < _height; ++y)
 		{
 			for(int x = 0; x < _width; ++x)
@@ -42,40 +49,40 @@ public class TileMap : MonoBehaviour
 				_tileCellList[y, x] = new TileCell();
 			}
 		}
-
-		CreateTiles(eTileLayer.GROUND);
-		//CreateTiles(eTileLayer.MIDDLE_GROUND);
 	}
 
-	void CreateTiles(eTileLayer layer)
+	void CreateTiles(List<List<string>> mapData, eTileLayer layer)
 	{
 		int sortingOrder = _width * _height;
-		for (int y = 0; y < _height; ++y)
+		for(int y = 0; y < _height; ++y)
 		{
-			_xStartPos = _xInterval * -y;
-			for (int x = 0; x < _width; ++x)
+			for(int x = 0; x < _width; ++x)
 			{
-				GameObject tileGameObject = Instantiate(_tileObjectPrefab);
-				tileGameObject.InitTransformAsChild(transform);
-				//tileGameObject.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
+				GameObject tileObjectPrefab = Instantiate(_tileObjectPrefab);
+				tileObjectPrefab.InitTransformAsChild(transform);
 
-				TileObject tileObject = tileGameObject.GetComponent<TileObject>();
+				TileObject tileObject = tileObjectPrefab.GetComponent<TileObject>();
 				tileObject.SetTilePosition(x, y);
-				//tileObject.SetTileProperties(-2.0f);
 
-				// x행, y열
-				// y = 0.514x + (열 + 층수)
-				float xPos = _xInterval * x + _xStartPos;
-				float yPos = 0.514f * (xPos + _xInterval * (y + (int)layer)) + (_yInterval * (y + (int)layer));
+				SpriteRenderer spriteRenderer = tileObjectPrefab.GetComponent<SpriteRenderer>();
+				spriteRenderer.sprite = ResourceManager.Instance.FindSpriteByName(mapData[y][x]);
+
+				Vector3 pos = _grid.CellToWorld(new Vector3Int(x, y, 0));
+				pos.y -= _grid.cellSize.y / 2;		//fit on grid for debug
 				GetTileCell(x, y).Init();
 				GetTileCell(x, y).SetTilePosition(x, y);
-				GetTileCell(x, y).SetPosition(new Vector2(xPos, yPos));
-				//GetTileCell(x, y).AddObject(tileObject, layer, sortingOrder);
+				GetTileCell(x, y).SetPosition(pos);
 				GetTileCell(x, y).SetObject(tileObject, layer, sortingOrder);
+				if (null == spriteRenderer.sprite)
+					GetTileCell(x, y).SetCanMove(false);
+
 				--sortingOrder;
 			}
 		}
 	}
+
+	public int GetWidth() { return _width; }
+	public int GetHeight() { return _height; }
 
 	public TileCell GetTileCell(int x, int y)
 	{
@@ -97,6 +104,11 @@ public class TileMap : MonoBehaviour
 		if (_height <= y)
 			return false;
 
+		if (false == GetTileCell(x, y).CanMove())
+			return false;
+
 		return true;
 	}
+
+	public Grid GetGrid() { return _grid; }
 }

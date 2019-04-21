@@ -32,7 +32,7 @@ public class Character : MapObject
 	{
 		_transform = GetComponent<Transform>();
 		_boundary = GetComponent<SpriteRenderer>().bounds.size.x;
-		Debug.Log("boundary size: " + _boundary.ToString("F4"));
+		//Debug.Log("boundary size: " + _boundary.ToString("F4"));
 
 		InitState();
 		_animator = GetComponent<Animator>();
