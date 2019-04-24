@@ -32,9 +32,9 @@ public class MainGameScene : MonoBehaviour
 		player.Init();
 		player.BecomeViewer();
 
-		//Character enemy = CreateCharacter("Enemy", "EnemySample");
-		//enemy.name = "Enemy";
-		//enemy.Init();
+		Character enemy = CreateCharacter("Enemy", "Enemy_Test");
+		enemy.name = "Enemy";
+		enemy.Init();
 	}
 
 	Character CreateCharacter(string scriptName, string resourceName)

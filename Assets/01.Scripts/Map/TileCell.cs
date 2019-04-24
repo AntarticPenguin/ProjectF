@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileCell
 {
-	static int pixelPerUnit = 128;
+	//static int pixelPerUnit = 128;
 
 	Vector2 _position;
 	int _tileX;
@@ -129,7 +129,7 @@ public class TileCell
 	public sTileProperties GetProperties(eTileLayer layer)
 	{
 		sTileProperties tileProperties = new sTileProperties();
-		tileProperties._speed = 0.0f;
+		tileProperties.speed = 0.0f;
 
 		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
 		for(int i = 0; i < mapObjectList.Count; i++)

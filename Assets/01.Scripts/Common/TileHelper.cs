@@ -49,11 +49,11 @@ public struct sTilePosition
 
 public struct sTileProperties
 {
-	public float _speed;
+	public float speed;
 
-	public sTileProperties(float speed)
+	public sTileProperties(float InSpeed)
 	{
-		_speed = speed;
+		speed = InSpeed;
 	}
 }
 

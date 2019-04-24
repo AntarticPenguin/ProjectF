@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Character : MapObject
 {
-	float _speed = 8.0f;
-	int _hp = 100;
 	Transform _transform;
 	Animator _animator;
 
@@ -31,23 +29,11 @@ public class Character : MapObject
 	public void Init()
 	{
 		_transform = GetComponent<Transform>();
-		_boundary = GetComponent<SpriteRenderer>().bounds.size.x;
-		//Debug.Log("boundary size: " + _boundary.ToString("F4"));
 
 		InitState();
 		_animator = GetComponent<Animator>();
 
-		//up, down, left, right
-		_boundaryPos.Add(new Vector2(0.0f, _boundary));
-		_boundaryPos.Add(new Vector2(0.0f, -_boundary));
-		_boundaryPos.Add(new Vector2(-_boundary, 0.0f));
-		_boundaryPos.Add(new Vector2(_boundary, 0.0f));
-
-		for(int i = 0; i < (int)eBoundary.MAX; i++)
-		{
-			sTilePosition tilePosition = new sTilePosition(-1, -1);
-			_boundaryMap[(eBoundary)i] = tilePosition;
-		}
+		InitStatus();
 	}
 	
 	#region STATE
@@ -59,6 +45,7 @@ public class Character : MapObject
 		ReplaceState(eStateType.IDLE, new IdleState());
 		ReplaceState(eStateType.MOVE, new MoveState());
 		ReplaceState(eStateType.ATTACK, new AttackState());
+		ReplaceState(eStateType.DAMAGE, new DamageState());
 
 		_curState = _stateMap[eStateType.IDLE];
 	}
@@ -87,10 +74,6 @@ public class Character : MapObject
 	#endregion
 
 	#region POSITION AND BOUNDARY
-	float _boundary;
-	Dictionary<eBoundary, sTilePosition> _boundaryMap = new Dictionary<eBoundary, sTilePosition>();
-	List<Vector2> _boundaryPos = new List<Vector2>();		//캐릭터 중심좌표를 기준으로 경계
-
 	public void UpdateNextPosition(Vector2 destination)
 	{
 		TileMap map = GameManager.Instance.GetMap();
@@ -106,58 +89,7 @@ public class Character : MapObject
 			_tileY = nextTilePos.tileY;
 			transform.position = new Vector3(destination.x, destination.y, 0.0f);
 		}
-
-		//UpdateBoundary();
 	}
-
-	void UpdateBoundary()
-	{
-		/*
-		 *		밟고 있는 타일셀을 일단 검사
-		 *		검사를 마친 후, 타일셀들에 AddObject 호출
-		 */
-		TileMap map = GameManager.Instance.GetMap();
-		for(int direction = 0; direction < (int)eBoundary.MAX; direction++)
-		{
-			Vector2 pos = (Vector2)transform.position + _boundaryPos[direction];
-			eTileDirection boundaryDirection = map.GetTileCell(_tileX, _tileY).CheckTileBoundary(pos);
-			if(eTileDirection.IN_TILE == boundaryDirection)		//안에서 -> 안으로
-			{
-				sTilePosition tilePos = new sTilePosition(-1, -1);
-				_boundaryMap[(eBoundary)direction] = tilePos;
-			}
-
-			Debug.Log(((eBoundary)direction).ToString() + ": OK");
-		}
-	}
-	#endregion
-
-	public Transform GetTransform() { return _transform; }
-	public float GetSpeed() { return _speed; }
-
-	#region Status
-	void DecreaseHp(int damage)
-	{
-		_hp -= damage;
-		if (_hp <= 0)
-			_hp = 0;
-	}
-	#endregion
-
-	#region Message
-	public override void ReceiveMessage(MessageParam msgParam)
-	{
-		switch(msgParam.message)
-		{
-			case "Attack":
-				Debug.Log("Sender: " + msgParam.sender.name);
-				//DecreaseHp(msgParam.attackPoint);
-				break;
-			default:
-				break;
-		}
-	}
-	#endregion
 
 	eDirection _lookAt;
 	public void UpdateDirectionWithAnimation(Vector2 direction)
@@ -211,4 +143,75 @@ public class Character : MapObject
 	}
 
 	public eDirection LookAt() { return _lookAt; }
+
+	#endregion
+
+	public Transform GetTransform() { return _transform; }
+
+	#region Message
+	public override void ReceiveMessage(MessageParam msgParam)
+	{
+		switch(msgParam.message)
+		{
+			case "Attack":
+				Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
+				_receiveDamage = msgParam.attackPoint;
+				ChangeState(eStateType.DAMAGE);
+				break;
+			default:
+				break;
+		}
+	}
+	#endregion
+
+	#region Status Battle etc
+	sStatus _status;
+
+	float _receiveDamage;
+
+	public virtual void InitStatus()
+	{
+		_status = new sStatus();
+		_status.hp = 100;
+		_status.attack = 10;
+		_status.armor = 0.0f;
+		_status.avoid = 5;
+
+		_status.speed = 7.0f;
+
+		_receiveDamage = 0;
+	}
+
+	public ref sStatus GetStatus()
+	{
+		return ref _status;
+	}
+
+	public float GetReceiveDamage() { return _receiveDamage; }
+
+	public void DecreaseHp(int damage)
+	{
+		_status.hp -= damage;
+		if (_status.hp <= 0)
+			_status.hp = 0;
+		Debug.Log(_transform.name + "'s hp: " + _status.hp);
+	}
+
+	float _attackDelay;
+	public void SetAttackDelay(float time) { _attackDelay = time; }
+	public float GetAttackDelay() { return _attackDelay; }
+	public void ResetAttackDelay() { _attackDelay = 0.0f; }
+
+	#endregion
+}
+
+public struct sStatus
+{
+	public int hp;
+
+	public int attack;
+	public float armor;
+	public int avoid;
+
+	public float speed;
 }

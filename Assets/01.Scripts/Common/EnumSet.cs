@@ -46,6 +46,7 @@ public enum eStateType
 	IDLE,
 	MOVE,
 	ATTACK,
+	DAMAGE,
 }
 
 public enum eBoundary

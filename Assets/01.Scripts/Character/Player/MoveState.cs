@@ -46,7 +46,7 @@ public class MoveState : State
 		TileMap map = GameManager.Instance.GetMap();
 		TileCell tileCell = map.GetTileCell(_character.GetTileX(), _character.GetTileY());
 		var tileProperties = tileCell.GetProperties(eTileLayer.GROUND);
-		float speed = _character.GetSpeed() + tileProperties._speed;
+		float speed = _character.GetStatus().speed + tileProperties.speed;
 
 		Vector2 position = speed * direction.normalized * Time.deltaTime;
 		Vector2 destination = (Vector2)(_character.GetTransform().position) + position;

@@ -20,6 +20,7 @@ public class PlayerIdleState : State
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
+			_character.SetAttackDelay(2.0f);
 			_nextState = eStateType.ATTACK;
 			return;
 		}

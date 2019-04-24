@@ -25,6 +25,6 @@ public class TileObject : MapObject
 	public sTileProperties GetProperties() { return _tileProperties; }
 	public void SetTileProperties(float speed)
 	{
-		_tileProperties._speed = speed;
+		_tileProperties.speed = speed;
 	}
 }
