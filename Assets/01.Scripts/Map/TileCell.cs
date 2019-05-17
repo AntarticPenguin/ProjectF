@@ -115,6 +115,9 @@ public class TileCell
 		_tileX = tileX;
 		_tileY = tileY;
 	}
+	
+	public int GetTileX() { return _tileX; }
+	public int GetTileY() { return _tileY; }
 
 	public void SetCanMove(bool canMove)
 	{

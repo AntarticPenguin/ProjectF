@@ -81,4 +81,49 @@ public static class TileHelper
 				break;
 		}
 	}
+
+	public static void GetNextTilePosByDirection(eDirection direction, ref sTilePosition tilePos)
+	{
+		switch (direction)
+		{
+			case eDirection.NORTH:
+				tilePos.tileX++;
+				tilePos.tileY++;
+				break;
+			case eDirection.NORTH_EAST:
+				tilePos.tileX++;
+				break;
+			case eDirection.EAST:
+				tilePos.tileX++;
+				tilePos.tileY--;
+				break;
+			case eDirection.SOUTH_EAST:
+				tilePos.tileY--;
+				break;
+			case eDirection.SOUTH:
+				tilePos.tileX--;
+				tilePos.tileY--;
+				break;
+			case eDirection.SOUTH_WEST:
+				tilePos.tileX--;
+				break;
+			case eDirection.WEST:
+				tilePos.tileX--;
+				tilePos.tileY++;
+				break;
+			case eDirection.NORTH_WEST:
+				tilePos.tileY++;
+				break;
+			default:
+				break;
+		}
+	}
+
+	public static Vector2Int GetDirectionVector(TileCell from, TileCell to)
+	{
+		int tileX = to.GetTileX() - from.GetTileX();
+		int tileY = to.GetTileY() - from.GetTileY();
+		Vector2Int direction = new Vector2Int(tileX, tileY);
+		return direction;
+	}
 }

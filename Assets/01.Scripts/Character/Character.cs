@@ -34,6 +34,8 @@ public class Character : MapObject
 		_animator = GetComponent<Animator>();
 
 		InitStatus();
+
+		_hasDestination = false;
 	}
 	
 	#region STATE
@@ -92,11 +94,17 @@ public class Character : MapObject
 	}
 
 	eDirection _lookAt;
-	public void UpdateDirectionWithAnimation(Vector2 direction)
+	Vector2Int _lookDirection = new Vector2Int();
+	public void UpdateDirectionWithAnimation(Vector2Int direction)
 	{
 		string trigger = "";
-		int x = (int)direction.x;
-		int y = (int)direction.y;
+		int x = direction.x;
+		int y = direction.y;
+
+		if (x > 1) x = 1;
+		if (x < -1) x = -1;
+		if (y > 1) y = 1;
+		if (y < -1) y = -1;
 
 		if ((x == 1) && (y == -1))
 		{
@@ -139,10 +147,16 @@ public class Character : MapObject
 			_lookAt = eDirection.WEST;
 		}
 
-		_animator.SetTrigger(trigger);
+		if (!trigger.Equals(""))
+		{
+			_lookDirection.x = x;
+			_lookDirection.y = y;
+			_animator.SetTrigger(trigger);
+		}
 	}
 
 	public eDirection LookAt() { return _lookAt; }
+	public Vector2Int GetLookDirection() { return _lookDirection; }
 
 	#endregion
 
@@ -165,7 +179,7 @@ public class Character : MapObject
 	#endregion
 
 	#region Status Battle etc
-	sStatus _status;
+	protected sStatus _status;
 
 	float _receiveDamage;
 
@@ -203,6 +217,22 @@ public class Character : MapObject
 	public void ResetAttackDelay() { _attackDelay = 0.0f; }
 
 	#endregion
+
+	bool _hasDestination;
+	TileCell _destination;
+	public bool HasDestination() { return _hasDestination; }
+	public TileCell GetDestination() { return _destination; }
+	public void SetDestination(TileCell destination)
+	{
+		_destination = destination;
+		_hasDestination = true;
+	}
+
+	public void ResetDestination()
+	{
+		_destination = null;
+		_hasDestination = false;
+	}
 }
 
 public struct sStatus

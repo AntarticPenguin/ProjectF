@@ -17,5 +17,17 @@ public class Enemy : Character
 	public override void InitState()
 	{
 		base.InitState();
-	}							
+
+		ReplaceState(eStateType.IDLE, new PatrolState());
+		_curState = _stateMap[eStateType.IDLE];
+
+		_curState.Start();
+	}
+
+	public override void InitStatus()
+	{
+		base.InitStatus();
+
+		_status.speed = 1.0f;
+	}
 }

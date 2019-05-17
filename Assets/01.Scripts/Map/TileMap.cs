@@ -62,6 +62,7 @@ public class TileMap : MonoBehaviour
 				tileObjectPrefab.InitTransformAsChild(transform);
 
 				TileObject tileObject = tileObjectPrefab.GetComponent<TileObject>();
+				tileObject.name = "(" + x + ", " + y + ")";
 				tileObject.SetTilePosition(x, y);
 
 				SpriteRenderer spriteRenderer = tileObjectPrefab.GetComponent<SpriteRenderer>();
@@ -93,6 +94,11 @@ public class TileMap : MonoBehaviour
 		return _tileCellList[y, x];
 	}
 
+	public TileCell GetTileCell(sTilePosition tilePosition)
+	{
+		return GetTileCell(tilePosition.tileX, tilePosition.tileY);
+	}
+
 	public bool CanMoveTileCell(int x, int y)
 	{
 		if (x < 0)
@@ -111,4 +117,11 @@ public class TileMap : MonoBehaviour
 	}
 
 	public Grid GetGrid() { return _grid; }
+	public float GetSlope()
+	{
+		Vector3 pos1 = _grid.CellToWorld(Vector3Int.zero);
+		Vector3 pos2 = _grid.CellToWorld(new Vector3Int(1, 0, 0));
+		float slope = (pos2.y - pos1.y) / (pos2.x - pos1.x);
+		return slope;
+	}
 }

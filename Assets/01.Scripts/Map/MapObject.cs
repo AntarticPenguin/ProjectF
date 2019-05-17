@@ -47,6 +47,11 @@ public class MapObject : MonoBehaviour
 		return tilePos;
 	}
 
+	public TileCell GetCurrentTileCell()
+	{
+		return GameManager.Instance.GetMap().GetTileCell(_tileX, _tileY);
+	}
+
 	public eMapObjectType GetMapObjectType() { return _objectType; }
 
 	protected eTileLayer _currentLayer;

@@ -14,45 +14,12 @@ public class AttackState : State
 		if(_duration < 0.0f)
 		{
 			eDirection lookDirection = _character.LookAt();
-			sTilePosition curTilePos = _character.GetTilePosition();
-			int attackTileX = curTilePos.tileX;
-			int attackTileY = curTilePos.tileY;
-			switch (lookDirection)
-			{
-				case eDirection.NORTH:
-					attackTileX++;
-					attackTileY++;
-					break;
-				case eDirection.NORTH_EAST:
-					attackTileX++;
-					break;
-				case eDirection.EAST:
-					attackTileX++;
-					attackTileY--;
-					break;
-				case eDirection.SOUTH_EAST:
-					attackTileY--;
-					break;
-				case eDirection.SOUTH:
-					attackTileX--;
-					attackTileY--;
-					break;
-				case eDirection.SOUTH_WEST:
-					attackTileX--;
-					break;
-				case eDirection.WEST:
-					attackTileX--;
-					attackTileY++;
-					break;
-				case eDirection.NORTH_WEST:
-					attackTileY++;
-					break;
-				default:
-					break;
-			}
+			sTilePosition nextTilePos = _character.GetTilePosition();
+			TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
+
 			TileMap map = GameManager.Instance.GetMap();
-			Debug.Log("Attack: " + attackTileX + ", " + attackTileY);
-			TileCell tileCell = map.GetTileCell(attackTileX, attackTileY);
+			Debug.Log("Attack: " + nextTilePos.tileX+ ", " + nextTilePos.tileX);
+			TileCell tileCell = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
 			if (tileCell != null)
 			{
 				MapObject enemy = tileCell.FindObjectByType(eMapObjectType.ENEMY);
