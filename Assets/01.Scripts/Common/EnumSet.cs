@@ -38,6 +38,7 @@ public enum eMapObjectType
 	CHARACTER,
 	PLAYER,
 	ENEMY,
+	ITEM,
 }
 
 public enum eStateType

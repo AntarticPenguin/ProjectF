@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerIdleState : State
 {
@@ -44,6 +45,17 @@ public class PlayerIdleState : State
 					TileCell tileCell = map.GetTileCell(x, y);
 					Debug.Log("tileX: " + x + ", tileY: " + y + "=> " + tileCell.PrintObjectList());
 				}
+			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.Z))
+		{
+			TileCell tileCell = _character.GetCurrentTileCell();
+			MapObject item = tileCell.FindObjectByType(eMapObjectType.ITEM);
+			if(null != item)
+			{
+				Debug.Log("Item name: " + item.name);
+				_character.PickUpItem((ItemObject)item);
 			}
 		}
 	}

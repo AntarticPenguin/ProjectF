@@ -44,7 +44,7 @@ public class PatrolState : State
 			Vector2Int lookDirection = TileHelper.GetDirectionVector(curTileCell, destination);
 			_character.UpdateDirectionWithAnimation(lookDirection);
 
-			Debug.Log("<color=red>Start Move</color>");
+			//Debug.Log("<color=red>Start Move</color>");
 		}
 	}
 

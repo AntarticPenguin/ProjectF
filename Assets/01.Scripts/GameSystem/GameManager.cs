@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager
 {
-	//Singleton
+	#region SINGLETON
 	static GameManager _instance;
 	public static GameManager Instance
 	{
@@ -13,9 +13,16 @@ public class GameManager
 			if(null == _instance)
 			{
 				_instance = new GameManager();
+				_instance.Init();
 			}
 			return _instance;
 		}
+	}
+	#endregion
+
+	public void Init()
+	{
+		UIMonitor.Instance.Init();
 	}
 
 	TileMap _curMap;

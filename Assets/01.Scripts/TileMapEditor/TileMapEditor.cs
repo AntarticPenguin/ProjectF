@@ -145,7 +145,7 @@ public class TileMapEditor : MonoBehaviour
 	{
 		for(int i = 0; i < (int)eTileAsset.MAX; i++)
 		{
-			Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/" + ((eTileAsset)i).ToString());
+			Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Tile/" + ((eTileAsset)i).ToString());
 			for(int j = 0; j < sprites.Length; j++)
 				_spriteMap[sprites[j].name] = sprites[j];
 
@@ -182,7 +182,8 @@ public class TileMapEditor : MonoBehaviour
 	#region UI EVENT
 	public void OpenFile()
 	{
-		string path = EditorUtility.OpenFilePanel("OpenFile", "", "csv");
+		string assetPath = Application.dataPath;    //Get path "/Assets"
+		string path = EditorUtility.OpenFilePanel("OpenFile", assetPath + "/Resources/", "csv");
 		if (0 != path.Length)
 		{
 			ResetGridTiles();

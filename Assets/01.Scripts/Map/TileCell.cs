@@ -69,7 +69,7 @@ public class TileCell
 		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
 		for(int i = 0; i < mapObjects.Count; i++)
 		{
-			if(eMapObjectType.ENEMY == mapObjects[i].GetMapObjectType())
+			if(mapObjectType == mapObjects[i].GetMapObjectType())
 			{
 				return mapObjects[i];
 			}

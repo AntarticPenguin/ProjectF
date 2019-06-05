@@ -233,6 +233,16 @@ public class Character : MapObject
 		_destination = null;
 		_hasDestination = false;
 	}
+
+	public void PickUpItem(ItemObject item)
+	{
+		bool result = Inventory.Instance.AddItem(item);
+		if (result)
+		{
+			Destroy(item.gameObject);
+		}
+			
+	}
 }
 
 public struct sStatus

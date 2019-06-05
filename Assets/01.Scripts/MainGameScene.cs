@@ -35,6 +35,9 @@ public class MainGameScene : MonoBehaviour
 		Character enemy = CreateCharacter("Enemy", "Enemy_Test");
 		enemy.name = "Enemy";
 		enemy.Init();
+
+		ItemSpawner.Instance.CreateItem(3, 3, "Sword");
+		ItemSpawner.Instance.CreateItem(2, 1, "Shield");
 	}
 
 	Character CreateCharacter(string scriptName, string resourceName)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-	//Singleton
+	#region SINGLETON
 	static ResourceManager _instance;
 	public static ResourceManager Instance
 	{
@@ -25,9 +25,9 @@ public class ResourceManager : MonoBehaviour
 			return _instance;
 		}
 	}
-
-    // Start is called before the first frame update
-    void Start()
+	#endregion
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
@@ -43,7 +43,7 @@ public class ResourceManager : MonoBehaviour
 	{
 		for(int i = 0; i < (int)eTileAsset.MAX; i++)
 		{
-			Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/" + ((eTileAsset)i).ToString());
+			Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Tile/" + ((eTileAsset)i).ToString());
 			for (int j = 0; j < sprites.Length; j++)
 				_spriteMap[sprites[j].name] = sprites[j];
 		}
