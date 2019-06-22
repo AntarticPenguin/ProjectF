@@ -44,6 +44,6 @@ public class ItemSpawner : MonoBehaviour
 
 		TileCell tileCell = map.GetTileCell(tileX, tileY);
 		if(null != tileCell)
-			tileCell.SetObject(itemObject, eTileLayer.ON_GROUND, 0);
+			tileCell.SetObject(itemObject, eTileLayer.ITEM);
 	}
 }

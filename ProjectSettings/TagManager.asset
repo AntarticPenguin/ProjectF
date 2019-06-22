@@ -44,6 +44,9 @@ TagManager:
   - name: GROUND
     uniqueID: 696829551
     locked: 0
+  - name: ITEM
+    uniqueID: 1383184789
+    locked: 0
   - name: ON_GROUND
     uniqueID: 1726549507
     locked: 0

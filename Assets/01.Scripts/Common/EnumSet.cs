@@ -6,6 +6,7 @@ public enum eTileLayer
 {
 	NONE,
 	GROUND,
+	ITEM,
 	ON_GROUND,
 	MAXCOUNT,
 }

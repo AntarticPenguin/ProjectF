@@ -16,8 +16,10 @@ public class TileCell
 	//float _height = 49.6f / pixelPerUnit;   //타일 윗면의 아래꼭지점부터 위까지의 높이
 
 	List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
+	int _groundLayerOrder;				//타일셀이 가지고 있는 고유값
+	int _itemLayerOrder;
 
-	public void Init()
+	public void Init(int groundOrder)
 	{
 		for(int i = 0; i < (int)eTileLayer.MAXCOUNT; i++)
 		{
@@ -25,11 +27,30 @@ public class TileCell
 			_mapObjectListByLayer.Add(mapObjects);
 		}
 		_bCanMove = true;
+
+		_groundLayerOrder = groundOrder;
+		_itemLayerOrder = 0;
 	}
 
 	//타일셀 정보에 추가
 	public void AddObject(MapObject mapObject, eTileLayer layer)
 	{
+		if(eTileLayer.ITEM == layer)
+		{
+			//아이템: 최신이 제일 앞에 오게
+			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _itemLayerOrder;
+			_itemLayerOrder++;
+		}
+		else if(eTileLayer.ON_GROUND == layer)
+		{
+			//캐릭터 etc: 위쪽으로 갈수록 뒤로 보이게
+			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
+		}
+		else
+		{
+			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
+		}
+
 		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
 		mapObjectList.Add(mapObject);
 
@@ -44,6 +65,11 @@ public class TileCell
 		eTileLayer currentLayer = mapObject.GetCurrentLayer();
 		if(eTileLayer.NONE != currentLayer)
 		{
+			if(eTileLayer.ITEM == currentLayer)
+			{
+				_itemLayerOrder--;
+			}
+
 			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)currentLayer];
 			mapObjectList.Remove(mapObject);
 			//Debug.Log("Remove from " + mapObject.GetTileX() + ", " + mapObject.GetTileY());
@@ -55,15 +81,15 @@ public class TileCell
 	}
 
 	//타일셀 정보 추가 및 포지션까지 세팅
-	public void SetObject(MapObject mapObject, eTileLayer layer, int sortingOrder)
+	public void SetObject(MapObject mapObject, eTileLayer layer)
 	{
 		AddObject(mapObject, layer);
 
-		mapObject.GetComponent<SpriteRenderer>().sortingOrder = sortingOrder;
 		mapObject.SetPosition(_position);
 		mapObject.SetCurrentLayer(layer);
 	}
 
+	//TODO: layer 미설정
 	public MapObject FindObjectByType(eMapObjectType mapObjectType)
 	{
 		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];

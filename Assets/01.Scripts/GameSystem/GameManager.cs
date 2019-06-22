@@ -22,7 +22,7 @@ public class GameManager
 
 	public void Init()
 	{
-		UIMonitor.Instance.Init();
+		
 	}
 
 	TileMap _curMap;
@@ -35,5 +35,16 @@ public class GameManager
 	public TileMap GetMap()
 	{
 		return _curMap;
+	}
+
+	Character _player;
+	public void SetPlayer(Character character)
+	{
+		_player = character;
+	}
+
+	public Character GetPlayer()
+	{
+		return _player;
 	}
 }

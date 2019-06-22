@@ -186,7 +186,10 @@ public class Character : MapObject
 	public virtual void InitStatus()
 	{
 		_status = new sStatus();
-		_status.hp = 100;
+		_status.maxHp = 100;
+		_status.hp = 80;
+		_status.maxMp = 100;
+		_status.mp = 50;
 		_status.attack = 10;
 		_status.armor = 0.0f;
 		_status.avoid = 5;
@@ -247,7 +250,10 @@ public class Character : MapObject
 
 public struct sStatus
 {
+	public int maxHp;
+	public int maxMp;
 	public int hp;
+	public int mp;
 
 	public int attack;
 	public float armor;

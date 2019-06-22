@@ -40,14 +40,42 @@ public class UIMonitor : MonoBehaviour
 		{
 			OpenInventory();
 		}
+		else if(Input.GetKeyDown(KeyCode.C))
+		{
+			OpenStatus();
+		}
 	}
 
 	public void Init()
 	{
+		InitInventoryWindow();
+		InitStatusWindow();
+	}
+
+	void InitInventoryWindow()
+	{
 		_inventory = Inventory.Instance;
-		_inventory.onItemChangedCallback += UpdateUI;
+		_inventory.onItemChangedCallback += UpdateInventoryUI;
 		_slots = _slotParent.GetComponentsInChildren<InventorySlot>();
 		_bInventoryOpen = false;
+	}
+
+	void InitStatusWindow()
+	{
+		StatusUI[] list = _statusParentPanel.GetComponentsInChildren<StatusUI>();
+		for (int i = 0; i < list.Length; i++)
+		{
+			if(null != list[i].gameObject.GetComponent<Slider>())
+			{
+				list[i].SetUIType(eStatusUIType.SLIDER);
+			}
+			else
+			{
+				list[i].SetUIType(eStatusUIType.TEXT);
+			}
+			_statusElements.Add(list[i].name, list[i].gameObject);
+		}
+		_bStatusOpen = false;
 	}
 
 	#region INVENTORY
@@ -73,9 +101,9 @@ public class UIMonitor : MonoBehaviour
 		}
 	}
 
-	void UpdateUI()
+	void UpdateInventoryUI()
 	{
-		Debug.Log("Update UI");
+		Debug.Log("Update Inventory UI");
 		for(int i = 0; i < _slots.Length; i++)
 		{
 			if(i < _inventory._items.Count)
@@ -87,6 +115,41 @@ public class UIMonitor : MonoBehaviour
 				_slots[i].ClearSlot();
 			}
 		}
+	}
+
+	#endregion
+
+	[Space(20)]
+	#region STATUS
+
+	public GameObject _statusWindow;
+	public Transform _statusParentPanel;
+	public Dictionary<string, GameObject> _statusElements = new Dictionary<string, GameObject>();
+
+	bool _bStatusOpen;
+
+	public void OpenStatus()
+	{
+		if (_bStatusOpen)
+		{
+			_statusWindow.SetActive(false);
+			_bStatusOpen = false;
+		}
+		else if (!_bInventoryOpen)
+		{ 
+			_statusWindow.SetActive(true);
+			Character player = GameManager.Instance.GetPlayer();
+			foreach(var key in _statusElements.Keys)
+			{
+				_statusElements[key].GetComponent<StatusUI>().UpdateInfo(key, player.GetStatus());
+			}
+			_bStatusOpen = true;
+		}
+	}
+	
+	void UpdateStatusUI()
+	{
+
 	}
 
 	#endregion

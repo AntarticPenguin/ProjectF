@@ -31,6 +31,7 @@ public class MainGameScene : MonoBehaviour
 
 		player.Init();
 		player.BecomeViewer();
+		GameManager.Instance.SetPlayer(player);
 
 		Character enemy = CreateCharacter("Enemy", "Enemy_Test");
 		enemy.name = "Enemy";
@@ -64,7 +65,7 @@ public class MainGameScene : MonoBehaviour
 			default:
 				break;
 		}
-		map.GetTileCell(0, 0).SetObject(character, eTileLayer.ON_GROUND, 0);
+		map.GetTileCell(0, 0).SetObject(character, eTileLayer.ON_GROUND);
 		
 
 		return character;

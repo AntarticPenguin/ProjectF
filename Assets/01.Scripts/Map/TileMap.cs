@@ -70,10 +70,10 @@ public class TileMap : MonoBehaviour
 
 				Vector3 pos = _grid.CellToWorld(new Vector3Int(x, y, 0));
 				pos.y -= _grid.cellSize.y / 2;		//fit on grid for debug
-				GetTileCell(x, y).Init();
+				GetTileCell(x, y).Init(sortingOrder);
 				GetTileCell(x, y).SetTilePosition(x, y);
 				GetTileCell(x, y).SetPosition(pos);
-				GetTileCell(x, y).SetObject(tileObject, layer, sortingOrder);
+				GetTileCell(x, y).SetObject(tileObject, layer);
 				if (null == spriteRenderer.sprite)
 					GetTileCell(x, y).SetCanMove(false);
 
