@@ -65,15 +65,30 @@ public class TileMap : MonoBehaviour
 				tileObject.name = "(" + x + ", " + y + ")";
 				tileObject.SetTilePosition(x, y);
 
+				string[] info = mapData[y][x].Split('@');
+				string tileName = info[0];
+				float offset = 0.0f;
+				bool canMove = true;
+				if (3 == info.Length)
+				{
+					offset = float.Parse(info[1]);
+					if (info[2].Equals("True"))
+						canMove = true;
+					else if (info[2].Equals("False"))
+						canMove = false;
+				}
+					
+
 				SpriteRenderer spriteRenderer = tileObjectPrefab.GetComponent<SpriteRenderer>();
-				spriteRenderer.sprite = ResourceManager.Instance.FindSpriteByName(mapData[y][x]);
+				spriteRenderer.sprite = ResourceManager.Instance.FindSpriteByName(tileName);
 
 				Vector3 pos = _grid.CellToWorld(new Vector3Int(x, y, 0));
-				pos.y -= _grid.cellSize.y / 2;		//fit on grid for debug
+				pos.y += (_grid.cellSize.y / 2) + offset;		//fit on grid for debug
 				GetTileCell(x, y).Init(sortingOrder);
 				GetTileCell(x, y).SetTilePosition(x, y);
 				GetTileCell(x, y).SetPosition(pos);
 				GetTileCell(x, y).SetObject(tileObject, layer);
+				GetTileCell(x, y).SetCanMove(canMove);
 				if (null == spriteRenderer.sprite)
 					GetTileCell(x, y).SetCanMove(false);
 

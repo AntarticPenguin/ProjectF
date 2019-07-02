@@ -18,6 +18,9 @@ public class GridTile : MonoBehaviour
 		_redMat = Resources.Load<Material>("Materials/redLineMat");
 
 		_spriteName = "none";
+
+		_offset = 0.0f;
+		_bShowCanMove = false;
 	}
 
 	// Start is called before the first frame update
@@ -115,7 +118,7 @@ public class GridTile : MonoBehaviour
 
 	GameObject _curTileObject = null;
 	public string _spriteName { get; set; }
-	public void SetTileObjectBySprite(Sprite InSprite)
+	public void SetTileObjectBySprite(Sprite InSprite, float offset = 0.0f)
 	{
 		if (null == _curTileObject)
 		{
@@ -125,15 +128,84 @@ public class GridTile : MonoBehaviour
 			_curTileObject.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("GROUND");
 			_curTileObject.GetComponent<SpriteRenderer>().sortingOrder = _sortingOrder;
 			Vector3 pos = transform.position;
-			pos.y += 0.51f / 2;
+			pos.y += 0.51f / 2;             //grid height
+			pos.y += offset;
 			_curTileObject.transform.SetParent(transform);
 			_curTileObject.transform.position = pos;
+
+			_offset = offset;
 		}
 		else
 		{
 			_curTileObject.GetComponent<SpriteRenderer>().sprite = InSprite;
+			Vector3 pos = transform.position;
+			pos.y += 0.51f / 2;
+			_curTileObject.transform.position = pos;
+
+			_offset = 0.0f;
 		}
 
 		_spriteName = InSprite.name;
+	}
+
+	public GameObject GetTileObject()
+	{
+		return _curTileObject;
+	}
+
+	public float _offset { get; set; }
+	public void IncreasePosition()
+	{
+		Vector3 newPosition = _curTileObject.transform.position;
+		_offset += 0.01f;
+		newPosition.y += 0.01f;
+		_curTileObject.transform.position = newPosition;
+	}
+
+	public void DecreasePosition()
+	{
+		Vector3 newPosition = _curTileObject.transform.position;
+		_offset -= 0.01f;
+		newPosition.y -= 0.01f;
+		_curTileObject.transform.position = newPosition;
+	}
+
+	bool _bCanMove;
+	public void SetCanMove(bool canMove)
+	{
+		_bCanMove = canMove;
+	}
+
+	public void SetCanMove(string canMove)
+	{
+		if (canMove.Equals("True"))
+			_bCanMove = true;
+		else if (canMove.Equals("False"))
+			_bCanMove = false;
+		else
+			Debug.Log("CSV CanMove Error");
+	}
+
+	public bool CanMove() { return _bCanMove; }
+
+	bool _bShowCanMove;
+	public void ShowCanMove()
+	{
+		if(false == _bShowCanMove)
+		{
+			_bShowCanMove = true;
+			if(null != _curTileObject && false == _bCanMove)
+			{
+				_curTileObject.GetComponent<SpriteRenderer>().color = Color.red;
+			}
+		}
+		else if(true == _bShowCanMove)
+		{
+			_bShowCanMove = false;
+			if(null != _curTileObject && false == _bCanMove)
+			{
+				_curTileObject.GetComponent<SpriteRenderer>().color = Color.white;
+			}
+		}
 	}
 }

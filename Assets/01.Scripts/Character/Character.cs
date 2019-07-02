@@ -89,6 +89,14 @@ public class Character : MapObject
 			map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).AddObject(this, _currentLayer);
 			_tileX = nextTilePos.tileX;
 			_tileY = nextTilePos.tileY;
+
+			//TEST: 타일 오프셋 테스트
+			//if (eTileDirection.IN_TILE != boundaryDirection)
+			//{
+			//	float prevOffset = map.GetTileCell(_tileX, _tileY)._offset;
+			//	float newOffset = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY)._offset - prevOffset;
+			//	destination.y += newOffset;
+			//}
 			transform.position = new Vector3(destination.x, destination.y, 0.0f);
 		}
 	}
@@ -194,7 +202,7 @@ public class Character : MapObject
 		_status.armor = 0.0f;
 		_status.avoid = 5;
 
-		_status.speed = 7.0f;
+		_status.speed = 4.0f;
 
 		_receiveDamage = 0;
 	}

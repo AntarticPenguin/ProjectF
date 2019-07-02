@@ -11,6 +11,9 @@ public class TileCell
 	int _tileY;
 	bool _bCanMove;
 
+	//TEST: 타일 오프셋
+	public float _offset = -0.1f;
+
 	//Grid쓰니까 이제 필요없음
 	//float _width = 103.0f / pixelPerUnit;
 	//float _height = 49.6f / pixelPerUnit;   //타일 윗면의 아래꼭지점부터 위까지의 높이
@@ -92,7 +95,7 @@ public class TileCell
 	//TODO: layer 미설정
 	public MapObject FindObjectByType(eMapObjectType mapObjectType)
 	{
-		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
+		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ITEM];
 		for(int i = 0; i < mapObjects.Count; i++)
 		{
 			if(mapObjectType == mapObjects[i].GetMapObjectType())

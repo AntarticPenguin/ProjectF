@@ -30,7 +30,12 @@ public class CSVParser
 				for (int x = 0; x < width; x++)
 				{
 					string tileName = tileDatas[y][x].GetComponent<GridTile>()._spriteName;
-					rowTemp.Add(tileName);
+					float offset = tileDatas[y][x].GetComponent<GridTile>()._offset;
+					bool canMove = tileDatas[y][x].GetComponent<GridTile>().CanMove();
+					if (!tileName.Equals("none"))
+						rowTemp.Add(tileName + "@" + offset.ToString() + "@" + canMove.ToString());
+					else
+						rowTemp.Add(tileName);
 				}
 				rowData.Add(rowTemp);
 			}

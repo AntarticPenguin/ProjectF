@@ -65,7 +65,7 @@ public class MainGameScene : MonoBehaviour
 			default:
 				break;
 		}
-		map.GetTileCell(0, 0).SetObject(character, eTileLayer.ON_GROUND);
+		map.GetTileCell(8, 7).SetObject(character, eTileLayer.ON_GROUND);
 		
 
 		return character;
