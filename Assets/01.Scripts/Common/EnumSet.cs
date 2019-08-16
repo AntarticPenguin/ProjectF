@@ -40,6 +40,7 @@ public enum eMapObjectType
 	PLAYER,
 	ENEMY,
 	ITEM,
+	PORTAL,
 }
 
 public enum eStateType
@@ -74,6 +75,7 @@ enum eTileAsset
 	Wood,
 	MAX,
 }
+
 
 public class EnumSet
 {

@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TileMap : MonoBehaviour
 {
@@ -30,13 +30,14 @@ public class TileMap : MonoBehaviour
 	public void Init()
 	{
 		CSVParser csvParser = new CSVParser();
-		csvParser.ReadCSVByName(_mapCSV.name);
+		csvParser.ReadMapCSV(_mapCSV.name);
 		int[] mapSize = csvParser.GetMapSize();
 		_width = mapSize[0];
 		_height = mapSize[1];
 
 		InitTiles();
 		CreateTiles(csvParser.GetMapData(), eTileLayer.GROUND);
+		CreatePortal();
 	}
 
 	void InitTiles()
@@ -78,13 +79,13 @@ public class TileMap : MonoBehaviour
 						canMove = false;
 				}
 					
-
 				SpriteRenderer spriteRenderer = tileObjectPrefab.GetComponent<SpriteRenderer>();
 				spriteRenderer.sprite = ResourceManager.Instance.FindSpriteByName(tileName);
 
 				Vector3 pos = _grid.CellToWorld(new Vector3Int(x, y, 0));
 				pos.y += (_grid.cellSize.y / 2) + offset;		//fit on grid for debug
 				GetTileCell(x, y).Init(sortingOrder);
+				GetTileCell(x, y).SetOffset(offset);
 				GetTileCell(x, y).SetTilePosition(x, y);
 				GetTileCell(x, y).SetPosition(pos);
 				GetTileCell(x, y).SetObject(tileObject, layer);
@@ -95,6 +96,50 @@ public class TileMap : MonoBehaviour
 				--sortingOrder;
 			}
 		}
+	}
+
+	Dictionary<string, sPortalInfo> _portalInfo = new Dictionary<string, sPortalInfo>();
+	void CreatePortal()
+	{
+		CSVParser parser = new CSVParser();
+		List<sPortalInfo> info = parser.ReadMapInfo(_mapCSV.name);
+
+		for(int i = 0; i < info.Count; i++)
+		{
+			MapObjectSpawner.Instance.CreatePortal(info[i]);
+			_portalInfo.Add(info[i].portalName, info[i]);
+		}
+	}
+
+	//TODO: 맵로딩 delegate
+	public delegate void OnLoadMapFinished();
+	public OnLoadMapFinished onLoadMapFinished;
+
+	public void LoadMap(ref sPortalInfo info)
+	{
+		string[] tokens = info.nextMap.Split('-');
+		string mapName = tokens[0];
+		string portalName = info.nextMap;
+
+		string path = "MapData/" + mapName;
+		TextAsset asset = Resources.Load<TextAsset>(path);
+		if (asset != null)
+		{
+			Debug.Log(asset.name);
+			_mapCSV = asset;
+		}
+		else
+		{
+			Debug.Log("Failed load map");
+		}
+
+		Init();
+
+		sPortalInfo spawnPortal = _portalInfo[portalName];
+		Character player = MapObjectSpawner.Instance.CreateCharacter(spawnPortal.tileX, spawnPortal.tileY, "Player", "Isolet_Test");
+		player.Init();
+		GameManager.Instance.SetPlayer(player);
+		GameManager.Instance.BecomeViewer(player);
 	}
 
 	public int GetWidth() { return _width; }
@@ -138,5 +183,18 @@ public class TileMap : MonoBehaviour
 		Vector3 pos2 = _grid.CellToWorld(new Vector3Int(1, 0, 0));
 		float slope = (pos2.y - pos1.y) / (pos2.x - pos1.x);
 		return slope;
+	}
+
+	public void ClearMap()
+	{
+		for(int y = 0; y < _height; y++)
+		{
+			for(int x = 0; x < _width; x++)
+			{
+				GetTileCell(x, y).Clear();
+			}
+		}
+		Array.Clear(_tileCellList, 0, _height * _width);
+		_portalInfo.Clear();
 	}
 }

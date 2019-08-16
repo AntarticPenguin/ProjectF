@@ -6,6 +6,14 @@ public class MainGameScene : MonoBehaviour
 {
 	public TileMap _tileMap;
 
+	[Header("Player Spawn Position")]
+	public int _playerSpawnX;
+	public int _playerSpawnY;
+
+	[Header("Portal Spawn Position")]
+	public int _portalSpawnX;
+	public int _portalSpawnY;
+
 	private void Awake()
 	{
 		GameManager.Instance.SetMap(_tileMap);
@@ -26,48 +34,16 @@ public class MainGameScene : MonoBehaviour
 
 	void Init()
 	{
-		Character player = CreateCharacter("Player", "Isolet_Test");
-		player.name = "Player";
-
+		Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Isolet_Test");
 		player.Init();
-		player.BecomeViewer();
 		GameManager.Instance.SetPlayer(player);
+		GameManager.Instance.BecomeViewer(player);
 
-		Character enemy = CreateCharacter("Enemy", "Enemy_Test");
-		enemy.name = "Enemy";
-		enemy.Init();
+		//Character enemy = CreateCharacter("Enemy", "Enemy_Test");
+		//enemy.name = "Enemy";
+		//enemy.Init();
 
-		ItemSpawner.Instance.CreateItem(3, 3, "Sword");
-		ItemSpawner.Instance.CreateItem(2, 1, "Shield");
-	}
-
-	Character CreateCharacter(string scriptName, string resourceName)
-	{
-		TileMap map = GameManager.Instance.GetMap();
-
-		string filePath = "Prefabs/Character/" + resourceName;
-
-		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
-		GameObject characterObject = Instantiate(charPrefabs);
-		characterObject.InitTransformAsChild(map.transform);
-		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
-
-
-		Character character = null;
-		switch(scriptName)
-		{
-			case "Player":
-				character = characterObject.AddComponent<Player>();
-				break;
-			case "Enemy":
-				character = characterObject.AddComponent<Enemy>();
-				break;
-			default:
-				break;
-		}
-		map.GetTileCell(8, 7).SetObject(character, eTileLayer.ON_GROUND);
-		
-
-		return character;
+		MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "Sword");
+		MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "Shield");
 	}
 }

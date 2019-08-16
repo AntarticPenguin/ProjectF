@@ -22,7 +22,7 @@ public class AttackState : State
 			TileCell tileCell = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
 			if (tileCell != null)
 			{
-				MapObject enemy = tileCell.FindObjectByType(eMapObjectType.ENEMY);
+				MapObject enemy = tileCell.FindObjectByType(eMapObjectType.ENEMY, eTileLayer.GROUND);
 				if (null != enemy)
 				{
 					MessageParam msg = new MessageParam();

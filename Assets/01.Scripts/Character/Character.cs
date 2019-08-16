@@ -79,24 +79,26 @@ public class Character : MapObject
 	public void UpdateNextPosition(Vector2 destination)
 	{
 		TileMap map = GameManager.Instance.GetMap();
-		eTileDirection boundaryDirection = map.GetTileCell(_tileX, _tileY).CheckTileBoundary(destination);
+		TileCell curTileCell = map.GetTileCell(_tileX, _tileY);
+		eTileDirection boundaryDirection = curTileCell.CheckTileBoundary(destination);
 		sTilePosition nextTilePos = new sTilePosition(_tileX, _tileY);
 		TileHelper.GetNextTilePosByTileDirection(boundaryDirection, ref nextTilePos);
 
 		if (map.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY))
 		{
+			//타일 오프셋에 따른 캐릭터 y값 보정(des = des + (next.offset - cur.offset))
+			if (eTileDirection.IN_TILE != boundaryDirection)
+			{
+				float curOffset = curTileCell.GetOffset();
+				float nextOffset = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetOffset();
+				destination.y = destination.y + (nextOffset - curOffset);
+			}
+
 			map.GetTileCell(_tileX, _tileY).RemoveObject(this);
 			map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).AddObject(this, _currentLayer);
 			_tileX = nextTilePos.tileX;
 			_tileY = nextTilePos.tileY;
 
-			//TEST: 타일 오프셋 테스트
-			//if (eTileDirection.IN_TILE != boundaryDirection)
-			//{
-			//	float prevOffset = map.GetTileCell(_tileX, _tileY)._offset;
-			//	float newOffset = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileY)._offset - prevOffset;
-			//	destination.y += newOffset;
-			//}
 			transform.position = new Vector3(destination.x, destination.y, 0.0f);
 		}
 	}
@@ -250,6 +252,10 @@ public class Character : MapObject
 		bool result = Inventory.Instance.AddItem(item);
 		if (result)
 		{
+			TileMap map = GameManager.Instance.GetMap();
+			sTilePosition tilePos = item.GetTilePosition();
+			TileCell tileCell = map.GetTileCell(tilePos);
+			tileCell.RemoveObject(item);
 			Destroy(item.gameObject);
 		}
 			

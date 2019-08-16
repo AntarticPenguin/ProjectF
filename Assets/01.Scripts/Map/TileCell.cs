@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TileCell
@@ -10,9 +9,6 @@ public class TileCell
 	int _tileX;
 	int _tileY;
 	bool _bCanMove;
-
-	//TEST: 타일 오프셋
-	public float _offset = -0.1f;
 
 	//Grid쓰니까 이제 필요없음
 	//float _width = 103.0f / pixelPerUnit;
@@ -75,7 +71,6 @@ public class TileCell
 
 			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)currentLayer];
 			mapObjectList.Remove(mapObject);
-			//Debug.Log("Remove from " + mapObject.GetTileX() + ", " + mapObject.GetTileY());
 		}
 		else
 		{
@@ -93,9 +88,9 @@ public class TileCell
 	}
 
 	//TODO: layer 미설정
-	public MapObject FindObjectByType(eMapObjectType mapObjectType)
+	public MapObject FindObjectByType(eMapObjectType mapObjectType, eTileLayer layer)
 	{
-		List<MapObject> mapObjects = _mapObjectListByLayer[(int)eTileLayer.ITEM];
+		List<MapObject> mapObjects = _mapObjectListByLayer[(int)layer];
 		for(int i = 0; i < mapObjects.Count; i++)
 		{
 			if(mapObjectType == mapObjects[i].GetMapObjectType())
@@ -174,6 +169,22 @@ public class TileCell
 			}
 		}
 		return tileProperties;
+	}
+
+	float _offset = 0.0f;
+	public void SetOffset(float offset) { _offset = offset; }
+	public float GetOffset() { return _offset; }
+
+	public void Clear()
+	{
+		for (int layer = 0; layer < (int)eTileLayer.MAXCOUNT; layer++)
+		{
+			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
+			for(int i = 0; i < mapObjectList.Count; i++)
+			{
+				Object.Destroy(mapObjectList[i].gameObject);
+			}
+		}
 	}
 
 	#region Check Tile Boundary

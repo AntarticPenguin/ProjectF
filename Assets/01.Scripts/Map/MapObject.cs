@@ -69,12 +69,4 @@ public class MapObject : MonoBehaviour
 	}
 
 	#endregion
-
-
-	public void BecomeViewer()
-	{
-		Camera.main.transform.SetParent(transform);
-		Camera.main.transform.localPosition = new Vector3(0.0f, 0.0f, Camera.main.transform.localPosition.z);
-		Camera.main.transform.localScale = Vector3.one;
-	}
 }

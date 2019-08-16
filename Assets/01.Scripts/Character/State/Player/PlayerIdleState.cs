@@ -24,7 +24,33 @@ public class PlayerIdleState : State
 			_nextState = eStateType.ATTACK;
 			return;
 		}
-			
+
+		//Get the Item
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			TileCell tileCell = _character.GetCurrentTileCell();
+			MapObject item = tileCell.FindObjectByType(eMapObjectType.ITEM, eTileLayer.ITEM);
+			if (null != item)
+			{
+				Debug.Log("Item name: " + item.name);
+				_character.PickUpItem((ItemObject)item);
+			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.F))
+		{
+			TileCell tileCell = _character.GetCurrentTileCell();
+			MapObject portal = tileCell.FindObjectByType(eMapObjectType.PORTAL, eTileLayer.ON_GROUND);
+			if(null != portal)
+			{
+				MessageParam msgParm = new MessageParam();
+				msgParm.sender = _character;
+				msgParm.receiver = portal;
+				msgParm.message = "Interact";
+				
+				MessageSystem.Instance.Send(msgParm);
+			}
+		}
 
 		//TEST: Print tile position
 		TileMap map = GameManager.Instance.GetMap();
@@ -45,17 +71,6 @@ public class PlayerIdleState : State
 					TileCell tileCell = map.GetTileCell(x, y);
 					Debug.Log("tileX: " + x + ", tileY: " + y + "=> " + tileCell.PrintObjectList());
 				}
-			}
-		}
-
-		if(Input.GetKeyDown(KeyCode.Z))
-		{
-			TileCell tileCell = _character.GetCurrentTileCell();
-			MapObject item = tileCell.FindObjectByType(eMapObjectType.ITEM);
-			if(null != item)
-			{
-				Debug.Log("Item name: " + item.name);
-				_character.PickUpItem((ItemObject)item);
 			}
 		}
 	}

@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Cinemachine;
 
 public class GameManager
 {
@@ -20,21 +19,43 @@ public class GameManager
 	}
 	#endregion
 
+	CinemachineVirtualCamera _vcam;
+
 	public void Init()
 	{
-		
+		GameObject go = GameObject.FindGameObjectWithTag("FollowingCamera");
+		_vcam = go.GetComponent<CinemachineVirtualCamera>();
 	}
 
-	TileMap _curMap;
+	public void BecomeViewer(MapObject mapObject)
+	{
+		_vcam.Follow = mapObject.transform;
+	}
+
+	TileMap _tileMap;
 
 	public void SetMap(TileMap tileMap)
 	{
-		_curMap = tileMap;
+		_tileMap = tileMap;
 	}
 
 	public TileMap GetMap()
 	{
-		return _curMap;
+		return _tileMap;
+	}
+
+	public void LoadMap(sPortalInfo info)	
+	{
+		SavePlayerData();
+		_tileMap.ClearMap();
+
+		//string[] tokens = info.nextMap.Split('-');
+		_tileMap.LoadMap(ref info);
+	}
+
+	void SavePlayerData()
+	{
+		//TODO: 맵 이동전 캐릭터 정보 저장
 	}
 
 	Character _player;

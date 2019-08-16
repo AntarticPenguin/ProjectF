@@ -106,10 +106,34 @@ public class CSVParser
 		sr.Close();
 	}
 
-	public void ReadCSVByName(string name)
+	public void ReadMapCSV(string name)
 	{
 		string path = Application.dataPath + "/Resources/MapData/" + name + ".csv";
 		//Debug.Log("CSVPaser::ReadCSV: " + path);
 		ReadCSV(path);
+	}
+
+	public List<sPortalInfo> ReadMapInfo(string name)
+	{
+		List<sPortalInfo> info = new List<sPortalInfo>();
+
+		string path = Application.dataPath + "/Resources/MapData/" + name + "Info.csv";
+		StreamReader sr = new StreamReader(path);
+		sr.ReadLine();	//pass first row
+
+		while(!sr.EndOfStream)
+		{
+			string record = sr.ReadLine();
+			string[] tokens = record.Split(',');
+			sPortalInfo portal = new sPortalInfo();
+			portal.portalName = tokens[0];
+			portal.nextMap = tokens[1];
+			portal.tileX = int.Parse(tokens[2]);
+			portal.tileY = int.Parse(tokens[3]);
+
+			info.Add(portal);
+		}
+
+		return info;
 	}
 }
