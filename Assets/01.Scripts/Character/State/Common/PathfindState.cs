@@ -85,6 +85,7 @@ public class PathfindState : State
 						(nextTilePos.tileX == _targetTileCell.GetTileX() && nextTilePos.tileY == _targetTileCell.GetTileY()))
 					{
 						float newDistanceFromStart = command.tileCell.GetDistanceFromStart() + command.tileCell.GetDistanceWeight();
+						float newHeuristic = CalcEuclideanDistance(nextTileCell, _targetTileCell);
 
 						if(null == nextTileCell.GetPrevCell())
 						{
@@ -92,7 +93,7 @@ public class PathfindState : State
 							nextTileCell.SetPrevCell(command.tileCell);     //이전 타일 기억
 
 							sPathCommand newCommand = new sPathCommand();
-							newCommand.heuristic = 0.0f;
+							newCommand.heuristic = newHeuristic;
 							newCommand.tileCell = nextTileCell;
 							PushCommand(newCommand);
 
@@ -106,7 +107,7 @@ public class PathfindState : State
 								nextTileCell.SetPrevCell(command.tileCell);
 
 								sPathCommand newCommand = new sPathCommand();
-								newCommand.heuristic = 0.0f;
+								newCommand.heuristic = CalcEuclideanDistance(nextTileCell, _targetTileCell);
 								newCommand.tileCell = nextTileCell;
 								PushCommand(newCommand);
 							}
@@ -115,6 +116,17 @@ public class PathfindState : State
 				}
 			}
 		}
+	}
+
+	float CalcEuclideanDistance(TileCell tileCell, TileCell targetCell)
+	{
+		int distanceW = targetCell.GetTileX() - tileCell.GetTileX();
+		int distanceH = targetCell.GetTileX() - tileCell.GetTileY();
+
+		distanceW *= distanceW;
+		distanceH *= distanceH;
+
+		return Mathf.Sqrt(distanceW + distanceH);
 	}
 
 	void BulidPath()

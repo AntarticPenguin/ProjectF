@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 1660514384}
-  _tileX: 15
-  _tileY: 6
+  _tileX: 1
+  _tileY: 7
 --- !u!1 &1660514382
 GameObject:
   m_ObjectHideFlags: 0
