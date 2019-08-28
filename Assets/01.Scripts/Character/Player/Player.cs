@@ -21,6 +21,4 @@ public class Player : Character
 
 		_curState = _stateMap[eStateType.IDLE];
 	}
-
-
 }

@@ -19,6 +19,7 @@ public class Enemy : Character
 		base.InitState();
 
 		ReplaceState(eStateType.IDLE, new PatrolState());
+		ReplaceState(eStateType.CHASE, new ChaseState());
 		_curState = _stateMap[eStateType.IDLE];
 
 		_curState.Start();

@@ -73,6 +73,11 @@ public class PlayerIdleState : State
 				}
 			}
 		}
+
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			_nextState = eStateType.PATHFIND;
+		}
 	}
 
 	public override void Start()

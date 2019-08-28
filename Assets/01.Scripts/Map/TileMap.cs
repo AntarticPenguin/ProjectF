@@ -81,6 +81,7 @@ public class TileMap : MonoBehaviour
 					
 				SpriteRenderer spriteRenderer = tileObjectPrefab.GetComponent<SpriteRenderer>();
 				spriteRenderer.sprite = ResourceManager.Instance.FindSpriteByName(tileName);
+				GetTileCell(x, y).SetSpriteRenderer(spriteRenderer);
 
 				Vector3 pos = _grid.CellToWorld(new Vector3Int(x, y, 0));
 				pos.y += (_grid.cellSize.y / 2) + offset;		//fit on grid for debug
@@ -125,7 +126,7 @@ public class TileMap : MonoBehaviour
 		TextAsset asset = Resources.Load<TextAsset>(path);
 		if (asset != null)
 		{
-			Debug.Log(asset.name);
+			Debug.Log("LoadMap: " + asset.name);
 			_mapCSV = asset;
 		}
 		else
@@ -196,5 +197,33 @@ public class TileMap : MonoBehaviour
 		}
 		Array.Clear(_tileCellList, 0, _height * _width);
 		_portalInfo.Clear();
+	}
+
+	public List<MapObject> FindObjectsByRange(eMapObjectType type, eTileLayer layer, TileCell center, int range = 1)
+	{
+		int minX = center.GetTileX() - range;
+		int minY = center.GetTileY() - range;
+		int maxX = center.GetTileX() + range;
+		int maxY = center.GetTileY() + range;
+
+		if (minX < 0) minX = 0;
+		if (minY < 0) minY = 0;
+		if (_width <= maxX) maxX = _width;
+		if (_height <= maxY) maxY = _height;
+
+		List<MapObject> mapObjects = new List<MapObject>();
+		for (int y = minY; y < maxY; y++)
+		{
+			for(int x = minX; x < maxX; x++)
+			{
+				var mapObject = GetTileCell(x, y).FindObjectByType(type, layer);
+				if (null != mapObject)
+					mapObjects.Add(mapObject);
+			}
+		}
+
+		if (0 == mapObjects.Count)
+			return null;
+		return mapObjects;
 	}
 }

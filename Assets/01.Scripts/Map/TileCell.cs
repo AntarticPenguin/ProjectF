@@ -26,9 +26,14 @@ public class TileCell
 			_mapObjectListByLayer.Add(mapObjects);
 		}
 		_bCanMove = true;
+		_bIsVisit = false;
 
 		_groundLayerOrder = groundOrder;
 		_itemLayerOrder = 0;
+
+		_distanceFromStart = 0.0f;
+		_weight = 1.0f;
+		_prevCell = null;
 	}
 
 	//타일셀 정보에 추가
@@ -40,7 +45,7 @@ public class TileCell
 			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _itemLayerOrder;
 			_itemLayerOrder++;
 		}
-		else if(eTileLayer.ON_GROUND == layer)
+		else if(eTileLayer.GROUND == layer)
 		{
 			//캐릭터 etc: 위쪽으로 갈수록 뒤로 보이게
 			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
@@ -87,7 +92,6 @@ public class TileCell
 		mapObject.SetCurrentLayer(layer);
 	}
 
-	//TODO: layer 미설정
 	public MapObject FindObjectByType(eMapObjectType mapObjectType, eTileLayer layer)
 	{
 		List<MapObject> mapObjects = _mapObjectListByLayer[(int)layer];
@@ -142,6 +146,10 @@ public class TileCell
 	
 	public int GetTileX() { return _tileX; }
 	public int GetTileY() { return _tileY; }
+	public sTilePosition GetTilePosition()
+	{
+		return new sTilePosition(_tileX, _tileY);
+	}
 
 	public void SetCanMove(bool canMove)
 	{
@@ -221,6 +229,29 @@ public class TileCell
 		bool upSide = slope * (destination.x - onSlopePosition.x) - (destination.y - onSlopePosition.y) < 0;
 		return upSide;
 	}
+
+	#endregion
+
+	#region PATHFINDING
+	bool _bIsVisit;
+	public void Visit() { _bIsVisit = true; }
+	public bool IsVisit() { return _bIsVisit; }
+
+	float _distanceFromStart;
+	float _weight;
+	public float GetDistanceFromStart() { return _distanceFromStart; }
+	public void SetDistanceFromStart(float distance) { _distanceFromStart = distance; }
+	public float GetDistanceWeight() { return _weight; }
+
+	TileCell _prevCell;
+	public TileCell GetPrevCell() { return _prevCell; }
+	public void SetPrevCell(TileCell tileCell) { _prevCell = tileCell; }
+
+	//TEST
+	SpriteRenderer _spriteRenderer;
+	public void SetSpriteRenderer(SpriteRenderer spriteRenderer) { _spriteRenderer = spriteRenderer; }
+	public void DrawColor(Color color) { _spriteRenderer.color = color;	}
+	public void ResetColor() { _spriteRenderer.color = Color.white; }
 
 	#endregion
 }

@@ -30,19 +30,39 @@ public class PatrolState : State
 		}
 		else
 		{
-			eDirection direction = (eDirection)Random.Range(0, 9);
-			sTilePosition nextTile = _character.GetTilePosition();
-			TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
-			TileCell destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
-			if (null == destination)
-				return;
-
-			_character.SetDestination(destination);
+			TileMap map = GameManager.Instance.GetMap();
+			TileCell destination = null;
+			TileCell curTileCell = _character.GetCurrentTileCell();
+			var mapObjects  = map.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(), curTileCell, 2);
+			if(null != mapObjects)
+			{
+				//타겟이 1명
+				if(1 == mapObjects.Count)
+				{
+					_character.SetTarget(mapObjects[0]);
+					destination = mapObjects[0].GetCurrentTileCell();
+				}
+			}
+			else
+			{
+				eDirection direction = (eDirection)Random.Range(0, 9);
+				sTilePosition nextTile = _character.GetTilePosition();
+				TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
+				destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
+				if (null != destination)
+				{
+					_character.SetDestination(destination);
+				}
+				else
+					return;
+			}
 
 			//update animation
-			TileCell curTileCell = _character.GetCurrentTileCell();
 			Vector2Int lookDirection = TileHelper.GetDirectionVector(curTileCell, destination);
 			_character.UpdateDirectionWithAnimation(lookDirection);
+
+			if (_character.HasTarget())
+				_nextState = eStateType.CHASE;
 
 			//Debug.Log("<color=red>Start Move</color>");
 		}

@@ -35,7 +35,8 @@ public class Character : MapObject
 
 		InitStatus();
 
-		_hasDestination = false;
+		_bHasDestination = false;
+		_bHasTarget = false;
 	}
 	
 	#region STATE
@@ -99,7 +100,8 @@ public class Character : MapObject
 			_tileX = nextTilePos.tileX;
 			_tileY = nextTilePos.tileY;
 
-			transform.position = new Vector3(destination.x, destination.y, 0.0f);
+			//z값 -1 : 동일한 레이어 + 동일한 order 에서 캐릭터들이 타일보다 뒤에 있으면 안됨
+			transform.position = new Vector3(destination.x, destination.y, -1.0f);
 		}
 	}
 
@@ -171,6 +173,7 @@ public class Character : MapObject
 	#endregion
 
 	public Transform GetTransform() { return _transform; }
+	public SpriteRenderer GetSpriteRenderer() { return GetComponent<SpriteRenderer>(); }
 
 	#region Message
 	public override void ReceiveMessage(MessageParam msgParam)
@@ -231,21 +234,40 @@ public class Character : MapObject
 
 	#endregion
 
-	bool _hasDestination;
+	#region ENEMY SET DESTINATION OR TARGET
+	bool _bHasDestination;
 	TileCell _destination;
-	public bool HasDestination() { return _hasDestination; }
+	public bool HasDestination() { return _bHasDestination; }
 	public TileCell GetDestination() { return _destination; }
 	public void SetDestination(TileCell destination)
 	{
 		_destination = destination;
-		_hasDestination = true;
+		_bHasDestination = true;
 	}
 
 	public void ResetDestination()
 	{
 		_destination = null;
-		_hasDestination = false;
+		_bHasDestination = false;
 	}
+
+	MapObject _target;
+	bool _bHasTarget;
+	public bool HasTarget() { return _bHasTarget; }
+	public MapObject GetTarget() { return _target; }
+	public void SetTarget(MapObject target)
+	{
+		_target = target;
+		_bHasTarget = true;
+	}
+
+	public void ResetTarget()
+	{
+		_target = null;
+		_bHasTarget = false;
+	}
+
+	#endregion
 
 	public void PickUpItem(ItemObject item)
 	{
@@ -258,7 +280,6 @@ public class Character : MapObject
 			tileCell.RemoveObject(item);
 			Destroy(item.gameObject);
 		}
-			
 	}
 }
 

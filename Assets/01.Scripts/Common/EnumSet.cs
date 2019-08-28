@@ -50,6 +50,8 @@ public enum eStateType
 	MOVE,
 	ATTACK,
 	DAMAGE,
+	CHASE,
+	PATHFIND,
 }
 
 public enum eBoundary

@@ -81,6 +81,7 @@ public class MoveState : State
 		_character.UpdateDirectionWithAnimation(lookDirection);
 
 		//TEST tile properties
+		//움직일떄마다 타일 스피드를 반영하지 말고 캐릭터 클래스 내부에서 계속 반영하도록..
 		TileCell tileCell = map.GetTileCell(_character.GetTileX(), _character.GetTileY());
 		var tileProperties = tileCell.GetProperties(eTileLayer.GROUND);
 		float speed = _character.GetStatus().speed + tileProperties.speed;
