@@ -115,25 +115,31 @@ public class CSVParser
 
 	public List<sPortalInfo> ReadMapInfo(string name)
 	{
-		List<sPortalInfo> info = new List<sPortalInfo>();
-
 		string path = Application.dataPath + "/Resources/MapData/" + name + "Info.csv";
-		StreamReader sr = new StreamReader(path);
-		sr.ReadLine();	//pass first row
-
-		while(!sr.EndOfStream)
+		List<sPortalInfo> info = new List<sPortalInfo>();
+		try
 		{
-			string record = sr.ReadLine();
-			string[] tokens = record.Split(',');
-			sPortalInfo portal = new sPortalInfo();
-			portal.portalName = tokens[0];
-			portal.nextMap = tokens[1];
-			portal.tileX = int.Parse(tokens[2]);
-			portal.tileY = int.Parse(tokens[3]);
+			StreamReader sr = new StreamReader(path);
+			sr.ReadLine();  //pass first row
 
-			info.Add(portal);
+			while (!sr.EndOfStream)
+			{
+				string record = sr.ReadLine();
+				string[] tokens = record.Split(',');
+				sPortalInfo portal = new sPortalInfo();
+				portal.portalName = tokens[0];
+				portal.nextMap = tokens[1];
+				portal.tileX = int.Parse(tokens[2]);
+				portal.tileY = int.Parse(tokens[3]);
+
+				info.Add(portal);
+			}
 		}
-
+		catch (IOException exception)
+		{
+			Debug.Log("<color=red> Can't find MapInfo File. </color>");
+			return null;
+		}
 		return info;
 	}
 }

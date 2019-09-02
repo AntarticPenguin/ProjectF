@@ -22,11 +22,11 @@ public class PatrolState : State
 			}
 
 			Vector2 lookDirection = _character.GetLookDirection();
-			Vector2 position = Vector2.zero;
-			position.x += lookDirection.x;
-			position.y += lookDirection.y;
-			position = _character.GetStatus().speed * position.normalized * Time.deltaTime;
-			_character.UpdateNextPosition(position + (Vector2)_character.GetTransform().position);
+			Vector2 newPosition = Vector2.zero;
+			newPosition.x += lookDirection.x;
+			newPosition.y += lookDirection.y;
+
+			_character.UpdateNextPosition(newPosition);
 		}
 		else
 		{

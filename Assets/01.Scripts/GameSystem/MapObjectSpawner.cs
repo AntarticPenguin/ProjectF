@@ -98,6 +98,10 @@ public class MapObjectSpawner : MonoBehaviour
 		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
 		GameObject characterObject = Instantiate(charPrefabs);
 		characterObject.InitTransformAsChild(map.transform);
+
+		Vector3 position = characterObject.transform.position;
+		position.z = -1.0f;
+		characterObject.transform.position = position;
 		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
 
 		Character character = null;
@@ -118,7 +122,6 @@ public class MapObjectSpawner : MonoBehaviour
 			default:
 				break;
 		}
-		//map.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.ON_GROUND);
 		map.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
 		return character;

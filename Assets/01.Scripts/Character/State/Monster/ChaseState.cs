@@ -15,9 +15,8 @@ public class ChaseState : State
 			Vector2 newPosition = Vector2.zero;
 			newPosition.x += lookDirection.x;
 			newPosition.y += lookDirection.y;
-			newPosition = _character.GetStatus().speed * newPosition.normalized * Time.deltaTime;
-			_character.UpdateNextPosition(newPosition + (Vector2)_character.GetTransform().position);
 
+			_character.UpdateNextPosition(newPosition);
 			_character.UpdateDirectionWithAnimation(lookDirection);
 		}
 	}

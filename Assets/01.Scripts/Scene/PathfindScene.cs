@@ -28,7 +28,7 @@ public class PathfindScene : MonoBehaviour
 	public int _tileY;
 	void Init()
 	{
-		Character player = MapObjectSpawner.Instance.CreateCharacter(3, 3, "Pathfinder", "Isolet_Test");
+		Character player = MapObjectSpawner.Instance.CreateCharacter(12, 9, "Pathfinder", "Isolet_Test");
 		player.Init();
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);

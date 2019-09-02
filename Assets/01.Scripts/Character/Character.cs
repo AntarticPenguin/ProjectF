@@ -77,8 +77,11 @@ public class Character : MapObject
 	#endregion
 
 	#region POSITION AND BOUNDARY
-	public void UpdateNextPosition(Vector2 destination)
+	public void UpdateNextPosition(Vector2 position)
 	{
+		float speed = _status.speed + GetCurrentTileCell().GetProperties(eTileLayer.GROUND).speed;
+		Vector2 destination = (Vector2)(_transform.position) + (position.normalized * speed * Time.deltaTime);
+
 		TileMap map = GameManager.Instance.GetMap();
 		TileCell curTileCell = map.GetTileCell(_tileX, _tileY);
 		eTileDirection boundaryDirection = curTileCell.CheckTileBoundary(destination);
@@ -112,11 +115,6 @@ public class Character : MapObject
 		string trigger = "";
 		int x = direction.x;
 		int y = direction.y;
-
-		if (x > 1) x = 1;
-		if (x < -1) x = -1;
-		if (y > 1) y = 1;
-		if (y < -1) y = -1;
 
 		if ((x == 1) && (y == -1))
 		{
@@ -207,7 +205,7 @@ public class Character : MapObject
 		_status.armor = 0.0f;
 		_status.avoid = 5;
 
-		_status.speed = 4.0f;
+		_status.speed = 2.0f;
 
 		_receiveDamage = 0;
 	}
@@ -234,7 +232,7 @@ public class Character : MapObject
 
 	#endregion
 
-	#region ENEMY SET DESTINATION OR TARGET
+	#region SET DESTINATION OR TARGET, PATHFINDING
 	bool _bHasDestination;
 	TileCell _destination;
 	public bool HasDestination() { return _bHasDestination; }
@@ -266,6 +264,20 @@ public class Character : MapObject
 		_target = null;
 		_bHasTarget = false;
 	}
+
+	Stack<TileCell> _pathStack = new Stack<TileCell>();
+	public void PushPathTileCell(TileCell tileCell)
+	{
+		_pathStack.Push(tileCell);
+	}
+
+	public void ResetPath()
+	{
+		if (0 != _pathStack.Count)
+			_pathStack.Clear();
+	}
+
+	public Stack<TileCell> GetPathStack() { return _pathStack; }
 
 	#endregion
 

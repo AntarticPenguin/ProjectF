@@ -455,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877776420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.945611, y: -0.47078612, z: -1.0713183}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 610341771}
@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 1660514384}
-  _tileX: 1
-  _tileY: 7
+  _tileX: 5
+  _tileY: 6
 --- !u!1 &1660514382
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,4 +525,4 @@ MonoBehaviour:
   _grid: {fileID: 610562401}
   _tileObjectPrefab: {fileID: 8867108249419527739, guid: 5c6e7be1d5d97704eaf0136d0782cadb,
     type: 3}
-  _mapCSV: {fileID: 4900000, guid: 8b58cd18e69c77742ba92aff921ab24d, type: 3}
+  _mapCSV: {fileID: 4900000, guid: 056864f8bc75a70429b162a5ea8eea29, type: 3}
