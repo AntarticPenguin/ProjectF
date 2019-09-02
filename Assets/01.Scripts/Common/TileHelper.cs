@@ -119,11 +119,98 @@ public static class TileHelper
 		}
 	}
 
+	//타일좌표 뺀 값을 방향벡터로 변환
 	public static Vector2Int GetDirectionVector(TileCell from, TileCell to)
 	{
-		int tileX = to.GetTileX() - from.GetTileX();
-		int tileY = to.GetTileY() - from.GetTileY();
-		Vector2Int direction = new Vector2Int(tileX, tileY);
+		int x = to.GetTileX() - from.GetTileX();
+		int y = to.GetTileY() - from.GetTileY();
+
+		if (x > 1) x = 1;
+		if (x < -1) x = -1;
+		if (y > 1) y = 1;
+		if (y < -1) y = -1;
+
+		Vector2Int direction = Vector2Int.zero;
+		if (x == 1 && y == 1)		//NORTH(0,1)
+		{
+			direction.x = 0;
+			direction.y = 1;
+		}
+		else if(x == -1 && y == -1) //SOUTH(0,-1)
+		{
+			direction.x = 0;
+			direction.y = -1;
+		}
+		else if(x == 1 && y == -1)  //EAST(1,0)
+		{
+			direction.x = 1;
+			direction.y = 0;
+		}
+		else if (x == -1 && y == 1)  //WEST(-1,0)
+		{
+			direction.x = -1;
+			direction.y = 0;
+		}
+		else if (x == 1 && y == 0)  //NORTH_EAST(1,1)
+		{
+			direction.x = 1;
+			direction.y = 1;
+		}
+		else if (x == 0 && y == 1)  //NORTH_WEST(-1,1)
+		{
+			direction.x = -1;
+			direction.y = 1;
+		}
+		else if (x == 0 && y == -1)  //SOUTH_EAST(1,-1)
+		{
+			direction.x = 1;
+			direction.y = -1;
+		}
+		else if (x == -1 && y == 0)  //SOUTH_WEST(-1,-1)
+		{
+			direction.x = -1;
+			direction.y = -1;
+		}
+
 		return direction;
+	}
+
+	public static Vector2 GetSlopeDirection(Vector2 direction)
+	{
+		TileMap map = GameManager.Instance.GetMap();
+		Vector2 newDirection = direction;
+		if(direction.y == -1 && (direction.x == 1 || direction.x == -1))
+		{
+			//SOUTH_EAST, SOUTH_WEST
+			newDirection.y = -map.GetSlope();
+		}
+		else if(direction.y == 1 && (direction.x == 1 || direction.x == -1))
+		{
+			//NORTH_EAST, NORTH_WEST
+			newDirection.y = map.GetSlope();
+		}
+		return newDirection;
+	}
+
+	public static eDirection ConvertToeDirection(Vector2Int direction)
+	{
+		if (direction.x == 0 && direction.y == 1)
+			return eDirection.NORTH;
+		if (direction.x == 0 && direction.y == -1)
+			return eDirection.SOUTH;
+		if (direction.x == -1 && direction.y == 0)
+			return eDirection.WEST;
+		if (direction.x == 1 && direction.y == 0)
+			return eDirection.EAST;
+		if (direction.x == 1 && direction.y == 1)
+			return eDirection.NORTH_EAST;
+		if (direction.x == -1 && direction.y == 1)
+			return eDirection.NORTH_WEST;
+		if (direction.x == 1 && direction.y == -1)
+			return eDirection.SOUTH_EAST;
+		if (direction.x == -1 && direction.y == -1)
+			return eDirection.SOUTH_WEST;
+
+		return eDirection.NORTH;
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathfindState : State
+public class PathFindState : State
 {
 	struct sPathCommand
 	{
@@ -85,9 +85,9 @@ public class PathfindState : State
 						(nextTilePos.tileX == _targetTileCell.GetTileX() && nextTilePos.tileY == _targetTileCell.GetTileY()))
 					{
 						float newDistanceFromStart = command.tileCell.GetDistanceFromStart() + command.tileCell.GetDistanceWeight();
-						float newHeuristic = CalcEuclideanDistance(nextTileCell, _targetTileCell);
+						float newHeuristic = CalcAstarHeuristic(newDistanceFromStart, nextTileCell, _targetTileCell);
 
-						if(null == nextTileCell.GetPrevCell())
+						if (null == nextTileCell.GetPrevCell())
 						{
 							nextTileCell.SetDistanceFromStart(newDistanceFromStart);
 							nextTileCell.SetPrevCell(command.tileCell);     //이전 타일 기억
@@ -99,19 +99,6 @@ public class PathfindState : State
 
 							nextTileCell.DrawColor(Color.blue);
 						}
-						else
-						{
-							if(newDistanceFromStart < nextTileCell.GetDistanceFromStart())
-							{
-								nextTileCell.SetDistanceFromStart(newDistanceFromStart);
-								nextTileCell.SetPrevCell(command.tileCell);
-
-								sPathCommand newCommand = new sPathCommand();
-								newCommand.heuristic = CalcEuclideanDistance(nextTileCell, _targetTileCell);
-								newCommand.tileCell = nextTileCell;
-								PushCommand(newCommand);
-							}
-						}
 					}
 				}
 			}
@@ -121,7 +108,7 @@ public class PathfindState : State
 	float CalcEuclideanDistance(TileCell tileCell, TileCell targetCell)
 	{
 		int distanceW = targetCell.GetTileX() - tileCell.GetTileX();
-		int distanceH = targetCell.GetTileX() - tileCell.GetTileY();
+		int distanceH = targetCell.GetTileY() - tileCell.GetTileY();
 
 		distanceW *= distanceW;
 		distanceH *= distanceH;
@@ -129,12 +116,21 @@ public class PathfindState : State
 		return Mathf.Sqrt(distanceW + distanceH);
 	}
 
+	float CalcAstarHeuristic(float distanceFromStart, TileCell tileCell, TileCell targetCell)
+	{
+		return distanceFromStart + CalcEuclideanDistance(tileCell, targetCell);
+	}
+
 	void BulidPath()
 	{
 		while(null != _reverseTileCell)
 		{
 			_reverseTileCell.DrawColor(Color.red);
+
+			_character.PushPathTileCell(_reverseTileCell);
 			_reverseTileCell = _reverseTileCell.GetPrevCell();
 		}
+
+		_nextState = eStateType.MOVE;
 	}
 }

@@ -13,7 +13,8 @@ public class Pathfinder : Character
 	{
 		base.InitState();
 		ReplaceState(eStateType.IDLE, new PlayerIdleState());
-		ReplaceState(eStateType.PATHFIND, new PathfindState());
+		ReplaceState(eStateType.PATHFIND, new PathFindState());
+		ReplaceState(eStateType.MOVE, new PathMoveState());
 
 		_curState = _stateMap[eStateType.IDLE];
 	}

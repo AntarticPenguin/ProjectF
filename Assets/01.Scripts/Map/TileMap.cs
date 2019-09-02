@@ -104,6 +104,12 @@ public class TileMap : MonoBehaviour
 	{
 		CSVParser parser = new CSVParser();
 		List<sPortalInfo> info = parser.ReadMapInfo(_mapCSV.name);
+		if (null == info)
+		{
+			Debug.Log("PortalInfo doesn't exist");
+			return;
+		}
+			
 
 		for(int i = 0; i < info.Count; i++)
 		{
