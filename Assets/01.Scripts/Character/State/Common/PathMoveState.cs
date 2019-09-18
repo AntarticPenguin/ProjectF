@@ -19,8 +19,9 @@ public class PathMoveState : State
 		base.Update();
 		_stuckCheckDuration += Time.deltaTime;
 		_prevPosition = _character.GetTransform().position;
-
-		bool bIsArrived = (_character.GetCurrentTileCell().GetTilePosition().Equals(_pathTargetCell.GetTilePosition()));
+		
+		bool bIsArrived = (_character.GetTransform().position.x.EqualApproximately(_pathTargetCell.GetPosition().x, 0.1f) &&
+							_character.GetTransform().position.y.EqualApproximately(_pathTargetCell.GetPosition().y, 0.1f));
 		if (bIsArrived)
 		{
 			if (0 == _pathStack.Count)

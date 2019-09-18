@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class MyExtensions
 {
@@ -9,5 +7,10 @@ public static class MyExtensions
 		gameObject.transform.SetParent(parent);
 		gameObject.transform.localPosition = Vector3.zero;
 		gameObject.transform.localScale = Vector3.one;
+	}
+
+	public static bool EqualApproximately(this float lhs, float rhs, float tolerance)
+	{
+		return (Mathf.Abs(lhs - rhs) < tolerance);
 	}
 }
