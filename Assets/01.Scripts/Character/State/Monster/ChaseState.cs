@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class ChaseState : State
 {
+	Pathfinding _pathfinder = new Pathfinding();
+	float _chaseOverTime;
+
 	public override void Update()
 	{
 		base.Update();
 
-		if(_character.HasTarget())
-		{
-			TileCell targetCell = _character.GetTarget().GetCurrentTileCell();
-			Vector2Int lookDirection = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), targetCell);
-			Vector2 newPosition = Vector2.zero;
-			newPosition.x += lookDirection.x;
-			newPosition.y += lookDirection.y;
+		//_chaseOverTime -= Time.deltaTime;
+		//if (_chaseOverTime < 0.0f)
+		//	_nextState = eStateType.IDLE;
 
-			_character.UpdateNextPosition(newPosition);
-			_character.UpdateDirectionWithAnimation(lookDirection);
+		bool finishMove = _pathfinder.Move();
+		if (finishMove)
+		{
+			Debug.Log("MOVE FINISH!!");
+			_nextState = eStateType.IDLE;
 		}
 	}
 
@@ -26,13 +28,21 @@ public class ChaseState : State
 		base.Start();
 
 		_character.GetSpriteRenderer().color = Color.red;
+		_chaseOverTime = 5.0f;
+
+		_pathfinder.Init(_character);
+		_pathfinder.MakePathToTarget(_character.GetTarget());
+		Debug.Log("target:" + _character.GetTarget().name);
 	}
 
 	public override void Stop()
 	{
 		base.Stop();
 
+		Debug.Log("Chase Finish. Reset taregt and path");
 		_character.ResetTarget();
+		_character.ResetPath();
+		GameManager.Instance.GetMap().ResetAllColor();
 		_character.GetSpriteRenderer().color = Color.white;
 	}
 }

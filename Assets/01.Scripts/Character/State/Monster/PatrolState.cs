@@ -22,7 +22,7 @@ public class PatrolState : State
 			}
 
 			Vector2 lookDirection = _character.GetLookDirection();
-			Vector2 newPosition = Vector2.zero;
+			Vector2 newPosition = TileHelper.GetSlopeDirection(lookDirection);
 			newPosition.x += lookDirection.x;
 			newPosition.y += lookDirection.y;
 
@@ -33,14 +33,16 @@ public class PatrolState : State
 			TileMap map = GameManager.Instance.GetMap();
 			TileCell destination = null;
 			TileCell curTileCell = _character.GetCurrentTileCell();
-			var mapObjects  = map.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(), curTileCell, 2);
+			var mapObjects  = map.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(), curTileCell, 4);
 			if(null != mapObjects)
 			{
 				//타겟이 1명
 				if(1 == mapObjects.Count)
 				{
+					Debug.Log("FIND TARGET!");
 					_character.SetTarget(mapObjects[0]);
-					destination = mapObjects[0].GetCurrentTileCell();
+					_nextState = eStateType.CHASE;
+					return;
 				}
 			}
 			else
@@ -60,9 +62,6 @@ public class PatrolState : State
 			//update animation
 			Vector2Int lookDirection = TileHelper.GetDirectionVector(curTileCell, destination);
 			_character.UpdateDirectionWithAnimation(lookDirection);
-
-			if (_character.HasTarget())
-				_nextState = eStateType.CHASE;
 
 			//Debug.Log("<color=red>Start Move</color>");
 		}

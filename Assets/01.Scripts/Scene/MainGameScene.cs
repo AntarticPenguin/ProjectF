@@ -10,6 +10,10 @@ public class MainGameScene : MonoBehaviour
 	public int _playerSpawnX;
 	public int _playerSpawnY;
 
+	[Header("Enemy Spawn Position")]
+	public int _enemySpawnX;
+	public int _enemySpawnY;
+
 	[Header("Portal Spawn Position")]
 	public int _portalSpawnX;
 	public int _portalSpawnY;
@@ -39,7 +43,7 @@ public class MainGameScene : MonoBehaviour
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);
 
-		Character enemy = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Enemy", "Enemy_Test");
+		Character enemy = MapObjectSpawner.Instance.CreateCharacter(_enemySpawnX, _enemySpawnY, "Enemy", "Enemy_Test");
 		enemy.Init();
 
 		MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "Sword");

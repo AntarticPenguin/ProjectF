@@ -60,7 +60,6 @@ public class PathMoveState : State
 		_pathStack = _character.GetPathStack();
 		if (0 != _pathStack.Count)
 		{
-			_pathStack.Pop();
 			_pathTargetCell = _pathStack.Pop();
 			_direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), _pathTargetCell);
 		}

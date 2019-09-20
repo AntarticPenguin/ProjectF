@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFindState : State
+public class Pathfinding
 {
 	struct sPathCommand
 	{
@@ -10,28 +10,20 @@ public class PathFindState : State
 		public float heuristic;
 	}
 
-	List<sPathCommand> _pathfindingQueue = new List<sPathCommand>();
-	TileCell _targetTileCell;
-	TileCell _reverseTileCell;
+	Character _character;
 
-	public override void Update()
+	public void Init(Character character)
 	{
-		base.Update();
-
+		_character = character;
 	}
 
-	public override void Start()
+	public void MakePathToTarget(TileCell destination)
 	{
-		base.Start();
-		Debug.Log("Start pathfind");
+		GameManager.Instance.GetMap().ResetPathfindInfo();
+		_pathfindingQueue.Clear();
 
-		_targetTileCell = _character.GetDestination();
-		if (null == _targetTileCell)
-		{
-			Debug.Log("No Target");
-			return;
-		}
-			
+		_targetTileCell = destination;
+		Debug.Log("Target tile: " + _targetTileCell.GetTilePosition().ToString());
 
 		sPathCommand command = new sPathCommand();
 		command.tileCell = _character.GetCurrentTileCell();
@@ -41,13 +33,18 @@ public class PathFindState : State
 
 		FindPath();
 		BuildPath();
+		InitMove();
 	}
 
-	public override void Stop()
+	public void MakePathToTarget(MapObject target)
 	{
-		base.Stop();
-
+		MakePathToTarget(target.GetCurrentTileCell());
 	}
+
+	#region PATHFIND ALGORITHM
+	List<sPathCommand> _pathfindingQueue = new List<sPathCommand>();
+	TileCell _targetTileCell;
+	TileCell _reverseTileCell;
 
 	void PushCommand(sPathCommand command)
 	{
@@ -58,30 +55,30 @@ public class PathFindState : State
 	void FindPath()
 	{
 		TileMap map = GameManager.Instance.GetMap();
-		while(0 != _pathfindingQueue.Count)
+		while (0 != _pathfindingQueue.Count)
 		{
 			//제일 앞 타일을 하나 꺼낸다.
 			sPathCommand command = _pathfindingQueue[0];
 			_pathfindingQueue.RemoveAt(0);
 
 			//방문한 타일인가?
-			if(false == command.tileCell.IsVisit())
+			if (false == command.tileCell.IsVisit())
 			{
 				command.tileCell.Visit();
 
-				if(_targetTileCell.GetTilePosition().Equals(command.tileCell.GetTilePosition()))
+				if (_targetTileCell.GetTilePosition().Equals(command.tileCell.GetTilePosition()))
 				{
 					_reverseTileCell = _targetTileCell;
 					return;
 				}
 
-				for(int direction = 0; direction < 8; direction++)
+				for (int direction = 0; direction < 8; direction++)
 				{
 					sTilePosition nextTilePos = new sTilePosition(command.tileCell.GetTileX(), command.tileCell.GetTileY());
 					TileHelper.GetNextTilePosByDirection((eDirection)direction, ref nextTilePos);
 					TileCell nextTileCell = map.GetTileCell(nextTilePos);
 
-					if( ((true == map.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY)) && false == nextTileCell.IsVisit()) ||
+					if (((true == map.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY)) && false == nextTileCell.IsVisit()) ||
 						(nextTilePos.tileX == _targetTileCell.GetTileX() && nextTilePos.tileY == _targetTileCell.GetTileY()))
 					{
 						float newDistanceFromStart = command.tileCell.GetDistanceFromStart() + command.tileCell.GetDistanceWeight();
@@ -123,7 +120,7 @@ public class PathFindState : State
 
 	void BuildPath()
 	{
-		while(null != _reverseTileCell)
+		while (null != _reverseTileCell)
 		{
 			_reverseTileCell.DrawColor(Color.red);
 
@@ -131,6 +128,49 @@ public class PathFindState : State
 			_reverseTileCell = _reverseTileCell.GetPrevCell();
 		}
 
-		_nextState = eStateType.MOVE;
+		if(_character.GetPathStack().Count != 0)
+			_character.GetPathStack().Pop();        //자기 위치 타일 빼주기
 	}
+
+	#endregion
+
+	#region PATH MOVE
+	Stack<TileCell> _pathStack;
+	TileCell _pathTargetCell;
+	Vector2Int _direction;
+
+	void InitMove()
+	{
+		_pathStack = _character.GetPathStack();
+		if(0 != _pathStack.Count)
+		{
+			_pathTargetCell = _pathStack.Pop();
+			_direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), _pathTargetCell);
+			if (_direction.Equals(Vector2Int.zero))
+				Debug.Log("ZERO DIRECTION");
+		}
+	}
+
+	public bool Move()
+	{
+		if (0 == _pathStack.Count)
+			return true;
+
+		bool bIsArrived = (_character.GetTransform().position.x.EqualApproximately(_pathTargetCell.GetPosition().x, 0.2f) &&
+							_character.GetTransform().position.y.EqualApproximately(_pathTargetCell.GetPosition().y, 0.2f));
+		if (bIsArrived)
+		{
+			_pathTargetCell = _pathStack.Pop();
+			_direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), _pathTargetCell);
+		}
+			
+		Vector2 newPosition = TileHelper.GetSlopeDirection(_direction);
+		_character.UpdateDirectionWithAnimation(_direction);
+		_character.UpdateNextPosition(newPosition);
+
+		return false;
+	}
+
+	#endregion
+
 }

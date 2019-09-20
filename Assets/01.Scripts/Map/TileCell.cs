@@ -236,6 +236,12 @@ public class TileCell
 	bool _bIsVisit;
 	public void Visit() { _bIsVisit = true; }
 	public bool IsVisit() { return _bIsVisit; }
+	public void ResetPathfindInfo()
+	{
+		_bIsVisit = false;
+		_prevCell = null;
+		_distanceFromStart = 0.0f;
+	}
 
 	float _distanceFromStart;
 	float _weight;

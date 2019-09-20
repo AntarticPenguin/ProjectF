@@ -232,4 +232,27 @@ public class TileMap : MonoBehaviour
 			return null;
 		return mapObjects;
 	}
+
+	public void ResetPathfindInfo()
+	{
+		for (int y = 0; y < _height; y++)
+		{
+			for (int x = 0; x < _width; x++)
+			{
+				GetTileCell(x, y).ResetPathfindInfo();
+			}
+		}
+	}
+
+	//TEST
+	public void ResetAllColor()
+	{
+		for (int y = 0; y < _height; y++)
+		{
+			for (int x = 0; x < _width; x++)
+			{
+				GetTileCell(x, y).ResetColor();
+			}
+		}
+	}
 }
