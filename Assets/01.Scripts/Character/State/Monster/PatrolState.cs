@@ -6,10 +6,14 @@ public class PatrolState : State
 {
 	float _patrolCooltime;
 	float _patrolDuration;
+	float _searchingDuration;
+	float _searchingCooltime;
 
 	public override void Update()
 	{
 		base.Update();
+
+		_searchingDuration += Time.deltaTime;
 
 		if (_character.HasDestination())
 		{
@@ -30,40 +34,44 @@ public class PatrolState : State
 		}
 		else
 		{
-			TileMap map = GameManager.Instance.GetMap();
 			TileCell destination = null;
-			TileCell curTileCell = _character.GetCurrentTileCell();
-			var mapObjects  = map.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(), curTileCell, 4);
-			if(null != mapObjects)
+			eDirection direction = (eDirection)Random.Range(0, 9);
+			sTilePosition nextTile = _character.GetTilePosition();
+			TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
+			destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
+			if (null != destination)
+			{
+				_character.SetDestination(destination);
+			}
+			else
+				return;
+
+			//update animation
+			Vector2Int lookDirection = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), destination);
+			_character.UpdateDirectionWithAnimation(lookDirection);
+		}
+
+		//searching for the enemy
+		if (_searchingCooltime < _searchingDuration)
+		{
+			Debug.Log("SEARCHING PLAYER!!");
+			var mapObjects = GameManager.Instance.GetMap().FindObjectsByRange(eMapObjectType.PLAYER,
+				_character.GetCurrentLayer(), _character.GetCurrentTileCell(), 4);
+			if (null != mapObjects)
 			{
 				//타겟이 1명
-				if(1 == mapObjects.Count)
+				if (1 == mapObjects.Count)
 				{
-					Debug.Log("FIND TARGET!");
 					_character.SetTarget(mapObjects[0]);
 					_nextState = eStateType.CHASE;
 					return;
 				}
 			}
-			else
-			{
-				eDirection direction = (eDirection)Random.Range(0, 9);
-				sTilePosition nextTile = _character.GetTilePosition();
-				TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
-				destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
-				if (null != destination)
-				{
-					_character.SetDestination(destination);
-				}
-				else
-					return;
-			}
-
-			//update animation
-			Vector2Int lookDirection = TileHelper.GetDirectionVector(curTileCell, destination);
-			_character.UpdateDirectionWithAnimation(lookDirection);
-
-			//Debug.Log("<color=red>Start Move</color>");
+		}
+		else
+		{
+			Debug.Log("Wait searching cooltime....");
+			return;	
 		}
 	}
 
@@ -72,6 +80,8 @@ public class PatrolState : State
 		base.Start();
 		_patrolCooltime = 1.0f;
 		_patrolDuration = _patrolCooltime;
+		_searchingDuration = 0.0f;
+		_searchingCooltime = 3.0f;
 	}
 
 	public override void Stop()

@@ -23,7 +23,6 @@ public class Pathfinding
 		_pathfindingQueue.Clear();
 
 		_targetTileCell = destination;
-		Debug.Log("Target tile: " + _targetTileCell.GetTilePosition().ToString());
 
 		sPathCommand command = new sPathCommand();
 		command.tileCell = _character.GetCurrentTileCell();
@@ -172,5 +171,4 @@ public class Pathfinding
 	}
 
 	#endregion
-
 }
