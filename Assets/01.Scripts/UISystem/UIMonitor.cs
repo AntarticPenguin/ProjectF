@@ -103,8 +103,7 @@ public class UIMonitor : MonoBehaviour
 
 	void UpdateInventoryUI()
 	{
-		Debug.Log("Update Inventory UI");
-		for(int i = 0; i < _slots.Length; i++)
+		for (int i = 0; i < _slots.Length; i++)
 		{
 			if(i < _inventory._items.Count)
 			{

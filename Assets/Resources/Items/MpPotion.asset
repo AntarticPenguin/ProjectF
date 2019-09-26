@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b8d95f24d232945a07c25621fcb583, type: 3}
-  m_Name: Shield
+  m_Name: MpPotion
   m_EditorClassIdentifier: 
-  name: Shield
-  icon: {fileID: 21300000, guid: 63070e19ec25eeb42a1c3068228dfcb3, type: 3}
+  name: MpPotion
+  icon: {fileID: 21300000, guid: 54f395a7c3e508d46ab3f9481df6827c, type: 3}

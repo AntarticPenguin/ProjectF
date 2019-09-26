@@ -15,7 +15,6 @@ public class ChaseState : State
 		_chaseOverTime -= Time.deltaTime;
 		if (_chaseOverTime < 0.0f)
 		{
-			Debug.Log("Stop Chasing!!");
 			_nextState = eStateType.IDLE;
 			return;
 		}
@@ -36,6 +35,7 @@ public class ChaseState : State
 			_character.UpdateNextPosition(newPosition);
 		}
 
+		_pathfinder.MakePathToTarget(_character.GetTarget());
 		bool finishMove = _pathfinder.Move();
 		if (finishMove)
 			_nextState = eStateType.IDLE;

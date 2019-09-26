@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemObject : MapObject
 {
@@ -16,6 +14,12 @@ public class ItemObject : MapObject
 	{
 		_item = item;
 		gameObject.name = _item.name;
+
+		GetComponent<SpriteRenderer>().sprite = _item.icon;
+		var width = GetComponent<SpriteRenderer>().sprite.texture.width;
+		var height = GetComponent<SpriteRenderer>().sprite.texture.height;
+		//auto resize to 48 x 48
+		transform.localScale = new Vector3(48.0f / width, 48.0f / height, 1.0f);
 	}
 
 	public Item GetItemInfo() { return _item; }

@@ -20,6 +20,7 @@ public class Pathfinding
 	public void MakePathToTarget(TileCell destination)
 	{
 		GameManager.Instance.GetMap().ResetPathfindInfo();
+		GameManager.Instance.GetMap().ResetAllColor();
 		_pathfindingQueue.Clear();
 
 		_targetTileCell = destination;
@@ -93,7 +94,7 @@ public class Pathfinding
 							newCommand.tileCell = nextTileCell;
 							PushCommand(newCommand);
 
-							nextTileCell.DrawColor(Color.blue);
+							//nextTileCell.DrawColor(Color.blue);
 						}
 					}
 				}

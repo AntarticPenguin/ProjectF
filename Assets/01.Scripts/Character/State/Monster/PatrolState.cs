@@ -54,7 +54,6 @@ public class PatrolState : State
 		//searching for the enemy
 		if (_searchingCooltime < _searchingDuration)
 		{
-			Debug.Log("SEARCHING PLAYER!!");
 			var mapObjects = GameManager.Instance.GetMap().FindObjectsByRange(eMapObjectType.PLAYER,
 				_character.GetCurrentLayer(), _character.GetCurrentTileCell(), 4);
 			if (null != mapObjects)
@@ -70,7 +69,6 @@ public class PatrolState : State
 		}
 		else
 		{
-			Debug.Log("Wait searching cooltime....");
 			return;	
 		}
 	}
