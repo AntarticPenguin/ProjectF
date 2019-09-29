@@ -44,19 +44,32 @@ public class UIMonitor : MonoBehaviour
 		{
 			OpenStatus();
 		}
+		else if(Input.anyKeyDown)
+		{
+			int num;
+			if(int.TryParse(Input.inputString, out num))
+			{
+				if (1 <= num && num <= 6)
+				{
+					Debug.Log("UIMONITOR::" + num + " is Pressed");
+					UseSkill(num - 1);
+				}
+			}
+		}
 	}
 
 	public void Init()
 	{
 		InitInventoryWindow();
 		InitStatusWindow();
+		InitSkillSlot();
 	}
 
 	void InitInventoryWindow()
 	{
 		_inventory = Inventory.Instance;
 		_inventory.onItemChangedCallback += UpdateInventoryUI;
-		_slots = _slotParent.GetComponentsInChildren<InventorySlot>();
+		_inventorySlots = _inventorySlotParent.GetComponentsInChildren<InventorySlot>();
 		_bInventoryOpen = false;
 	}
 
@@ -81,9 +94,9 @@ public class UIMonitor : MonoBehaviour
 	#region INVENTORY
 
 	public GameObject _inventoryWindow;
-	public Transform _slotParent;
+	public Transform _inventorySlotParent;
 	Inventory _inventory;
-	InventorySlot[] _slots;
+	InventorySlot[] _inventorySlots;
 
 	bool _bInventoryOpen;
 
@@ -103,15 +116,15 @@ public class UIMonitor : MonoBehaviour
 
 	void UpdateInventoryUI()
 	{
-		for (int i = 0; i < _slots.Length; i++)
+		for (int i = 0; i < _inventorySlots.Length; i++)
 		{
-			if(i < _inventory._items.Count)
+			if (i < _inventory._items.Count)
 			{
-				_slots[i].AddItem(_inventory._items[i]);
+				_inventorySlots[i].AddItem(_inventory._items[i]);
 			}
 			else
 			{
-				_slots[i].ClearSlot();
+				_inventorySlots[i].ClearSlot();
 			}
 		}
 	}
@@ -149,6 +162,23 @@ public class UIMonitor : MonoBehaviour
 	void UpdateStatusUI()
 	{
 
+	}
+
+	#endregion
+
+	[Space(20)]
+	#region Skill Slot
+	public Transform _skillParent;
+	SkillSlot[] _skillSlot;
+
+	void InitSkillSlot()
+	{
+		_skillSlot = _skillParent.GetComponentsInChildren<SkillSlot>();
+	}
+
+	void UseSkill(int slotNumber)
+	{
+		_skillSlot[slotNumber].Use();
 	}
 
 	#endregion

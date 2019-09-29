@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
@@ -32,6 +31,7 @@ public class Inventory : MonoBehaviour
 	public OnItemChanged onItemChangedCallback;
 
 	public List<Item> _items = new List<Item>();
+	public Dictionary<string, int> _itemsCount = new Dictionary<string, int>();
 	int _space;
 	void Init()
 	{
@@ -40,11 +40,22 @@ public class Inventory : MonoBehaviour
 
 	public bool AddItem(ItemObject itemObject)
 	{
-		if(_items.Count < _space)
+		if (_items.Count < _space)
 		{
-			_items.Add(itemObject.GetItemInfo());
+			var item = itemObject.GetItemInfo();
+			if(_itemsCount.ContainsKey(item._itemName))
+			{
+				Debug.Log("Already Exist item: " + item._itemName);
+				_itemsCount[item._itemName]++;
+			}
+			else
+			{
+				_items.Add(item);
+				_itemsCount.Add(item._itemName, 1);
+			}
+			
 
-			if(null != onItemChangedCallback)
+			if (null != onItemChangedCallback)
 				onItemChangedCallback.Invoke();
 
 			return true;
@@ -55,10 +66,6 @@ public class Inventory : MonoBehaviour
 
 	private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.K))
-		{
-			for (int i = 0; i < _items.Count; i++)
-				Debug.Log(_items[i].name);
-		}
+		
 	}
 }

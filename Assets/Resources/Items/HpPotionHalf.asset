@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b8d95f24d232945a07c25621fcb583, type: 3}
-  m_Name: MpPotion
+  m_Script: {fileID: 11500000, guid: 03dfe863e76df0c47bcd95dff386cb76, type: 3}
+  m_Name: HpPotionHalf
   m_EditorClassIdentifier: 
-  name: MpPotion
-  icon: {fileID: 21300000, guid: 54f395a7c3e508d46ab3f9481df6827c, type: 3}
+  _itemName: HpPotionHalf
+  _icon: {fileID: 21300000, guid: 6343597aeee2f3e4eb5f09948e345540, type: 3}
+  _count: 1
+  _value: 25

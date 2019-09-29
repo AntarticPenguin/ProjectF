@@ -47,6 +47,7 @@ public class MainGameScene : MonoBehaviour
 		enemy.Init();
 
 		MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "HpPotion");
-		MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "MpPotion");
+		MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "HpPotion");
+		MapObjectSpawner.Instance.CreateMapObject(4, 4, eMapObjectType.ITEM, "HpPotionHalf");
 	}
 }

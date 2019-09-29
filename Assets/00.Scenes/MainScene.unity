@@ -6016,9 +6016,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryWindow: {fileID: 1344236018}
-  _slotParent: {fileID: 2105779562}
+  _inventorySlotParent: {fileID: 2105779562}
   _statusWindow: {fileID: 2019413651}
   _statusParentPanel: {fileID: 411858623}
+  _skillParent: {fileID: 1525180755}
 --- !u!114 &1685012955 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6670900986562417283, guid: 0e76617d8a8019b42b6950222b0aad0e,

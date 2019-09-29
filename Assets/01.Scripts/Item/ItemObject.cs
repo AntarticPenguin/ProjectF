@@ -15,7 +15,7 @@ public class ItemObject : MapObject
 		_item = item;
 		gameObject.name = _item.name;
 
-		GetComponent<SpriteRenderer>().sprite = _item.icon;
+		GetComponent<SpriteRenderer>().sprite = _item._icon;
 		var width = GetComponent<SpriteRenderer>().sprite.texture.width;
 		var height = GetComponent<SpriteRenderer>().sprite.texture.height;
 		//auto resize to 48 x 48

@@ -74,6 +74,7 @@ public class PlayerIdleState : State
 			}
 		}
 
+		//TEST: Pathfinding
 		if(Input.GetKeyDown(KeyCode.P))
 		{
 			_nextState = eStateType.PATHFIND;
