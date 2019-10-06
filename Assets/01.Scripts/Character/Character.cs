@@ -191,6 +191,8 @@ public class Character : MapObject
 
 	#region Status Battle etc
 	protected sStatus _status;
+	public delegate void OnHpChagned();
+	public OnHpChagned onHpChangedCallback;
 
 	float _receiveDamage;
 
@@ -217,12 +219,24 @@ public class Character : MapObject
 
 	public float GetReceiveDamage() { return _receiveDamage; }
 
+	public void IncreaseHp(int value)
+	{
+		_status.hp += value;
+		if (_status.hp >= _status.maxHp)
+			_status.hp = _status.maxHp;
+
+		if (onHpChangedCallback != null)
+			onHpChangedCallback.Invoke();
+	}
+
 	public void DecreaseHp(int damage)
 	{
 		_status.hp -= damage;
 		if (_status.hp <= 0)
 			_status.hp = 0;
-		Debug.Log(_transform.name + "'s hp: " + _status.hp);
+
+		if (onHpChangedCallback != null)
+			onHpChangedCallback.Invoke();
 	}
 
 	float _attackDelay;

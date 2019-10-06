@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
 	public OnItemChanged onItemChangedCallback;
 
 	public List<Item> _items = new List<Item>();
-	public Dictionary<string, int> _itemsCount = new Dictionary<string, int>();
+	public Dictionary<string, InventoryInfo> _itemsInfo = new Dictionary<string, InventoryInfo>();
 	int _space;
 	void Init()
 	{
@@ -42,16 +42,19 @@ public class Inventory : MonoBehaviour
 	{
 		if (_items.Count < _space)
 		{
-			var item = itemObject.GetItemInfo();
-			if(_itemsCount.ContainsKey(item._itemName))
+			var item = itemObject.GetItem();
+			if(_itemsInfo.ContainsKey(item._itemName))
 			{
 				Debug.Log("Already Exist item: " + item._itemName);
-				_itemsCount[item._itemName]++;
+				_itemsInfo[item._itemName].count++;
 			}
 			else
 			{
 				_items.Add(item);
-				_itemsCount.Add(item._itemName, 1);
+				InventoryInfo newInfo = new InventoryInfo();
+				newInfo.count = 1;
+				newInfo.slotIndex = 0;
+				_itemsInfo.Add(item._itemName, newInfo);
 			}
 			
 
@@ -68,4 +71,11 @@ public class Inventory : MonoBehaviour
 	{
 		
 	}
+}
+
+//Info about item in inventory
+public class InventoryInfo
+{
+	public int count;
+	public int slotIndex;
 }

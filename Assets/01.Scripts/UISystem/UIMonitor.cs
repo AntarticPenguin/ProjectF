@@ -51,8 +51,7 @@ public class UIMonitor : MonoBehaviour
 			{
 				if (1 <= num && num <= 6)
 				{
-					Debug.Log("UIMONITOR::" + num + " is Pressed");
-					UseSkill(num - 1);
+					UseItem(num - 1);
 				}
 			}
 		}
@@ -89,6 +88,7 @@ public class UIMonitor : MonoBehaviour
 			_statusElements.Add(list[i].name, list[i].gameObject);
 		}
 		_bStatusOpen = false;
+		GameManager.Instance.GetPlayer().onHpChangedCallback += UpdateStatusUI;
 	}
 
 	#region INVENTORY
@@ -96,7 +96,7 @@ public class UIMonitor : MonoBehaviour
 	public GameObject _inventoryWindow;
 	public Transform _inventorySlotParent;
 	Inventory _inventory;
-	InventorySlot[] _inventorySlots;
+	public InventorySlot[] _inventorySlots;
 
 	bool _bInventoryOpen;
 
@@ -116,15 +116,15 @@ public class UIMonitor : MonoBehaviour
 
 	void UpdateInventoryUI()
 	{
-		for (int i = 0; i < _inventorySlots.Length; i++)
+		for (int index = 0; index < _inventorySlots.Length; index++)
 		{
-			if (i < _inventory._items.Count)
+			if (index < _inventory._items.Count)
 			{
-				_inventorySlots[i].AddItem(_inventory._items[i]);
+				_inventorySlots[index].AddItem(_inventory._items[index], index);
 			}
 			else
 			{
-				_inventorySlots[i].ClearSlot();
+				_inventorySlots[index].ClearSlot();
 			}
 		}
 	}
@@ -147,38 +147,38 @@ public class UIMonitor : MonoBehaviour
 			_statusWindow.SetActive(false);
 			_bStatusOpen = false;
 		}
-		else if (!_bInventoryOpen)
+		else if (!_bStatusOpen)
 		{ 
 			_statusWindow.SetActive(true);
-			Character player = GameManager.Instance.GetPlayer();
-			foreach(var key in _statusElements.Keys)
-			{
-				_statusElements[key].GetComponent<StatusUI>().UpdateInfo(key, player.GetStatus());
-			}
+			UpdateStatusUI();
 			_bStatusOpen = true;
 		}
 	}
 	
 	void UpdateStatusUI()
 	{
-
+		Character player = GameManager.Instance.GetPlayer();
+		foreach (var key in _statusElements.Keys)
+		{
+			_statusElements[key].GetComponent<StatusUI>().UpdateInfo(key, player.GetStatus());
+		}
 	}
 
 	#endregion
 
 	[Space(20)]
-	#region Skill Slot
-	public Transform _skillParent;
-	SkillSlot[] _skillSlot;
+	#region Quick Item Slot
+	public Transform _itemSlotParent;
+	public ItemQuickSlot[] _itemQuickSlots;
 
 	void InitSkillSlot()
 	{
-		_skillSlot = _skillParent.GetComponentsInChildren<SkillSlot>();
+		_itemQuickSlots = _itemSlotParent.GetComponentsInChildren<ItemQuickSlot>();
 	}
 
-	void UseSkill(int slotNumber)
+	void UseItem(int slotNumber)
 	{
-		_skillSlot[slotNumber].Use();
+		_itemQuickSlots[slotNumber].Use();
 	}
 
 	#endregion

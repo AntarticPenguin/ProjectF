@@ -6,11 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class HealthItem : Item
 {
-	public float _value;
+	public int _value;
 
-	public override void Use()
+	public override void Use(Character character)
 	{
-		base.Use();
-		Debug.Log("Use Item: " + _itemName + ", value: " + _value);
+		base.Use(character);
+		character.IncreaseHp(_value);
 	}
 }

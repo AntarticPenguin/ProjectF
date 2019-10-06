@@ -22,5 +22,5 @@ public class ItemObject : MapObject
 		transform.localScale = new Vector3(48.0f / width, 48.0f / height, 1.0f);
 	}
 
-	public Item GetItemInfo() { return _item; }
+	public Item GetItem() { return _item; }
 }

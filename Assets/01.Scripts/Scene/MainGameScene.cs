@@ -22,12 +22,13 @@ public class MainGameScene : MonoBehaviour
 	{
 		GameManager.Instance.SetMap(_tileMap);
 		_tileMap.Init();
+		Init();
 	}
 
 	// Start is called before the first frame update
 	void Start()
     {
-		Init();
+		
 	}
 
     // Update is called once per frame
@@ -49,5 +50,6 @@ public class MainGameScene : MonoBehaviour
 		MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "HpPotion");
 		MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "HpPotion");
 		MapObjectSpawner.Instance.CreateMapObject(4, 4, eMapObjectType.ITEM, "HpPotionHalf");
+		MapObjectSpawner.Instance.CreateMapObject(5, 4, eMapObjectType.ITEM, "HpPotionHalf");
 	}
 }

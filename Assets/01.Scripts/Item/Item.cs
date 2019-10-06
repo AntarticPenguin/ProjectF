@@ -8,7 +8,7 @@ public class Item : ScriptableObject
 	public string _itemName = "New Item";
 	public Sprite _icon = null;
 
-	public virtual void Use()
+	public virtual void Use(Character character)
 	{
 		
 	}
