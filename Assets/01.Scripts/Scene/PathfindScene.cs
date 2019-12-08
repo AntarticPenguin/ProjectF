@@ -9,7 +9,7 @@ public class PathfindScene : MonoBehaviour
 	private void Awake()
 	{
 		GameManager.Instance.SetMap(_tileMap);
-		_tileMap.Init();
+		//_tileMap.Init();
 	}
 
 	// Start is called before the first frame update

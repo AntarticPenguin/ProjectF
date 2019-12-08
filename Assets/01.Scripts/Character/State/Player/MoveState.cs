@@ -8,7 +8,8 @@ public class MoveState : State
 	{
 		base.Update();
 
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 		Vector2Int lookDirection = new Vector2Int();
 		Vector2 newPosition = new Vector2();
 
@@ -16,12 +17,12 @@ public class MoveState : State
 		{
 			if (Input.GetKey(KeyCode.RightArrow))
 			{
-				newPosition += new Vector2(1.0f, map.GetSlope());
+				newPosition += new Vector2(1.0f, tileSystem.GetSlope());
 				lookDirection += new Vector2Int(1, 1);
 			}
 			else if(Input.GetKey(KeyCode.LeftArrow))
 			{
-				newPosition += new Vector2(-1.0f, map.GetSlope());
+				newPosition += new Vector2(-1.0f, tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, 1);
 			}
 			else
@@ -34,12 +35,12 @@ public class MoveState : State
 		{
 			if(Input.GetKey(KeyCode.RightArrow))
 			{
-				newPosition += new Vector2(1.0f, -map.GetSlope());
+				newPosition += new Vector2(1.0f, -tileSystem.GetSlope());
 				lookDirection += new Vector2Int(1, -1);
 			}
 			else if(Input.GetKey(KeyCode.LeftArrow))
 			{
-				newPosition += new Vector2(-1.0f, -map.GetSlope());
+				newPosition += new Vector2(-1.0f, -tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, -1);
 			}
 			else

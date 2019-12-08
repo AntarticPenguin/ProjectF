@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f314370b4bd6c624b9bedf43d987f8ff, type: 3}
   m_Name: Tile Prefab brush
   m_EditorClassIdentifier: 
-  m_Prefabs: {fileID: 6660465991309770384, guid: c8cf4c0a6e4767144b5088d397a168b0,
+  m_Prefabs: {fileID: 6660465991309770384, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
     type: 3}
+  ColliderPrefab: {fileID: 6660465991309770384, guid: c8cf4c0a6e4767144b5088d397a168b0,
+    type: 3}
+  selectedSprite: {fileID: 21300000, guid: 2c5a3117d5db1264188c0e85c12e64c7, type: 3}
   m_Anchor: {x: 0.5, y: 0.5, z: 0}
+  IsTrigger: 0
+  width: 16
+  height: 16

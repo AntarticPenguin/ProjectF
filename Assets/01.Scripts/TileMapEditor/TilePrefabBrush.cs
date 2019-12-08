@@ -10,11 +10,34 @@ using Object = UnityEngine.Object;
 public class TilePrefabBrush : GridBrushBase
 {
 	public GameObject m_Prefabs;
+	public GameObject ColliderPrefab;
 	public Sprite selectedSprite;
 	public Vector3 m_Anchor = new Vector3(0.5f, 0.5f, 0.0f);
+	public bool IsTrigger = false;
+	public int width, height;
 
 	private GameObject prev_brushTarget;
 	private Vector3Int prev_position = Vector3Int.one * Int32.MaxValue;
+	private GameObject selectedTilemap;
+
+	public override void Select(GridLayout gridLayout, GameObject brushTarget, BoundsInt position)
+	{
+		string name = "Tile(" + position.x.ToString() + " | " + position.y.ToString() + ")";
+
+		if (selectedTilemap)
+			brushTarget = selectedTilemap;
+
+		var InhierarchyObject = brushTarget.transform.Find(name);
+		if(InhierarchyObject == null)
+		{
+			base.Select(gridLayout, brushTarget, position);
+		}
+		else
+		{
+			selectedTilemap = brushTarget;
+			Selection.activeGameObject = InhierarchyObject.gameObject;
+		}
+	}
 
 	public override void Pick(GridLayout gridLayout, GameObject brushTarget, BoundsInt position, Vector3Int pivot)
 	{
@@ -48,13 +71,35 @@ public class TilePrefabBrush : GridBrushBase
 		if (brushTarget.layer == 31)
 			return;
 
-		GameObject prefab = m_Prefabs;
+		GameObject prefab;
+		if (IsTrigger)
+			prefab = ColliderPrefab;
+		else
+			prefab = m_Prefabs;
+
 		GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+		string name = "Tile(" + position.x.ToString() + " | " + position.y.ToString() + ")";
 		if (instance != null)
 		{
 			Undo.MoveGameObjectToScene(instance, brushTarget.scene, "Paint Prefabs");
 			Undo.RegisterCreatedObjectUndo((Object)instance, "Paint Prefabs");
-			instance.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+			var existObject = brushTarget.transform.Find(name);
+			if (existObject != null)
+			{
+				DestroyImmediate(existObject.gameObject);
+			}
+
+			if(!IsTrigger)
+			{
+				instance.GetComponent<SpriteRenderer>().sprite = selectedSprite;
+				int sortingLayerID = brushTarget.GetComponent<TilemapRenderer>().sortingLayerID;
+				instance.GetComponent<SpriteRenderer>().sortingLayerID = sortingLayerID;
+				int sortingOrder = width * (height - position.y) - (position.x + 1);
+				instance.GetComponent<SpriteRenderer>().sortingOrder = sortingOrder;
+			}
+				
+
+			instance.name = name;
 			instance.transform.SetParent(brushTarget.transform);
 			instance.transform.position = grid.LocalToWorld(grid.CellToLocalInterpolated(position + m_Anchor));
 		}

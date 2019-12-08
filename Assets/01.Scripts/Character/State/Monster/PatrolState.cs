@@ -38,7 +38,8 @@ public class PatrolState : State
 			eDirection direction = (eDirection)Random.Range(0, 9);
 			sTilePosition nextTile = _character.GetTilePosition();
 			TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
-			destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
+			//destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
+			destination = TileSystem.Instance.GetTileCell(nextTile);
 			if (null != destination)
 			{
 				_character.SetDestination(destination);
@@ -54,8 +55,11 @@ public class PatrolState : State
 		//searching for the enemy
 		if (_searchingCooltime < _searchingDuration)
 		{
-			var mapObjects = GameManager.Instance.GetMap().FindObjectsByRange(eMapObjectType.PLAYER,
-				_character.GetCurrentLayer(), _character.GetCurrentTileCell(), 4);
+			//var mapObjects = GameManager.Instance.GetMap().FindObjectsByRange(eMapObjectType.PLAYER,
+			//	_character.GetCurrentLayer(), _character.GetCurrentTileCell(), 4);
+			var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(),
+				_character.GetCurrentTileCell(), 4);
+
 			if (null != mapObjects)
 			{
 				//타겟이 1명

@@ -17,9 +17,10 @@ public class AttackState : State
 			sTilePosition nextTilePos = _character.GetTilePosition();
 			TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
 
-			TileMap map = GameManager.Instance.GetMap();
+			//TileMap map = GameManager.Instance.GetMap();
+			TileSystem tileSystem = TileSystem.Instance;
 			Debug.Log("Attack: " + nextTilePos.tileX+ ", " + nextTilePos.tileX);
-			TileCell tileCell = map.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
+			TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
 			if (tileCell != null)
 			{
 				MapObject enemy = tileCell.FindObjectByType(eMapObjectType.ENEMY, eTileLayer.GROUND);

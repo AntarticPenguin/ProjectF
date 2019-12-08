@@ -27,4 +27,9 @@ public class TileObject : MapObject
 	{
 		_tileProperties.speed = speed;
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+			
+	}
 }

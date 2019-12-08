@@ -21,7 +21,8 @@ public class Pathfinder : Character
 
 	public void SetTargetTileCell(int x, int y)
 	{
-		TileCell targetCell = GameManager.Instance.GetMap().GetTileCell(x, y);
+		//TileCell targetCell = GameManager.Instance.GetMap().GetTileCell(x, y);
+		TileCell targetCell = TileSystem.Instance.GetTileCell(x, y);
 		SetDestination(targetCell);
 	}
 }

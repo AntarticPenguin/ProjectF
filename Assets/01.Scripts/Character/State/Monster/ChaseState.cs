@@ -62,7 +62,8 @@ public class ChaseState : State
 
 		_character.ResetTarget();
 		_character.ResetPath();
-		GameManager.Instance.GetMap().ResetAllColor();
+		//GameManager.Instance.GetMap().ResetAllColor();
+		TileSystem.Instance.ResetAllColor();
 		_character.GetSpriteRenderer().color = Color.white;
 	}
 }

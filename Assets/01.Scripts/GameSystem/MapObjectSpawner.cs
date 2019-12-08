@@ -48,10 +48,12 @@ public class MapObjectSpawner : MonoBehaviour
 
 	public void CreateMapObject(int tileX, int tileY, eMapObjectType type, string name)
 	{
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 		GameObject prefab = GetPrefabByType(type);
 		GameObject go = Instantiate(prefab);
-		go.InitTransformAsChild(map.transform);
+		//go.InitTransformAsChild(map.transform);
+		go.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 		eTileLayer layer = eTileLayer.NONE;
 		MapObject mapObject = null;
 
@@ -67,37 +69,41 @@ public class MapObjectSpawner : MonoBehaviour
 				break;
 		}
 
-		TileCell tileCell = map.GetTileCell(tileX, tileY);
+		TileCell tileCell = tileSystem.GetTileCell(tileX, tileY);
 		if (null != tileCell)
 			tileCell.SetObject(mapObject, layer);
 	}
 
 	public void CreatePortal(sPortalInfo info)
 	{
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 		GameObject prefab = GetPrefabByType(eMapObjectType.PORTAL);
 		GameObject go = Instantiate(prefab);
-		go.InitTransformAsChild(map.transform);
+		//go.InitTransformAsChild(map.transform);
+		go.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 		eTileLayer layer = eTileLayer.ON_GROUND;
 
 		PortalObject portalObject = go.AddComponent<PortalObject>();
 		portalObject.name = info.portalName;
 		portalObject.SetPortalInfo(info);
 
-		TileCell tileCell = map.GetTileCell(info.tileX, info.tileY);
+		TileCell tileCell = tileSystem.GetTileCell(info.tileX, info.tileY);
 		if (null != tileCell)
 			tileCell.SetObject(portalObject, layer);
 	}
 
 	public Character CreateCharacter(int tileX, int tileY, string scriptName, string resourceName)
 	{
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 
 		string filePath = "Prefabs/Character/" + resourceName;
 
 		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
 		GameObject characterObject = Instantiate(charPrefabs);
-		characterObject.InitTransformAsChild(map.transform);
+		//characterObject.InitTransformAsChild(map.transform);
+		characterObject.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 
 		Vector3 position = characterObject.transform.position;
 		position.z = -1.0f;
@@ -122,7 +128,7 @@ public class MapObjectSpawner : MonoBehaviour
 			default:
 				break;
 		}
-		map.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
+		tileSystem.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
 		return character;
 	}

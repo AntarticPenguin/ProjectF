@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.Tilemaps;
 using Cinemachine;
@@ -9,6 +10,8 @@ public class PrepareScene : MonoBehaviour
 	public Transform rootScene;
 	public int width;
 	public int height;
+
+	public Tilemap groundTilemap;
 
 	public void Prepare()
 	{
@@ -33,8 +36,22 @@ public class PrepareScene : MonoBehaviour
 
 		{
 			GameObject tilemapGo = new GameObject();
+			tilemapGo.name = "Tilemap - Trigger";
+			var tilemap = tilemapGo.AddComponent<Tilemap>();
+
+			var renderer = tilemapGo.AddComponent<TilemapRenderer>();
+			renderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
+			renderer.enabled = false;
+			var collider = tilemapGo.AddComponent<TilemapCollider2D>();
+			collider.isTrigger = true;
+
+			tilemapGo.InitTransformAsChild(gridGo.transform);
+		}
+
+		{
+			GameObject tilemapGo = new GameObject();
 			tilemapGo.name = "Tilemap - Ground";
-			tilemapGo.AddComponent<Tilemap>();
+			groundTilemap = tilemapGo.AddComponent<Tilemap>();
 
 			var renderer = tilemapGo.AddComponent<TilemapRenderer>();
 			renderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
@@ -53,7 +70,7 @@ public class PrepareScene : MonoBehaviour
 			renderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
 			renderer.sortingLayerID = SortingLayer.NameToID("BLOCK");
 			var collider = tilemapGo.AddComponent<TilemapCollider2D>();
-			collider.usedByComposite = true;
+			collider.usedByComposite = false;
 
 			Rigidbody2D rigid = tilemapGo.AddComponent<Rigidbody2D>();
 			tilemapGo.AddComponent<CompositeCollider2D>();
@@ -61,13 +78,15 @@ public class PrepareScene : MonoBehaviour
 			rigid.simulated = true;
 
 			Tile tile = Resources.Load("TilePalette/BlockTile") as Tile;
-			for (int y = 0; y < height; y++)
+			int blockHeight = height + 1;
+			int blockWidth = width + 1;
+			for (int y = -1; y < blockHeight; y++)
 			{
-				for (int x = 0; x < width; x++)
+				for (int x = -1; x < blockWidth; x++)
 				{
-					if (0 < y && y < height - 1)
+					if (-1 < y && y < blockHeight - 1)
 					{
-						if (x == 0 || x == width - 1)
+						if (x == -1 || x == blockWidth - 1)
 						{
 							Vector3Int position = new Vector3Int(x, y, 0);
 							tilemap.SetTile(position, tile);
@@ -96,6 +115,7 @@ public class PrepareScene : MonoBehaviour
 		var vcam = camGo.AddComponent<CinemachineVirtualCamera>();
 		vcam.m_Priority = 4;
 		vcam.m_Lens.OrthographicSize = 4;
+		vcam.tag = "FollowingCamera";
 
 		var transposer = vcam.AddCinemachineComponent<CinemachineFramingTransposer>();
 		transposer.m_XDamping = 1.0f;
@@ -118,6 +138,7 @@ public class PrepareScene : MonoBehaviour
 		{
 			camGo.InitTransformAsChild(rootScene);
 			Camera.main.gameObject.InitTransformAsChild(rootScene);
+			vcam.transform.position = new Vector3(0, 0, -1);
 		}
 	}
 
@@ -150,6 +171,49 @@ public class PrepareScene : MonoBehaviour
 	{
 		
 	}
+
+	public struct sSortObject
+	{
+		public GameObject gameObject;
+		public int siblingIndex;
+	}
+
+	List<sSortObject> sortlist = new List<sSortObject>();
+	public void SortOrder()
+	{
+		for(int index = 0; index < groundTilemap.transform.childCount; index++)
+		{
+			//Tile(heightIndex | widhtIndex)... Tile(2 | 9)
+			GameObject go = groundTilemap.transform.GetChild(index).gameObject;
+			string objectName = go.name;
+			string str = objectName.Replace("Tile", string.Empty);
+			str = str.Replace("(", string.Empty);
+			str = str.Replace(")", string.Empty);
+			string[] info = str.Split('|');
+			int widthIndex = int.Parse(info[0]);
+			int heightIndex = int.Parse(info[1]);
+
+			int siblingIndex = heightIndex * width + widthIndex;
+			sSortObject item = new sSortObject();
+			item.gameObject = go;
+			item.siblingIndex = siblingIndex;
+			sortlist.Add(item);
+			//Debug.Log(go.name + ":: width: " + widthIndex + ", height: " + heightIndex);
+		}
+
+		sortlist.Sort(delegate (sSortObject lhs, sSortObject rhs)
+		{
+			if (lhs.siblingIndex == rhs.siblingIndex) return 0;
+			return lhs.siblingIndex.CompareTo(rhs.siblingIndex);
+		});
+
+		for(int i = 0; i < sortlist.Count; i++)
+		{
+			GameObject go = sortlist[i].gameObject;
+			int siblingIndex = sortlist[i].siblingIndex;
+			go.transform.SetSiblingIndex(siblingIndex);
+		}
+	}
 }
 
 [CustomEditor(typeof(PrepareScene))]
@@ -163,6 +227,11 @@ public class PrepareSceneEditor : Editor
 		if (GUILayout.Button("Prepare Default Tilemap"))
 		{
 			myScript.Prepare();
+		}
+
+		if (GUILayout.Button("sort with Ground tiles' order"))
+		{
+			myScript.SortOrder();
 		}
 	}
 }

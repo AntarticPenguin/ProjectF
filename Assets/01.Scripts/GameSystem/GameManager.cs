@@ -1,24 +1,8 @@
 ﻿using UnityEngine;
 using Cinemachine;
 
-public class GameManager
+public class GameManager : Singleton<GameManager>
 {
-	#region SINGLETON
-	static GameManager _instance;
-	public static GameManager Instance
-	{
-		get
-		{
-			if(null == _instance)
-			{
-				_instance = new GameManager();
-				_instance.Init();
-			}
-			return _instance;
-		}
-	}
-	#endregion
-
 	CinemachineVirtualCamera _vcam;
 
 	public void Init()
@@ -47,10 +31,10 @@ public class GameManager
 	public void LoadMap(sPortalInfo info)	
 	{
 		SavePlayerData();
-		_tileMap.ClearMap();
+		//_tileMap.ClearMap();
 
 		//string[] tokens = info.nextMap.Split('-');
-		_tileMap.LoadMap(ref info);
+		//_tileMap.LoadMap(ref info);
 	}
 
 	void SavePlayerData()

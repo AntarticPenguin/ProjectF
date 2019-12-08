@@ -79,6 +79,13 @@ enum eTileAsset
 	MAX,
 }
 
+public enum eTilemapType
+{
+	TRIGGER,
+	GROUND,
+	BLOCK,
+}
+
 
 public class EnumSet
 {

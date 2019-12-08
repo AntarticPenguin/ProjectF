@@ -57,7 +57,8 @@ public class PathFindState : State
 
 	void FindPath()
 	{
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 		while(0 != _pathfindingQueue.Count)
 		{
 			//제일 앞 타일을 하나 꺼낸다.
@@ -79,9 +80,9 @@ public class PathFindState : State
 				{
 					sTilePosition nextTilePos = new sTilePosition(command.tileCell.GetTileX(), command.tileCell.GetTileY());
 					TileHelper.GetNextTilePosByDirection((eDirection)direction, ref nextTilePos);
-					TileCell nextTileCell = map.GetTileCell(nextTilePos);
+					TileCell nextTileCell = tileSystem.GetTileCell(nextTilePos);
 
-					if( ((true == map.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY)) && false == nextTileCell.IsVisit()) ||
+					if( ((true == tileSystem.CanMoveTileCell(nextTilePos.tileX, nextTilePos.tileY)) && false == nextTileCell.IsVisit()) ||
 						(nextTilePos.tileX == _targetTileCell.GetTileX() && nextTilePos.tileY == _targetTileCell.GetTileY()))
 					{
 						float newDistanceFromStart = command.tileCell.GetDistanceFromStart() + command.tileCell.GetDistanceWeight();

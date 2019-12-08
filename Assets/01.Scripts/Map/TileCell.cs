@@ -39,7 +39,9 @@ public class TileCell
 	//타일셀 정보에 추가
 	public void AddObject(MapObject mapObject, eTileLayer layer)
 	{
-		if(eTileLayer.ITEM == layer)
+		mapObject.SetCurrentLayer(layer);
+
+		if (eTileLayer.ITEM == layer)
 		{
 			//아이템: 최신이 제일 앞에 오게
 			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _itemLayerOrder;
@@ -89,7 +91,6 @@ public class TileCell
 		AddObject(mapObject, layer);
 
 		mapObject.SetPosition(_position);
-		mapObject.SetCurrentLayer(layer);
 	}
 
 	public MapObject FindObjectByType(eMapObjectType mapObjectType, eTileLayer layer)
@@ -103,29 +104,6 @@ public class TileCell
 			}
 		}
 		return null;
-	}
-
-	public string PrintObjectList()
-	{
-		string str = "";
-		//{
-		//	List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.GROUND];
-		//	for (int i = 0; i < mapObjectList.Count; i++)
-		//	{
-		//		Debug.Log("GROUND: " + mapObjectList[i].name);
-		//	}
-		//}
-
-		{
-			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)eTileLayer.ON_GROUND];
-			str += "ON_GROUND: ";
-			for (int i = 0; i < mapObjectList.Count; i++)
-			{
-				str += ", " + mapObjectList[i].name;
-			}
-		}
-
-		return str;
 	}
 
 	public void SetPosition(Vector2 position)
@@ -160,6 +138,15 @@ public class TileCell
 	{
 		return _bCanMove;
 	}
+
+	//깔린 바닥 타일 오브젝트 정보
+	TileObject _baseTileObject;
+	public void SetTileObject(TileObject tileObject)
+	{
+		_baseTileObject = tileObject;
+	}
+
+	public TileObject GetBaseTileObject() { return _baseTileObject; }
 
 	public sTileProperties GetProperties(eTileLayer layer)
 	{
@@ -199,7 +186,8 @@ public class TileCell
 
 	public eTileDirection CheckTileBoundary(Vector2 destination)
 	{
-		Grid grid = GameManager.Instance.GetMap().GetGrid();
+		//Grid grid = GameManager.Instance.GetMap().GetGrid();
+		Grid grid = TileSystem.Instance.GetGrid();
 		float width = grid.cellSize.x;
 		float height = grid.cellSize.y;
 

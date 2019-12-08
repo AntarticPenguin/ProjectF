@@ -80,7 +80,8 @@ public class PathMoveState : State
 
 	void ChangeDirection()
 	{
-		TileMap map = GameManager.Instance.GetMap();
+		//TileMap map = GameManager.Instance.GetMap();
+		TileSystem tileSystem = TileSystem.Instance;
 		sTilePosition checkTilePos = _character.GetCurrentTileCell().GetTilePosition();
 		eDirection direction = TileHelper.ConvertToeDirection(_direction);
 
@@ -92,33 +93,33 @@ public class PathMoveState : State
 		{
 			case eDirection.NORTH:
 				{
-					if (!map.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY + 1)) //NORTH WEST
+					if (!tileSystem.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY + 1)) //NORTH WEST
 						_direction = new Vector2Int(1, 0);
-					else if (!map.CanMoveTileCell(checkTilePos.tileX + 1, checkTilePos.tileY)) //NORTH EAST
+					else if (!tileSystem.CanMoveTileCell(checkTilePos.tileX + 1, checkTilePos.tileY)) //NORTH EAST
 						_direction = new Vector2Int(-1, 0);
 				}
 				break;
 			case eDirection.SOUTH:
 				{
-					if (!map.CanMoveTileCell(checkTilePos.tileX - 1, checkTilePos.tileY)) //SOUTH WEST
+					if (!tileSystem.CanMoveTileCell(checkTilePos.tileX - 1, checkTilePos.tileY)) //SOUTH WEST
 						_direction = new Vector2Int(1, 0);
-					else if (!map.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY - 1)) //SOUTH EAST
+					else if (!tileSystem.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY - 1)) //SOUTH EAST
 						_direction = new Vector2Int(-1, 0);
 				}
 				break;
 			case eDirection.EAST:
 				{
-					if (!map.CanMoveTileCell(checkTilePos.tileX + 1, checkTilePos.tileY)) //NORTH EAST
+					if (!tileSystem.CanMoveTileCell(checkTilePos.tileX + 1, checkTilePos.tileY)) //NORTH EAST
 						_direction = new Vector2Int(0, -1);
-					else if (!map.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY - 1)) //SOUTH EAST
+					else if (!tileSystem.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY - 1)) //SOUTH EAST
 						_direction = new Vector2Int(0, 1);
 				}
 				break;
 			case eDirection.WEST:
 				{
-					if (!map.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY + 1)) //NORTH WEST
+					if (!tileSystem.CanMoveTileCell(checkTilePos.tileX, checkTilePos.tileY + 1)) //NORTH WEST
 						_direction = new Vector2Int(0, -1);
-					else if (!map.CanMoveTileCell(checkTilePos.tileX - 1, checkTilePos.tileY)) //SOUTH WEST
+					else if (!tileSystem.CanMoveTileCell(checkTilePos.tileX - 1, checkTilePos.tileY)) //SOUTH WEST
 						_direction = new Vector2Int(0, 1);
 				}
 				break;

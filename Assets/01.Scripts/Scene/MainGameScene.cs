@@ -14,14 +14,12 @@ public class MainGameScene : MonoBehaviour
 	public int _enemySpawnX;
 	public int _enemySpawnY;
 
-	[Header("Portal Spawn Position")]
-	public int _portalSpawnX;
-	public int _portalSpawnY;
-
 	private void Awake()
 	{
-		GameManager.Instance.SetMap(_tileMap);
-		_tileMap.Init();
+		//GameManager.Instance.SetMap(_tileMap);
+		//_tileMap.Init();
+		GameManager.Instance.Init();
+		TileSystem.Instance.Init();
 		Init();
 	}
 
@@ -39,17 +37,17 @@ public class MainGameScene : MonoBehaviour
 
 	void Init()
 	{
-		Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Isolet_Test");
+		Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Isolet_Test Collider");
 		player.Init();
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);
 
-		Character enemy = MapObjectSpawner.Instance.CreateCharacter(_enemySpawnX, _enemySpawnY, "Enemy", "Enemy_Test");
-		enemy.Init();
+		//Character enemy = MapObjectSpawner.Instance.CreateCharacter(_enemySpawnX, _enemySpawnY, "Enemy", "Enemy_Test");
+		//enemy.Init();
 
-		MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "HpPotion");
-		MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "HpPotion");
-		MapObjectSpawner.Instance.CreateMapObject(4, 4, eMapObjectType.ITEM, "HpPotionHalf");
-		MapObjectSpawner.Instance.CreateMapObject(5, 4, eMapObjectType.ITEM, "HpPotionHalf");
+		//MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "HpPotion");
+		//MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "HpPotion");
+		//MapObjectSpawner.Instance.CreateMapObject(4, 4, eMapObjectType.ITEM, "HpPotionHalf");
+		//MapObjectSpawner.Instance.CreateMapObject(5, 4, eMapObjectType.ITEM, "HpPotionHalf");
 	}
 }

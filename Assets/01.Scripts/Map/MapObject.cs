@@ -30,7 +30,7 @@ public class MapObject : MonoBehaviour
 	public void SetPosition(Vector2 position)
 	{
 		_position = position;
-		transform.localPosition = _position;
+		transform.position = _position;
 	}
 
 	public void SetTilePosition(int tileX, int tileY)
@@ -49,7 +49,7 @@ public class MapObject : MonoBehaviour
 
 	public TileCell GetCurrentTileCell()
 	{
-		return GameManager.Instance.GetMap().GetTileCell(_tileX, _tileY);
+		return TileSystem.Instance.GetTileCell(_tileX, _tileY);
 	}
 
 	public eMapObjectType GetMapObjectType() { return _objectType; }
