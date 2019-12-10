@@ -16,8 +16,6 @@ public class MainGameScene : MonoBehaviour
 
 	private void Awake()
 	{
-		//GameManager.Instance.SetMap(_tileMap);
-		//_tileMap.Init();
 		GameManager.Instance.Init();
 		TileSystem.Instance.Init();
 		Init();

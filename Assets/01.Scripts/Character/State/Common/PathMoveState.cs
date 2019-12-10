@@ -80,7 +80,6 @@ public class PathMoveState : State
 
 	void ChangeDirection()
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		sTilePosition checkTilePos = _character.GetCurrentTileCell().GetTilePosition();
 		eDirection direction = TileHelper.ConvertToeDirection(_direction);

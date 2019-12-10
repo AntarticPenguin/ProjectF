@@ -6,7 +6,7 @@ public class Player : Character
 {
 	private void Awake()
 	{
-		_objectType = eMapObjectType.PLAYER;
+		SetMapObjectType(eMapObjectType.PLAYER);
 	}
 
 	void Start()

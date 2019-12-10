@@ -53,6 +53,15 @@ public class MapObject : MonoBehaviour
 	}
 
 	public eMapObjectType GetMapObjectType() { return _objectType; }
+	public void SetMapObjectType(eMapObjectType type)
+	{
+		_objectType = type;
+		tag = type.ToString();
+		foreach (Transform child in transform)
+		{
+			child.tag = tag;
+		}
+	}
 
 	protected eTileLayer _currentLayer;
 	public eTileLayer GetCurrentLayer() { return _currentLayer; }

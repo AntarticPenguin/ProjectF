@@ -37,7 +37,7 @@ public class TileCell
 	}
 
 	//타일셀 정보에 추가
-	public void AddObject(MapObject mapObject, eTileLayer layer)
+	public void AddObject(MapObject mapObject, eTileLayer layer, bool setTilePos = true)
 	{
 		mapObject.SetCurrentLayer(layer);
 
@@ -47,22 +47,24 @@ public class TileCell
 			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _itemLayerOrder;
 			_itemLayerOrder++;
 		}
-		else if(eTileLayer.GROUND == layer)
-		{
-			//캐릭터 etc: 위쪽으로 갈수록 뒤로 보이게
-			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
-		}
 		else
 		{
-			mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
+			if(eMapObjectType.CHARACTER != mapObject.GetMapObjectType() &&
+				eMapObjectType.PLAYER != mapObject.GetMapObjectType() &&
+				eMapObjectType.ENEMY != mapObject.GetMapObjectType() )
+			{
+				mapObject.GetComponent<SpriteRenderer>().sortingOrder = _groundLayerOrder;
+			}
 		}
 
 		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
-		mapObjectList.Add(mapObject);
+		if (!mapObjectList.Contains(mapObject)) //캐릭터 중복삽입 방지
+			mapObjectList.Add(mapObject);
 
 		int sortingLayerID = SortingLayer.NameToID(layer.ToString());
 		mapObject.GetComponent<SpriteRenderer>().sortingLayerID = sortingLayerID;
-		mapObject.SetTilePosition(_tileX, _tileY);
+		if(setTilePos)
+			mapObject.SetTilePosition(_tileX, _tileY);
 	}
 
 	//타일셀 정보에서 제거
@@ -138,6 +140,8 @@ public class TileCell
 	{
 		return _bCanMove;
 	}
+
+	public int GetGroundLayerOrder() { return _groundLayerOrder; }
 
 	//깔린 바닥 타일 오브젝트 정보
 	TileObject _baseTileObject;
@@ -248,4 +252,13 @@ public class TileCell
 	public void ResetColor() { _spriteRenderer.color = Color.white; }
 
 	#endregion
+
+	//TEST
+	public bool InCharacter()
+	{
+		if (FindObjectByType(eMapObjectType.CHARACTER, eTileLayer.GROUND) != null ||
+			FindObjectByType(eMapObjectType.PLAYER, eTileLayer.GROUND) != null)
+			return true;
+		return false;
+	}
 }

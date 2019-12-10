@@ -30,6 +30,32 @@ public class TileObject : MapObject
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-			
+		//캐릭터와 일정 높이(offset)를 벗어나면 밟고 있지 않다는걸로 표기
+		var type = collision.tag;
+		if (type.Equals(eMapObjectType.PLAYER.ToString()))
+		{
+			var mapObject = collision.gameObject.GetComponent<Player>();
+			if (mapObject == null)
+			{
+				mapObject = collision.gameObject.GetComponentInParent<Player>();
+			}
+
+			TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, mapObject.GetCurrentLayer(), false);
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		var type = collision.tag;
+		if (type.Equals(eMapObjectType.PLAYER.ToString()))
+		{
+			var mapObject = collision.gameObject.GetComponent<Player>();
+			if (mapObject == null)
+			{
+				mapObject = collision.gameObject.GetComponentInParent<Player>();
+			}
+
+			TileSystem.Instance.GetTileCell(_tileX, _tileY).RemoveObject(mapObject);
+		}
 	}
 }

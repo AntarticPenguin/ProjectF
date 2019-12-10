@@ -57,7 +57,6 @@ public class PathFindState : State
 
 	void FindPath()
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		while(0 != _pathfindingQueue.Count)
 		{

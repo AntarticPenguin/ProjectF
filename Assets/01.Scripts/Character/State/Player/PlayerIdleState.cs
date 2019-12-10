@@ -53,12 +53,34 @@ public class PlayerIdleState : State
 		}
 
 		//TEST: Print tile position
-		TileMap map = GameManager.Instance.GetMap();
 		if (Input.GetKeyDown(KeyCode.T))
 		{
 			sTilePosition tilePos = _character.GetTilePosition();
 			Debug.Log(tilePos.ToString());
+		}
 
+		if(Input.GetKeyDown(KeyCode.Y))
+		{
+			sTilePosition tilePos = _character.GetTilePosition();
+			int tileX = tilePos.tileX;
+			int tileY = tilePos.tileY;
+			for(int y = tileY + 1; y >= tileY - 1; y--)
+			{
+				string str = "";
+				for(int x = tileX - 1; x <= tileX + 1; x++)
+				{
+					if (tileX == x && tileY == y)
+						str += "● ";
+					else
+					{
+						if (TileSystem.Instance.GetTileCell(x, y).InCharacter())
+							str += "O ";
+						else
+							str += "X ";
+					}
+				}
+				Debug.Log(str);
+			}
 		}
 
 		//TEST: Pathfinding

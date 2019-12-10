@@ -6,7 +6,7 @@ public class PortalObject : MapObject
 
 	private void Awake()
 	{
-		_objectType = eMapObjectType.PORTAL;
+		SetMapObjectType(eMapObjectType.PORTAL);
 	}
 
 	public void SetPortalInfo(sPortalInfo info)

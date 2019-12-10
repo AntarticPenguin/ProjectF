@@ -16,25 +16,9 @@ public class GameManager : Singleton<GameManager>
 		_vcam.Follow = mapObject.transform;
 	}
 
-	TileMap _tileMap;
-
-	public void SetMap(TileMap tileMap)
-	{
-		_tileMap = tileMap;
-	}
-
-	public TileMap GetMap()
-	{
-		return _tileMap;
-	}
-
 	public void LoadMap(sPortalInfo info)	
 	{
 		SavePlayerData();
-		//_tileMap.ClearMap();
-
-		//string[] tokens = info.nextMap.Split('-');
-		//_tileMap.LoadMap(ref info);
 	}
 
 	void SavePlayerData()

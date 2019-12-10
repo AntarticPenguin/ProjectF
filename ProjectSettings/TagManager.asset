@@ -6,6 +6,12 @@ TagManager:
   tags:
   - FollowingCamera
   - UI Canvas
+  - TILEOBJCT
+  - CHARACTER
+  - PLAYER
+  - ENEMY
+  - ITEM
+  - PORTAL
   layers:
   - Default
   - TransparentFX

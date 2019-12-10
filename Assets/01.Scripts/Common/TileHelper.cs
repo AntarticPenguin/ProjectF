@@ -177,7 +177,6 @@ public static class TileHelper
 
 	public static Vector2 GetSlopeDirection(Vector2 direction)
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		Vector2 newDirection = direction;
 		if(direction.y == -1 && (direction.x == 1 || direction.x == -1))

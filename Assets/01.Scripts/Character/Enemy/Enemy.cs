@@ -6,7 +6,7 @@ public class Enemy : Character
 {
 	private void Awake()
 	{
-		_objectType = eMapObjectType.ENEMY;
+		SetMapObjectType(eMapObjectType.ENEMY);
 	}
 
 	void Start()

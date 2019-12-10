@@ -48,11 +48,9 @@ public class MapObjectSpawner : MonoBehaviour
 
 	public void CreateMapObject(int tileX, int tileY, eMapObjectType type, string name)
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		GameObject prefab = GetPrefabByType(type);
 		GameObject go = Instantiate(prefab);
-		//go.InitTransformAsChild(map.transform);
 		go.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 		eTileLayer layer = eTileLayer.NONE;
 		MapObject mapObject = null;
@@ -76,11 +74,9 @@ public class MapObjectSpawner : MonoBehaviour
 
 	public void CreatePortal(sPortalInfo info)
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		GameObject prefab = GetPrefabByType(eMapObjectType.PORTAL);
 		GameObject go = Instantiate(prefab);
-		//go.InitTransformAsChild(map.transform);
 		go.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 		eTileLayer layer = eTileLayer.ON_GROUND;
 
@@ -95,14 +91,12 @@ public class MapObjectSpawner : MonoBehaviour
 
 	public Character CreateCharacter(int tileX, int tileY, string scriptName, string resourceName)
 	{
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 
 		string filePath = "Prefabs/Character/" + resourceName;
 
 		GameObject charPrefabs = Resources.Load<GameObject>(filePath);
 		GameObject characterObject = Instantiate(charPrefabs);
-		//characterObject.InitTransformAsChild(map.transform);
 		characterObject.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 
 		Vector3 position = characterObject.transform.position;
@@ -128,6 +122,7 @@ public class MapObjectSpawner : MonoBehaviour
 			default:
 				break;
 		}
+		character.GetComponent<SpriteRenderer>().sortingOrder = tileSystem.GetTileCell(tileX, tileY).GetGroundLayerOrder();
 		tileSystem.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
 		return character;

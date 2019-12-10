@@ -7,7 +7,7 @@ public class ItemObject : MapObject
 
 	private void Awake()
 	{
-		_objectType = eMapObjectType.ITEM;
+		SetMapObjectType(eMapObjectType.ITEM);
 	}
 
 	public void Init(Item item)

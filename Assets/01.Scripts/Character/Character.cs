@@ -9,6 +9,7 @@ public class Character : MapObject
 
 	private void Awake()
 	{
+		SetMapObjectType(eMapObjectType.CHARACTER);
 		_objectType = eMapObjectType.CHARACTER;
 	}
 
@@ -82,7 +83,6 @@ public class Character : MapObject
 		float speed = _status.speed + GetCurrentTileCell().GetProperties(eTileLayer.GROUND).speed;
 		Vector2 destination = (Vector2)(_transform.position) + (position.normalized * speed * Time.deltaTime);
 
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		TileCell curTileCell = tileSystem.GetTileCell(_tileX, _tileY);
 		eTileDirection boundaryDirection = curTileCell.CheckTileBoundary(destination);
@@ -94,13 +94,14 @@ public class Character : MapObject
 			//타일 오프셋에 따른 캐릭터 y값 보정(des = des + (next.offset - cur.offset))
 			if (eTileDirection.IN_TILE != boundaryDirection)
 			{
+				int layerOrder = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetGroundLayerOrder();
+				GetComponent<SpriteRenderer>().sortingOrder = layerOrder;
+
 				float curOffset = curTileCell.GetOffset();
 				float nextOffset = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetOffset();
 				destination.y = destination.y + (nextOffset - curOffset);
 			}
 
-			tileSystem.GetTileCell(_tileX, _tileY).RemoveObject(this);
-			tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).AddObject(this, _currentLayer);
 			_tileX = nextTilePos.tileX;
 			_tileY = nextTilePos.tileY;
 

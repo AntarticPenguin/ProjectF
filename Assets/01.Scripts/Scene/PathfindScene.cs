@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PathfindScene : MonoBehaviour
 {
-	public TileMap _tileMap;
-
 	private void Awake()
 	{
-		GameManager.Instance.SetMap(_tileMap);
 		//_tileMap.Init();
 	}
 

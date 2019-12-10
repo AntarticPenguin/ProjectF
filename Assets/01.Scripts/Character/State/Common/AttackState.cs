@@ -17,7 +17,6 @@ public class AttackState : State
 			sTilePosition nextTilePos = _character.GetTilePosition();
 			TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
 
-			//TileMap map = GameManager.Instance.GetMap();
 			TileSystem tileSystem = TileSystem.Instance;
 			Debug.Log("Attack: " + nextTilePos.tileX+ ", " + nextTilePos.tileX);
 			TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);

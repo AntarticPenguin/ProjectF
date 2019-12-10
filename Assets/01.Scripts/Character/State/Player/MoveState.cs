@@ -8,7 +8,6 @@ public class MoveState : State
 	{
 		base.Update();
 
-		//TileMap map = GameManager.Instance.GetMap();
 		TileSystem tileSystem = TileSystem.Instance;
 		Vector2Int lookDirection = new Vector2Int();
 		Vector2 newPosition = new Vector2();
