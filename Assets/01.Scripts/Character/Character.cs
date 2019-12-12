@@ -10,7 +10,6 @@ public class Character : MapObject
 	private void Awake()
 	{
 		SetMapObjectType(eMapObjectType.CHARACTER);
-		_objectType = eMapObjectType.CHARACTER;
 	}
 
 	// Start is called before the first frame update
@@ -66,7 +65,7 @@ public class Character : MapObject
 		_stateMap[changeType] = state;
 	}
 
-	void ChangeState(eStateType nextState)
+	public void ChangeState(eStateType nextState)
 	{
 		if (null != _curState)
 			_curState.Stop();

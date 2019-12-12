@@ -109,6 +109,7 @@ public class MapObjectSpawner : MonoBehaviour
 		{
 			case "Player":
 				character = characterObject.AddComponent<Player>();
+				characterObject.AddComponent<PlayerController>();
 				character.name = "Player";
 				break;
 			case "Enemy":

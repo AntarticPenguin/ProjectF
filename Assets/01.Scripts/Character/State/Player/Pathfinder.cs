@@ -12,7 +12,6 @@ public class Pathfinder : Character
 	public override void InitState()
 	{
 		base.InitState();
-		ReplaceState(eStateType.IDLE, new PlayerIdleState());
 		ReplaceState(eStateType.PATHFIND, new PathFindState());
 		ReplaceState(eStateType.MOVE, new PathMoveState());
 
@@ -21,7 +20,6 @@ public class Pathfinder : Character
 
 	public void SetTargetTileCell(int x, int y)
 	{
-		//TileCell targetCell = GameManager.Instance.GetMap().GetTileCell(x, y);
 		TileCell targetCell = TileSystem.Instance.GetTileCell(x, y);
 		SetDestination(targetCell);
 	}
