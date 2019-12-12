@@ -113,33 +113,33 @@ public class CSVParser
 		ReadCSV(path);
 	}
 
-	public List<sPortalInfo> ReadMapInfo(string name)
-	{
-		string path = Application.dataPath + "/Resources/MapData/" + name + "Info.csv";
-		List<sPortalInfo> info = new List<sPortalInfo>();
-		try
-		{
-			StreamReader sr = new StreamReader(path);
-			sr.ReadLine();  //pass first row
+	//public List<sPortalInfo> ReadMapInfo(string name)
+	//{
+	//	string path = Application.dataPath + "/Resources/MapData/" + name + "Info.csv";
+	//	List<sPortalInfo> info = new List<sPortalInfo>();
+	//	try
+	//	{
+	//		StreamReader sr = new StreamReader(path);
+	//		sr.ReadLine();  //pass first row
 
-			while (!sr.EndOfStream)
-			{
-				string record = sr.ReadLine();
-				string[] tokens = record.Split(',');
-				sPortalInfo portal = new sPortalInfo();
-				portal.portalName = tokens[0];
-				portal.nextMap = tokens[1];
-				portal.tileX = int.Parse(tokens[2]);
-				portal.tileY = int.Parse(tokens[3]);
+	//		while (!sr.EndOfStream)
+	//		{
+	//			string record = sr.ReadLine();
+	//			string[] tokens = record.Split(',');
+	//			sPortalInfo portal = new sPortalInfo();
+	//			portal.portalName = tokens[0];
+	//			portal.nextMap = tokens[1];
+	//			portal.tileX = int.Parse(tokens[2]);
+	//			portal.tileY = int.Parse(tokens[3]);
 
-				info.Add(portal);
-			}
-		}
-		catch (IOException exception)
-		{
-			Debug.Log("<color=red> Can't find MapInfo File. </color>");
-			return null;
-		}
-		return info;
-	}
+	//			info.Add(portal);
+	//		}
+	//	}
+	//	catch (IOException exception)
+	//	{
+	//		Debug.Log("<color=red> Can't find MapInfo File. </color>");
+	//		return null;
+	//	}
+	//	return info;
+	//}
 }

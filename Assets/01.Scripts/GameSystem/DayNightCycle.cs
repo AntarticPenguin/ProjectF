@@ -4,47 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.LWRP;
 
-public class DayNightCycle : MonoBehaviour
+public class DayNightCycle : SingletonMonobehavior<DayNightCycle>
 {
-	#region SINGLETON
-	static DayNightCycle _instance;
-	public static DayNightCycle Instance
-	{
-		get
-		{
-			if (null == _instance)
-			{
-				_instance = FindObjectOfType<DayNightCycle>();
-				if (null == _instance)
-				{
-					GameObject go = new GameObject();
-					go.name = "TimeSystem";
-					_instance = go.AddComponent<DayNightCycle>();
-					DontDestroyOnLoad(go);
-				}
-			}
-			return _instance;
-		}
-	} 
-	#endregion
-
-	// Start is called before the first frame update
-	void Start()
-    {
-		Init();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-		UpdateTime();
-		UpdateLight();
-
-		Vector2 newPosition = GameManager.Instance.GetPlayer().transform.position;
-		newPosition.y += 0.5f;
-		_pointLight.transform.position = newPosition;
-	}
-
 	public Text _hourText;
 	public Text _minText;
 	public Text _meridiem;
@@ -61,8 +22,11 @@ public class DayNightCycle : MonoBehaviour
 	float _globalMinLight;
 	float _globalMaxLight;
 
-	void Init()
+	public override void Init()
 	{
+		gameObject.name = "TimeSystem";
+		DontDestroyOnLoad(gameObject);
+
 		_hourText.text = _hour.ToString("D2") + " : ";
 		_minText.text = _minute.ToString("D2");
 		if (_hour >= 12)
@@ -80,6 +44,17 @@ public class DayNightCycle : MonoBehaviour
 		_pointLight.transform.position = newPosition;
 
 		onHourChangedCallback += UpdateLight;
+	}
+
+    // Update is called once per frame
+    void Update()
+    {
+		UpdateTime();
+		UpdateLight();
+
+		Vector2 newPosition = GameManager.Instance.GetPlayer().transform.position;
+		newPosition.y += 0.5f;
+		_pointLight.transform.position = newPosition;
 	}
 
 	void UpdateTime()

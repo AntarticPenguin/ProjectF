@@ -2,34 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapObjectSpawner : MonoBehaviour
+public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 {
-	#region SINGLETON
-	static MapObjectSpawner _instance;
-	public static MapObjectSpawner Instance
+	public override void Init()
 	{
-		get
-		{
-			if (null == _instance)
-			{
-				_instance = FindObjectOfType<MapObjectSpawner>();
-				if (null == _instance)
-				{
-					GameObject go = new GameObject();
-					go.name = "MapObjectSpawner";
-					_instance = go.AddComponent<MapObjectSpawner>();
-					_instance.Init();
-					DontDestroyOnLoad(go);
-				}
-			}
-			return _instance;
-		}
-	}
-	#endregion
-
-	void Init()
-	{
-
+		gameObject.name = "MapObjectSpanwer";
+		DontDestroyOnLoad(gameObject);
 	}
 
 	GameObject GetPrefabByType(eMapObjectType type)
@@ -38,8 +16,6 @@ public class MapObjectSpawner : MonoBehaviour
 		{
 			case eMapObjectType.ITEM:
 				return Resources.Load<GameObject>("Prefabs/Item/ItemPrefab");
-			case eMapObjectType.PORTAL:
-				return Resources.Load<GameObject>("Prefabs/PortalTest");
 			default:
 				break;
 		}
@@ -70,23 +46,6 @@ public class MapObjectSpawner : MonoBehaviour
 		TileCell tileCell = tileSystem.GetTileCell(tileX, tileY);
 		if (null != tileCell)
 			tileCell.SetObject(mapObject, layer);
-	}
-
-	public void CreatePortal(sPortalInfo info)
-	{
-		TileSystem tileSystem = TileSystem.Instance;
-		GameObject prefab = GetPrefabByType(eMapObjectType.PORTAL);
-		GameObject go = Instantiate(prefab);
-		go.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
-		eTileLayer layer = eTileLayer.ON_GROUND;
-
-		PortalObject portalObject = go.AddComponent<PortalObject>();
-		portalObject.name = info.portalName;
-		portalObject.SetPortalInfo(info);
-
-		TileCell tileCell = tileSystem.GetTileCell(info.tileX, info.tileY);
-		if (null != tileCell)
-			tileCell.SetObject(portalObject, layer);
 	}
 
 	public Character CreateCharacter(int tileX, int tileY, string scriptName, string resourceName)

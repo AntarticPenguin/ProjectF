@@ -42,8 +42,7 @@ public class PrepareScene : MonoBehaviour
 			var renderer = tilemapGo.AddComponent<TilemapRenderer>();
 			renderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
 			renderer.enabled = false;
-			var collider = tilemapGo.AddComponent<TilemapCollider2D>();
-			collider.isTrigger = true;
+			renderer.sortingLayerID = SortingLayer.NameToID("TRIGGER");
 
 			tilemapGo.InitTransformAsChild(gridGo.transform);
 		}

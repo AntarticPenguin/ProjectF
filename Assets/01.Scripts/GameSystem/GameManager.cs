@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
 	CinemachineVirtualCamera _vcam;
+	LevelLoader _levelLoader;
 
 	public void Init()
 	{
 		GameObject go = GameObject.FindGameObjectWithTag("FollowingCamera");
 		_vcam = go.GetComponent<CinemachineVirtualCamera>();
+
+		_levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+
+		if (_levelLoader)
+			Debug.Log("Find LevelLoader");
 	}
 
 	public void BecomeViewer(MapObject mapObject)
@@ -16,7 +23,7 @@ public class GameManager : Singleton<GameManager>
 		_vcam.Follow = mapObject.transform;
 	}
 
-	public void LoadMap(sPortalInfo info)	
+	public void LoadMap(string sceneName)
 	{
 		SavePlayerData();
 	}

@@ -8,6 +8,7 @@ public enum eTileLayer
 	GROUND,
 	ITEM,
 	ON_GROUND,
+	TRIGGER,
 	BLOCK,
 	MAXCOUNT,
 }

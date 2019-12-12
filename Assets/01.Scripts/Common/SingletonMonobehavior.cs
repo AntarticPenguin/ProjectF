@@ -20,6 +20,16 @@ public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBeh
 		}
 	}
 
+	void Start()
+	{
+		Init();
+	}
+
+	public virtual void Init()
+	{
+
+	}
+
 	//이름 , Init, Don't destory 설정은 따로
 }
 

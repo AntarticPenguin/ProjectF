@@ -22,7 +22,7 @@ public class MapObject : MonoBehaviour
         
     }
 
-	Vector2 _position;
+	protected Vector2 _position;
 	protected int _tileX;
 	protected int _tileY;
 	protected eMapObjectType _objectType;

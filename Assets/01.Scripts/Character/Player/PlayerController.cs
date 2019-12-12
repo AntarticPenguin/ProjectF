@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			TileCell tileCell = _player.GetCurrentTileCell();
-			MapObject portal = tileCell.FindObjectByType(eMapObjectType.PORTAL, eTileLayer.ON_GROUND);
+			MapObject portal = tileCell.FindObjectByType(eMapObjectType.PORTAL, eTileLayer.TRIGGER);
 			if (null != portal)
 			{
 				MessageParam msgParm = new MessageParam();

@@ -58,6 +58,9 @@ TagManager:
   - name: ON_GROUND
     uniqueID: 1726549507
     locked: 0
+  - name: TRIGGER
+    uniqueID: 4251107983
+    locked: 0
   - name: BLOCK
     uniqueID: 140370897
     locked: 0
