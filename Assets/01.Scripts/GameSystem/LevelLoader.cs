@@ -10,14 +10,17 @@ public class LevelLoader : MonoBehaviour
 	public Slider _slider;
 	public Text _progressText;
 
-	public void LoadLevel(int sceneIndex)
+	public void LoadLevel(string sceneName)
 	{
-		StartCoroutine(LoadAsynchronously(sceneIndex));
+		if (Application.CanStreamedLevelBeLoaded(sceneName))
+			StartCoroutine(LoadAsynchronously(sceneName));
+		else
+			Debug.Log("Scene doesn't exist");
 	}
 
-	IEnumerator LoadAsynchronously(int sceneIndex)
+	IEnumerator LoadAsynchronously(string sceneName)
 	{
-		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 		_loadingScreen.SetActive(true);
 
 		while(!operation.isDone)
@@ -28,5 +31,7 @@ public class LevelLoader : MonoBehaviour
 
 			yield return null;
 		}
+		Debug.Log("Load done");
+		_loadingScreen.SetActive(false);
 	}
 }

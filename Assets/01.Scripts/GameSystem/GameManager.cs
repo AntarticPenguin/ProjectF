@@ -12,10 +12,13 @@ public class GameManager : Singleton<GameManager>
 		GameObject go = GameObject.FindGameObjectWithTag("FollowingCamera");
 		_vcam = go.GetComponent<CinemachineVirtualCamera>();
 
-		_levelLoader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+		var levelLoaderObj = GameObject.Find("LevelLoader");
 
-		if (_levelLoader)
+		if (levelLoaderObj)
+		{
+			_levelLoader = levelLoaderObj.GetComponent<LevelLoader>();
 			Debug.Log("Find LevelLoader");
+		}
 	}
 
 	public void BecomeViewer(MapObject mapObject)
@@ -23,14 +26,15 @@ public class GameManager : Singleton<GameManager>
 		_vcam.Follow = mapObject.transform;
 	}
 
-	public void LoadMap(string sceneName)
-	{
-		SavePlayerData();
-	}
-
 	void SavePlayerData()
 	{
 		//TODO: 맵 이동전 캐릭터 정보 저장
+	}
+
+	public void LoadMap(string sceneName)
+	{
+		SavePlayerData();
+		_levelLoader.LoadLevel(sceneName);
 	}
 
 	Character _player;

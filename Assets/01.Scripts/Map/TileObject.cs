@@ -30,7 +30,7 @@ public class TileObject : MapObject
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		//캐릭터와 일정 높이(offset)를 벗어나면 밟고 있지 않다는걸로 표기
+		//TODO: 캐릭터와 일정 높이(offset)를 벗어나면 밟고 있지 않다는걸로 표기
 		var type = collision.tag;
 		if (type.Equals(eMapObjectType.PLAYER.ToString()))
 		{
