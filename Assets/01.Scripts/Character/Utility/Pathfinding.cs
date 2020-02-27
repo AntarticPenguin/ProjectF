@@ -168,7 +168,7 @@ public class Pathfinding
 			
 		Vector2 newPosition = TileHelper.GetSlopeDirection(_direction);
 		_character.UpdateDirectionWithAnimation(_direction);
-		_character.UpdateNextPosition(newPosition);
+		_character.UpdatePosition(newPosition);
 
 		return false;
 	}

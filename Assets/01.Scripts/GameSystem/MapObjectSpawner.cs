@@ -61,7 +61,7 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		Vector3 position = characterObject.transform.position;
 		position.z = -1.0f;
 		characterObject.transform.position = position;
-		characterObject.transform.localScale = new Vector2(2.0f, 2.0f);
+		characterObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
 
 		Character character = null;
 		switch (scriptName)
@@ -82,7 +82,11 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 			default:
 				break;
 		}
-		character.GetComponent<SpriteRenderer>().sortingOrder = tileSystem.GetTileCell(tileX, tileY).GetGroundLayerOrder();
+		var spriteRenderers = character.GetComponentsInChildren<SpriteRenderer>(true);
+		foreach(var spriteRenderer in spriteRenderers)
+		{
+			spriteRenderer.sortingOrder = tileSystem.GetTileCell(tileX, tileY).GetGroundLayerOrder();
+		}
 		tileSystem.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
 		return character;

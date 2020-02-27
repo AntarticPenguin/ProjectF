@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum eTileLayer
+﻿public enum eTileLayer
 {
 	NONE,
 	GROUND,
@@ -87,6 +83,11 @@ public enum eTilemapType
 	BLOCK,
 }
 
+public enum eAttackType
+{
+	NORMAL,			//가장 기본적인 공격. 데미지만 전달
+	STUN,			//스턴 및 짧은 경직 추가
+}
 
 public class EnumSet
 {

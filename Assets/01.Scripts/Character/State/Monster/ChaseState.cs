@@ -32,7 +32,7 @@ public class ChaseState : State
 				return;
 			}
 			Vector2 newPosition = new Vector2(diffX, diffY);
-			_character.UpdateNextPosition(newPosition);
+			_character.UpdatePosition(newPosition);
 		}
 
 		_pathfinder.MakePathToTarget(_character.GetTarget());

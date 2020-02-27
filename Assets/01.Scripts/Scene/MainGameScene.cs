@@ -35,7 +35,8 @@ public class MainGameScene : MonoBehaviour
 
 	void Init()
 	{
-		Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Isolet_Test Collider");
+		//Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Isolet_Test Collider");
+		Character player = MapObjectSpawner.Instance.CreateCharacter(_playerSpawnX, _playerSpawnY, "Player", "Player_Preset01");
 		player.Init();
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);

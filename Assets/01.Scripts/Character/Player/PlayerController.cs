@@ -16,22 +16,44 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Move();
+		Attack();
+		Loot();
+		UsePortal();
+		TestFunc();
+	}
+
+	public void Init(Character player)
+	{
+		_player = player;
+	}
+
+	void Move()
+	{
 		if (Input.GetKey(KeyCode.UpArrow) ||
 			Input.GetKey(KeyCode.DownArrow) ||
 			Input.GetKey(KeyCode.LeftArrow) ||
 			Input.GetKey(KeyCode.RightArrow)
 			)
 		{
-			_player.ChangeState(eStateType.MOVE);
-			return;
+			if(eStateType.MOVE == _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+				_player.ChangeState(eStateType.MOVE);
 		}
+	}
 
+	void Attack()
+	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			_player.ChangeState(eStateType.ATTACK);
-			return;
+			if (_player.IsAttackReady())
+				_player.ChangeState(eStateType.ATTACK);
+			else
+				Debug.Log("Attack is not ready");
 		}
+	}
 
+	void Loot()
+	{
 		//Get the Item
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
@@ -43,7 +65,10 @@ public class PlayerController : MonoBehaviour
 				_player.PickUpItem((ItemObject)item);
 			}
 		}
+	}
 
+	void UsePortal()
+	{
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			TileCell tileCell = _player.GetCurrentTileCell();
@@ -58,6 +83,10 @@ public class PlayerController : MonoBehaviour
 				MessageSystem.Instance.Send(msgParm);
 			}
 		}
+	}
+
+	void TestFunc()
+	{
 
 		//TEST: Print tile position
 		if (Input.GetKeyDown(KeyCode.T))
@@ -66,6 +95,7 @@ public class PlayerController : MonoBehaviour
 			Debug.Log(tilePos.ToString());
 		}
 
+		//TEST: Print tiles that player stepped on
 		if (Input.GetKeyDown(KeyCode.Y))
 		{
 			sTilePosition tilePos = _player.GetTilePosition();
@@ -89,10 +119,5 @@ public class PlayerController : MonoBehaviour
 				Debug.Log(str);
 			}
 		}
-	}
-
-	public void Init(Character player)
-	{
-		_player = player;
 	}
 }

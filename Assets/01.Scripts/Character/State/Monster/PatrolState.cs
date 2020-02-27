@@ -30,7 +30,7 @@ public class PatrolState : State
 			newPosition.x += lookDirection.x;
 			newPosition.y += lookDirection.y;
 
-			_character.UpdateNextPosition(newPosition);
+			_character.UpdatePosition(newPosition);
 		}
 		else
 		{

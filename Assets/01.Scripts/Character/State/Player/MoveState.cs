@@ -66,12 +66,6 @@ public class MoveState : State
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			_nextState = eStateType.ATTACK;
-			return;
-		}
-
 		if(newPosition.Equals(Vector2.zero))
 		{
 			_nextState = eStateType.IDLE;
@@ -79,7 +73,7 @@ public class MoveState : State
 		}
 
 		_character.UpdateDirectionWithAnimation(lookDirection);
-		_character.UpdateNextPosition(newPosition);
+		_character.UpdatePosition(newPosition);
 	}
 
 	public override void Start()

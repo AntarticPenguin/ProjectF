@@ -6,6 +6,7 @@ public class Character : MapObject
 {
 	Transform _transform;
 	Animator _animator;
+	AnimationPlayer _animPlayer;
 
 	private void Awake()
 	{
@@ -24,6 +25,8 @@ public class Character : MapObject
 		if (eStateType.NONE != _curState.GetNextState())
 			ChangeState(_curState.GetNextState());
 		_curState.Update();
+
+		UpdateCoolTime();
 	}
 
 	public void Init()
@@ -31,7 +34,8 @@ public class Character : MapObject
 		_transform = GetComponent<Transform>();
 
 		InitState();
-		_animator = GetComponent<Animator>();
+		_animator = GetComponentInChildren<Animator>();
+		_animPlayer = GetComponent<AnimationPlayer>();
 
 		InitStatus();
 
@@ -42,6 +46,7 @@ public class Character : MapObject
 	#region STATE
 	protected State _curState;
 	protected Dictionary<eStateType, State> _stateMap = new Dictionary<eStateType, State>();
+	eStateType _curStateType;
 
 	public virtual void InitState()
 	{
@@ -51,6 +56,7 @@ public class Character : MapObject
 		ReplaceState(eStateType.DAMAGE, new DamageState());
 
 		_curState = _stateMap[eStateType.IDLE];
+		_curStateType = eStateType.IDLE;
 	}
 
 	public void ReplaceState(eStateType changeType, State replaceState)
@@ -72,12 +78,15 @@ public class Character : MapObject
 
 		_curState = _stateMap[nextState];
 		_curState.Start();
+		_curStateType = nextState;
 	}
+
+	public eStateType GetCurStateType() { return _curStateType; }
 
 	#endregion
 
 	#region POSITION AND BOUNDARY
-	public void UpdateNextPosition(Vector2 position)
+	public void UpdatePosition(Vector2 position)
 	{
 		float speed = _status.speed + GetCurrentTileCell().GetProperties(eTileLayer.GROUND).speed;
 		Vector2 destination = (Vector2)(_transform.position) + (position.normalized * speed * Time.deltaTime);
@@ -94,7 +103,11 @@ public class Character : MapObject
 			if (eTileDirection.IN_TILE != boundaryDirection)
 			{
 				int layerOrder = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetGroundLayerOrder();
-				GetComponent<SpriteRenderer>().sortingOrder = layerOrder;
+				var sprites = GetComponentsInChildren<SpriteRenderer>(true);
+				foreach(var spriteRenderer in sprites)
+				{
+					spriteRenderer.sortingOrder = layerOrder;
+				}
 
 				float curOffset = curTileCell.GetOffset();
 				float nextOffset = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetOffset();
@@ -162,12 +175,17 @@ public class Character : MapObject
 		{
 			_lookDirection.x = x;
 			_lookDirection.y = y;
-			_animator.SetTrigger(trigger);
+			if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(trigger))
+			{
+				_animator.SetTrigger(trigger);
+			}
 		}
 	}
 
 	public eDirection LookAt() { return _lookAt; }
 	public Vector2Int GetLookDirection() { return _lookDirection; }
+	public Animator GetAnimator() { return _animator; }
+	public AnimationPlayer GetAnimPlayer() { return _animPlayer; }
 
 	#endregion
 
@@ -181,7 +199,7 @@ public class Character : MapObject
 		{
 			case "Attack":
 				Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
-				_receiveDamage = msgParam.attackPoint;
+				_receiveDamagedInfo = msgParam.attackInfo;
 				ChangeState(eStateType.DAMAGE);
 				break;
 			default:
@@ -190,12 +208,12 @@ public class Character : MapObject
 	}
 	#endregion
 
-	#region Status Battle etc
+	#region Status, Battle etc
 	protected sStatus _status;
 	public delegate void OnHpChagned();
 	public OnHpChagned onHpChangedCallback;
 
-	float _receiveDamage;
+	sAttackInfo _receiveDamagedInfo;
 
 	public virtual void InitStatus()
 	{
@@ -207,10 +225,10 @@ public class Character : MapObject
 		_status.attack = 10;
 		_status.armor = 0.0f;
 		_status.avoid = 5;
-
 		_status.speed = 2.0f;
 
-		_receiveDamage = 0;
+		_receiveDamagedInfo.attackPoint = 0;
+		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
 	}
 
 	public ref sStatus GetStatus()
@@ -218,7 +236,12 @@ public class Character : MapObject
 		return ref _status;
 	}
 
-	public float GetReceiveDamage() { return _receiveDamage; }
+	public sAttackInfo GetReceiveDamagedInfo() { return _receiveDamagedInfo; }
+	public void ResetDamagedInfo()
+	{
+		_receiveDamagedInfo.attackPoint = 0;
+		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
+	}
 
 	public void IncreaseHp(int value)
 	{
@@ -239,11 +262,34 @@ public class Character : MapObject
 		if (onHpChangedCallback != null)
 			onHpChangedCallback.Invoke();
 	}
+	#endregion
 
-	float _attackDelay;
-	public void SetAttackDelay(float time) { _attackDelay = time; }
-	public float GetAttackDelay() { return _attackDelay; }
-	public void ResetAttackDelay() { _attackDelay = 0.0f; }
+	#region Cooltime, CastingTime
+	void UpdateCoolTime()
+	{
+		UpdateAttackCoolTime();
+	}
+
+	float _attackCoolTime = 3.0f;
+	float _attackCoolTimeDuration;
+	bool _bAttackReady;
+	void UpdateAttackCoolTime()
+	{
+		_attackCoolTimeDuration += Time.deltaTime;
+		if (_attackCoolTimeDuration >= _attackCoolTime)
+			_bAttackReady = true;
+		else
+			_bAttackReady = false;
+	}
+
+	public bool IsAttackReady() { return _bAttackReady; }
+	public void ResetAttackCoolTimeDuration() { _attackCoolTimeDuration = 0.0f; }
+
+	//공격, 스킬 시전시간
+	float _castingTime;
+	public void SetCastingTime(float time) { _castingTime = time; }
+	public float GetCastingTime() { return _castingTime; }
+	public void ResetCastingTime() { _castingTime = 0.0f; }
 
 	#endregion
 
@@ -306,6 +352,11 @@ public class Character : MapObject
 			tileCell.RemoveObject(item);
 			Destroy(item.gameObject);
 		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		
 	}
 }
 

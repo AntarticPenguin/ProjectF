@@ -50,7 +50,7 @@ public class PathMoveState : State
 
 		Vector2 newPosition = TileHelper.GetSlopeDirection(_direction);
 		_character.UpdateDirectionWithAnimation(_direction);
-		_character.UpdateNextPosition(newPosition);
+		_character.UpdatePosition(newPosition);
 	}
 
 	public override void Start()

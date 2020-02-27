@@ -62,7 +62,7 @@ public class TileCell
 			mapObjectList.Add(mapObject);
 
 		int sortingLayerID = SortingLayer.NameToID(layer.ToString());
-		mapObject.GetComponent<SpriteRenderer>().sortingLayerID = sortingLayerID;
+		mapObject.GetComponentInChildren<SpriteRenderer>().sortingLayerID = sortingLayerID;
 		if(setTilePos)
 			mapObject.SetTilePosition(_tileX, _tileY);
 	}
