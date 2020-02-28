@@ -12,11 +12,19 @@ public class PlayerDamageState : DamageState
 		switch (_curDamagedType)
 		{
 			case eAttackType.NORMAL:
-				break;
-			case eAttackType.STUN:      //스턴
 				_nextState = eStateType.IDLE;
 				break;
+			case eAttackType.STUN:      //스턴
+				_character.GetAnimPlayer().Play("DAMAGE", null, null, 
+					()=>
+					{
+						//endEvent
+						_character.GetAnimator().SetTrigger(_character.LookAt().ToString());
+						_nextState = eStateType.IDLE;
+					});
+				break;
 			default:
+				_nextState = eStateType.IDLE;
 				break;
 		}
 	}

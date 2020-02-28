@@ -17,6 +17,8 @@ public class Player : Character
 	public override void InitState()
 	{
 		base.InitState();
+		ReplaceState(eStateType.DAMAGE, new PlayerDamageState());
+
 		_curState = _stateMap[eStateType.IDLE];
 	}
 }

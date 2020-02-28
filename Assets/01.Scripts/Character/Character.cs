@@ -198,7 +198,7 @@ public class Character : MapObject
 		switch(msgParam.message)
 		{
 			case "Attack":
-				Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
+				//Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
 				_receiveDamagedInfo = msgParam.attackInfo;
 				ChangeState(eStateType.DAMAGE);
 				break;
@@ -224,7 +224,7 @@ public class Character : MapObject
 		_status.mp = 50;
 		_status.attack = 10;
 		_status.armor = 0.0f;
-		_status.avoid = 5;
+		_status.avoid = 2;
 		_status.speed = 2.0f;
 
 		_receiveDamagedInfo.attackPoint = 0;
@@ -255,6 +255,7 @@ public class Character : MapObject
 
 	public void DecreaseHp(int damage)
 	{
+		Debug.Log("<color=red> Damaged: " + damage + "</color>");
 		_status.hp -= damage;
 		if (_status.hp <= 0)
 			_status.hp = 0;

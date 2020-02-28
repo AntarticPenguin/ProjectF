@@ -44,7 +44,6 @@ public class DamageState : State
 			_character.DecreaseHp(receiveDamage);
 		}
 
-		_nextState = eStateType.IDLE;
 		//상속받은 클래스에서는 데미지를 받았을 때 어떤 행동을 취할지 오버라이딩 해줘야함
 	}
 }

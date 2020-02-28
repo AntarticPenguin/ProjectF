@@ -21,9 +21,9 @@ public class AnimationPlayer : MonoBehaviour
 	System.Action _endCallback = null;
 
 	public void Play(string trigger,
-		System.Action beginCallback,
-		System.Action midCallback,
-		System.Action endCallback
+		System.Action beginCallback = null,
+		System.Action midCallback = null,
+		System.Action endCallback = null
 		)
 	{
 		GetComponent<Animator>().SetTrigger(trigger);

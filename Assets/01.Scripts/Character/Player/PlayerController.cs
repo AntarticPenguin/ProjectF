@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
 	void TestFunc()
 	{
-
 		//TEST: Print tile position
 		if (Input.GetKeyDown(KeyCode.T))
 		{
@@ -118,6 +117,18 @@ public class PlayerController : MonoBehaviour
 				}
 				Debug.Log(str);
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			MessageParam msg = new MessageParam();
+			msg.sender = null;
+			msg.receiver = _player;
+			msg.message = "Attack";
+			msg.attackInfo.attackPoint = 10;
+			msg.attackInfo.attackType = eAttackType.STUN;
+
+			MessageSystem.Instance.Send(msg);
 		}
 	}
 }
