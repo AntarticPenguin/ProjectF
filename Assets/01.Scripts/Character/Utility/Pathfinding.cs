@@ -19,8 +19,6 @@ public class Pathfinding
 
 	public void MakePathToTarget(TileCell destination)
 	{
-		//GameManager.Instance.GetMap().ResetPathfindInfo();
-		//GameManager.Instance.GetMap().ResetAllColor();
 		TileSystem.Instance.ResetPathfindInfo();
 		TileSystem.Instance.ResetAllColor();
 		_pathfindingQueue.Clear();
@@ -148,8 +146,8 @@ public class Pathfinding
 		{
 			_pathTargetCell = _pathStack.Pop();
 			_direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), _pathTargetCell);
-			if (_direction.Equals(Vector2Int.zero))
-				Debug.Log("ZERO DIRECTION");
+			//if (_direction.Equals(Vector2Int.zero))
+			//	Debug.Log("ZERO DIRECTION");
 		}
 	}
 

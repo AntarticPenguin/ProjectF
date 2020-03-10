@@ -38,7 +38,6 @@ public class PatrolState : State
 			eDirection direction = (eDirection)Random.Range(0, 9);
 			sTilePosition nextTile = _character.GetTilePosition();
 			TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
-			//destination = GameManager.Instance.GetMap().GetTileCell(nextTile);
 			destination = TileSystem.Instance.GetTileCell(nextTile);
 			if (null != destination)
 			{
@@ -52,11 +51,8 @@ public class PatrolState : State
 			_character.UpdateDirectionWithAnimation(lookDirection);
 		}
 
-		//searching for the enemy
 		if (_searchingCooltime < _searchingDuration)
 		{
-			//var mapObjects = GameManager.Instance.GetMap().FindObjectsByRange(eMapObjectType.PLAYER,
-			//	_character.GetCurrentLayer(), _character.GetCurrentTileCell(), 4);
 			var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, _character.GetCurrentLayer(),
 				_character.GetCurrentTileCell(), 4);
 
@@ -70,10 +66,9 @@ public class PatrolState : State
 					return;
 				}
 			}
-		}
-		else
-		{
-			return;	
+			else
+				Debug.Log("not in my yard");
+			_searchingDuration = 0.0f;
 		}
 	}
 
@@ -83,7 +78,7 @@ public class PatrolState : State
 		_patrolCooltime = 1.0f;
 		_patrolDuration = _patrolCooltime;
 		_searchingDuration = 0.0f;
-		_searchingCooltime = 3.0f;
+		_searchingCooltime = 5.0f;
 	}
 
 	public override void Stop()

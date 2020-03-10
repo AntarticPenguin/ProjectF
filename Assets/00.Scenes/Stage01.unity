@@ -21790,8 +21790,8 @@ MonoBehaviour:
   _tileMap: {fileID: 0}
   _playerSpawnX: 8
   _playerSpawnY: 7
-  _enemySpawnX: 0
-  _enemySpawnY: 0
+  _enemySpawnX: 8
+  _enemySpawnY: 7
 --- !u!1001 &1797821182
 PrefabInstance:
   m_ObjectHideFlags: 0

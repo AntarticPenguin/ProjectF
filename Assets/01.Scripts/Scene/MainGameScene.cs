@@ -41,8 +41,8 @@ public class MainGameScene : MonoBehaviour
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);
 
-		//Character enemy = MapObjectSpawner.Instance.CreateCharacter(_enemySpawnX, _enemySpawnY, "Enemy", "Enemy_Test");
-		//enemy.Init();
+		Character enemy = MapObjectSpawner.Instance.CreateCharacter(_enemySpawnX, _enemySpawnY, "Enemy", "Enemy_Test");
+		enemy.Init();
 
 		//MapObjectSpawner.Instance.CreateMapObject(3, 3, eMapObjectType.ITEM, "HpPotion");
 		//MapObjectSpawner.Instance.CreateMapObject(2, 1, eMapObjectType.ITEM, "HpPotion");

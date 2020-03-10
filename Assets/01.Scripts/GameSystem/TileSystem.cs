@@ -67,6 +67,10 @@ public class TileSystem : Singleton<TileSystem>
 					else
 						offset = tile.transform.position.y - gridCenterY;
 				}
+				//test pathfinding 
+				SpriteRenderer spriteRenderer = tile.GetComponent<SpriteRenderer>();
+				GetTileCell(x, y).SetSpriteRenderer(spriteRenderer);
+
 				GetTileCell(x, y).SetTileObject(tileObject);
 				GetTileCell(x, y).SetOffset(offset);
 				GetTileCell(x, y).SetPosition(tile.transform.position);				//객체 월드 포지션
@@ -141,11 +145,11 @@ public class TileSystem : Singleton<TileSystem>
 		if (_height <= maxY) maxY = _height;
 
 		List<MapObject> mapObjects = new List<MapObject>();
-		for (int y = minY; y < maxY; y++)
+		for (int y = minY; y <= maxY; y++)
 		{
-			for (int x = minX; x < maxX; x++)
+			for (int x = minX; x <= maxX; x++)
 			{
-				var mapObject = GetTileCell(x, y).FindObjectByType(type, layer);
+				var mapObject = GetTileCell(x, y)?.FindObjectByType(type, layer);
 				if (null != mapObject)
 					mapObjects.Add(mapObject);
 			}

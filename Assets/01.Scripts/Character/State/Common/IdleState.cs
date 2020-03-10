@@ -12,7 +12,6 @@ public class IdleState : State
 	public override void Start()
 	{
 		base.Start();
-		_character.GetAnimator().SetTrigger("IDLE");
 	}
 
 	public override void Stop()

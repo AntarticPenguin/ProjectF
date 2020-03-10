@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
 	void Awake()
 	{
 		_player = GetComponent<Character>();
-		if (_player)
-			Debug.Log($"PlayerController::Awake(): {_player.GetType()}");
+		//if (_player)
+		//	Debug.Log($"PlayerController::Awake(): {_player.GetType()}");
 	}
 
     // Update is called once per frame

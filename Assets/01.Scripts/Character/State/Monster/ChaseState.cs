@@ -19,6 +19,7 @@ public class ChaseState : State
 			return;
 		}
 
+		//위치 보정작업
 		if (!_bIsCenter)
 		{
 			Vector2 charPos = _character.GetTransform().position;
@@ -39,6 +40,18 @@ public class ChaseState : State
 		bool finishMove = _pathfinder.Move();
 		if (finishMove)
 			_nextState = eStateType.IDLE;
+
+		//player in attack range
+		var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, eTileLayer.GROUND, _character.GetCurrentTileCell(),
+			_character.GetStatus().attackRange);
+
+		if(null != mapObjects)
+		{
+			if (_character.IsAttackReady())
+				_nextState = eStateType.ATTACK;
+			else
+				Debug.Log(_character.gameObject.name + ": Not ready to attack");
+		}
 	}
 
 	public override void Start()
@@ -62,7 +75,8 @@ public class ChaseState : State
 
 		_character.ResetTarget();
 		_character.ResetPath();
-		//GameManager.Instance.GetMap().ResetAllColor();
+
+		//test
 		TileSystem.Instance.ResetAllColor();
 		_character.GetSpriteRenderer().color = Color.white;
 	}

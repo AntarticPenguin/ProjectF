@@ -4,45 +4,10 @@ using UnityEngine;
 
 public class AttackState : State
 {
-	float _castingTime;
-
-	public override void Update()
-	{
-		base.Update();
-
-		_castingTime -= Time.deltaTime;
-
-		if (_castingTime <= 0.0f)
-		{
-			eDirection lookDirection = _character.LookAt();
-			sTilePosition nextTilePos = _character.GetTilePosition();
-			TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
-
-			TileSystem tileSystem = TileSystem.Instance;
-			Debug.Log("Attack: " + nextTilePos.tileX+ ", " + nextTilePos.tileX);
-			TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
-			if (tileCell != null)
-			{
-				MapObject enemy = tileCell.FindObjectByType(eMapObjectType.ENEMY, eTileLayer.GROUND);
-				if (null != enemy)
-				{
-					MessageParam msg = new MessageParam();
-					msg.sender = _character;
-					msg.receiver = enemy;
-					msg.message = "Attack";
-					msg.attackInfo.attackPoint = _character.GetStatus().attack;
-					msg.attackInfo.attackType = eAttackType.NORMAL;
-					
-					MessageSystem.Instance.Send(msg);
-				}
-			}
-//			_nextState = eStateType.IDLE;
-		}
-	}
-
 	public override void Start()
 	{
 		base.Start();
+
 		eDirection lookAt = _character.LookAt();
 		_character.GetAnimPlayer().Play(GetTriggerName(lookAt), null, null,
 		() =>
@@ -52,17 +17,36 @@ public class AttackState : State
 
 			//보고 있던 방향으로 다시 애니메이션 재생
 			_character.GetAnimator().SetTrigger(lookAt.ToString());
+			_character.ResetAttackCoolTimeDuration();
 		});
 
-		_character.ResetAttackCoolTimeDuration();
-		_castingTime = _character.GetCastingTime();
-		//Debug.Log("<color=red>Start Attack: " + castingTime + "</color>");
+		eDirection lookDirection = _character.LookAt();
+		sTilePosition nextTilePos = _character.GetTilePosition();
+		TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
+
+		TileSystem tileSystem = TileSystem.Instance;
+		Debug.Log("Attack: " + nextTilePos.tileX + ", " + nextTilePos.tileX);
+		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
+		if (tileCell != null)
+		{
+			MapObject enemy = tileCell.FindObjectByType(GetHostileType(), eTileLayer.GROUND);
+			if (null != enemy)
+			{
+				MessageParam msg = new MessageParam();
+				msg.sender = _character;
+				msg.receiver = enemy;
+				msg.message = "Attack";
+				msg.attackInfo.attackPoint = _character.GetStatus().attack;
+				msg.attackInfo.attackType = eAttackType.NORMAL;
+
+				MessageSystem.Instance.Send(msg);
+			}
+		}
 	}
 
 	public override void Stop()
 	{
 		base.Stop();
-		_character.ResetCastingTime();
 	}
 
 	string GetTriggerName(eDirection lookAt)
@@ -92,5 +76,18 @@ public class AttackState : State
 				break;
 		}
 		return trigger;
+	}
+
+	eMapObjectType GetHostileType()
+	{
+		switch (_character.GetMapObjectType())
+		{
+			case eMapObjectType.PLAYER:
+				return eMapObjectType.ENEMY;
+			case eMapObjectType.ENEMY:
+				return eMapObjectType.PLAYER;
+			default:
+				return eMapObjectType.NONE;
+		}
 	}
 }

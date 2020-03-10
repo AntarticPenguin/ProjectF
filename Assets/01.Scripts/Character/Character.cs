@@ -40,14 +40,13 @@ public class Character : MapObject
 		InitStatus();
 
 		_bHasDestination = false;
-		_bHasTarget = false;
 	}
 	
 	#region STATE
 	protected State _curState;
 	protected Dictionary<eStateType, State> _stateMap = new Dictionary<eStateType, State>();
 	eStateType _curStateType;
-
+	
 	public virtual void InitState()
 	{
 		ReplaceState(eStateType.IDLE, new IdleState());
@@ -190,7 +189,7 @@ public class Character : MapObject
 	#endregion
 
 	public Transform GetTransform() { return _transform; }
-	public SpriteRenderer GetSpriteRenderer() { return GetComponent<SpriteRenderer>(); }
+	public SpriteRenderer GetSpriteRenderer() { return GetComponentInChildren<SpriteRenderer>(); }
 
 	#region Message
 	public override void ReceiveMessage(MessageParam msgParam)
@@ -223,9 +222,13 @@ public class Character : MapObject
 		_status.maxMp = 100;
 		_status.mp = 50;
 		_status.attack = 10;
+		_status.attackRange = 1;
 		_status.armor = 0.0f;
 		_status.avoid = 2;
 		_status.speed = 2.0f;
+
+		_attackCoolTime = 3.0f;
+		_attackCoolTimeDuration = _attackCoolTime;
 
 		_receiveDamagedInfo.attackPoint = 0;
 		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
@@ -271,7 +274,7 @@ public class Character : MapObject
 		UpdateAttackCoolTime();
 	}
 
-	float _attackCoolTime = 3.0f;
+	protected float _attackCoolTime = 3.0f;
 	float _attackCoolTimeDuration;
 	bool _bAttackReady;
 	void UpdateAttackCoolTime()
@@ -312,20 +315,9 @@ public class Character : MapObject
 	}
 
 	MapObject _target;
-	bool _bHasTarget;
-	public bool HasTarget() { return _bHasTarget; }
 	public MapObject GetTarget() { return _target; }
-	public void SetTarget(MapObject target)
-	{
-		_target = target;
-		_bHasTarget = true;
-	}
-
-	public void ResetTarget()
-	{
-		_target = null;
-		_bHasTarget = false;
-	}
+	public void SetTarget(MapObject target) { _target = target;	}
+	public void ResetTarget() {	_target = null;	}
 
 	Stack<TileCell> _pathStack = new Stack<TileCell>();
 	public void PushPathTileCell(TileCell tileCell)
@@ -369,6 +361,7 @@ public struct sStatus
 	public int mp;
 
 	public int attack;
+	public int attackRange;
 	public float armor;
 	public int avoid;
 

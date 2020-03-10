@@ -48,7 +48,6 @@ public class AnimationPlayer : MonoBehaviour
 
 	public void OnEndEvent()
 	{
-		Debug.Log("Animation END EVENT!!");
 		_endCallback?.Invoke();
 	}
 }

@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 		if (levelLoaderObj)
 		{
 			_levelLoader = levelLoaderObj.GetComponent<LevelLoader>();
-			Debug.Log("Find LevelLoader");
+			//Debug.Log("Find LevelLoader");
 		}
 	}
 
