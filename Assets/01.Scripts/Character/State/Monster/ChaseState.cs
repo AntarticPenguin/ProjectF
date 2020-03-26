@@ -19,6 +19,21 @@ public class ChaseState : State
 			return;
 		}
 
+		//player in attack range
+		var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, eTileLayer.GROUND, _character.GetCurrentTileCell(),
+			_character.GetStatus().attackRange);
+
+		if (null != mapObjects)
+		{
+			if (_character.IsAttackReady())
+			{
+				_character.SetAttackTarget((Character)mapObjects[0]);
+				_nextState = eStateType.ATTACK;
+			}
+			else
+				Debug.Log(_character.gameObject.name + ": Not ready to attack");
+		}
+
 		//위치 보정작업
 		if (!_bIsCenter)
 		{
@@ -40,18 +55,6 @@ public class ChaseState : State
 		bool finishMove = _pathfinder.Move();
 		if (finishMove)
 			_nextState = eStateType.IDLE;
-
-		//player in attack range
-		var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, eTileLayer.GROUND, _character.GetCurrentTileCell(),
-			_character.GetStatus().attackRange);
-
-		if(null != mapObjects)
-		{
-			if (_character.IsAttackReady())
-				_nextState = eStateType.ATTACK;
-			else
-				Debug.Log(_character.gameObject.name + ": Not ready to attack");
-		}
 	}
 
 	public override void Start()

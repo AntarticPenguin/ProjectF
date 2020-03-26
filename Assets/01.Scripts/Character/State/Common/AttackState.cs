@@ -8,24 +8,24 @@ public class AttackState : State
 	{
 		base.Start();
 
-		eDirection lookAt = _character.LookAt();
+		Character target = _character.GetAttackTarget();
+		Vector2Int direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), target.GetCurrentTileCell());
+		_character.UpdateDirectionWithAnimation(direction);
+		eDirection lookAt = TileHelper.ConvertToeDirection(direction);
+
 		_character.GetAnimPlayer().Play(GetTriggerName(lookAt), null, null,
 		() =>
 		{
 			//endEvent
 			_nextState = eStateType.IDLE;
-
-			//보고 있던 방향으로 다시 애니메이션 재생
-			_character.GetAnimator().SetTrigger(lookAt.ToString());
 			_character.ResetAttackCoolTimeDuration();
 		});
 
-		eDirection lookDirection = _character.LookAt();
 		sTilePosition nextTilePos = _character.GetTilePosition();
-		TileHelper.GetNextTilePosByDirection(lookDirection, ref nextTilePos);
+		TileHelper.GetNextTilePosByDirection(lookAt, ref nextTilePos);
 
 		TileSystem tileSystem = TileSystem.Instance;
-		Debug.Log("Attack: " + nextTilePos.tileX + ", " + nextTilePos.tileX);
+		//Debug.Log("Attack: " + nextTilePos.tileX + ", " + nextTilePos.tileX);
 		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
 		if (tileCell != null)
 		{
@@ -47,6 +47,7 @@ public class AttackState : State
 	public override void Stop()
 	{
 		base.Stop();
+		_character.ResetAttackTarget();
 	}
 
 	string GetTriggerName(eDirection lookAt)

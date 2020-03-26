@@ -9,11 +9,6 @@ public class Player : Character
 		SetMapObjectType(eMapObjectType.PLAYER);
 	}
 
-	void Start()
-	{
-		
-	}
-
 	public override void InitState()
 	{
 		base.InitState();

@@ -130,5 +130,15 @@ public class PlayerController : MonoBehaviour
 
 			MessageSystem.Instance.Send(msg);
 		}
+
+		if(Input.GetKeyDown(KeyCode.W))
+		{
+			var lists = TileSystem.Instance.GetTileCell(8, 7)._mapObjectListByLayer;
+			var layerList = lists[(int)eTileLayer.GROUND];
+			for(int i = 0; i < layerList.Count; i++)
+			{
+				Debug.Log($"8, 7: {layerList[i].name}");
+			}
+		}
 	}
 }

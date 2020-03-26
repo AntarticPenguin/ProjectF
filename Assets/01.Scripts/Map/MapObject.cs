@@ -10,21 +10,10 @@ public class MapObject : MonoBehaviour
 		_currentLayer = eTileLayer.NONE;
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-	
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	protected Vector2 _position;
 	protected int _tileX;
 	protected int _tileY;
+	sTilePosition _tilePosition;
 	protected eMapObjectType _objectType;
 
 	public void SetPosition(Vector2 position)
@@ -37,14 +26,22 @@ public class MapObject : MonoBehaviour
 	{
 		_tileX = tileX;
 		_tileY = tileY;
+		if(null == _tilePosition)
+		{
+			_tilePosition = new sTilePosition(_tileX, _tileY);
+		}
+		else
+		{
+			_tilePosition.tileX = _tileX;
+			_tilePosition.tileY = _tileY;
+		}
 	}
 
 	public int GetTileX() { return _tileX; }
 	public int GetTileY() { return _tileY; }
 	public sTilePosition GetTilePosition()
 	{
-		sTilePosition tilePos = new sTilePosition(_tileX, _tileY);
-		return tilePos;
+		return _tilePosition;
 	}
 
 	public TileCell GetCurrentTileCell()

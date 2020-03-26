@@ -13,12 +13,6 @@ public class Character : MapObject
 		SetMapObjectType(eMapObjectType.CHARACTER);
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-		
-	}
-
 	// Update is called once per frame
 	void Update()
     {
@@ -111,6 +105,10 @@ public class Character : MapObject
 				float curOffset = curTileCell.GetOffset();
 				float nextOffset = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY).GetOffset();
 				destination.y = destination.y + (nextOffset - curOffset);
+
+				var layer = GetCurrentLayer();
+				tileSystem.GetTileCell(_tileX, _tileY).RemoveObject(this, layer);
+				tileSystem.GetTileCell(nextTilePos).AddObject(this, layer);
 			}
 
 			_tileX = nextTilePos.tileX;
@@ -239,6 +237,11 @@ public class Character : MapObject
 		return ref _status;
 	}
 
+	Character _attackTarget = null;
+	public Character GetAttackTarget() { return _attackTarget; }
+	public void SetAttackTarget(Character target) { _attackTarget = target; }
+	public void ResetAttackTarget() { _attackTarget = null; }
+
 	public sAttackInfo GetReceiveDamagedInfo() { return _receiveDamagedInfo; }
 	public void ResetDamagedInfo()
 	{
@@ -342,7 +345,7 @@ public class Character : MapObject
 		{
 			sTilePosition tilePos = item.GetTilePosition();
 			TileCell tileCell = TileSystem.Instance.GetTileCell(tilePos);
-			tileCell.RemoveObject(item);
+			tileCell.RemoveObject(item, item.GetCurrentLayer());
 			Destroy(item.gameObject);
 		}
 	}

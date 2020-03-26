@@ -151,7 +151,10 @@ public class TileSystem : Singleton<TileSystem>
 			{
 				var mapObject = GetTileCell(x, y)?.FindObjectByType(type, layer);
 				if (null != mapObject)
+				{
 					mapObjects.Add(mapObject);
+				}
+					
 			}
 		}
 

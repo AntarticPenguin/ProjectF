@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class AnimationPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	System.Action _beginCallback = null;
 	System.Action _midCallback = null;
 	System.Action _endCallback = null;

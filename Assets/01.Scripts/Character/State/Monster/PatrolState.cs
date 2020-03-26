@@ -66,8 +66,6 @@ public class PatrolState : State
 					return;
 				}
 			}
-			else
-				Debug.Log("not in my yard");
 			_searchingDuration = 0.0f;
 		}
 	}
@@ -79,6 +77,8 @@ public class PatrolState : State
 		_patrolDuration = _patrolCooltime;
 		_searchingDuration = 0.0f;
 		_searchingCooltime = 5.0f;
+
+		_character.GetAnimPlayer().Play(_character.LookAt().ToString());
 	}
 
 	public override void Stop()

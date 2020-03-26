@@ -14,7 +14,7 @@ public class TileCell
 	//float _width = 103.0f / pixelPerUnit;
 	//float _height = 49.6f / pixelPerUnit;   //타일 윗면의 아래꼭지점부터 위까지의 높이
 
-	List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
+	public List<List<MapObject>> _mapObjectListByLayer = new List<List<MapObject>>();
 	int _groundLayerOrder;				//타일셀이 가지고 있는 고유값
 	int _itemLayerOrder;
 
@@ -39,7 +39,12 @@ public class TileCell
 	//타일셀 정보에 추가
 	public void AddObject(MapObject mapObject, eTileLayer layer, bool setTilePos = true)
 	{
-		mapObject.SetCurrentLayer(layer);
+		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
+		if (!mapObjectList.Contains(mapObject)) //중복삽입 방지
+			mapObjectList.Add(mapObject);
+
+		if (eTileLayer.RANGE == layer)
+			return;
 
 		if (eTileLayer.ITEM == layer)
 		{
@@ -57,28 +62,26 @@ public class TileCell
 			}
 		}
 
-		List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
-		if (!mapObjectList.Contains(mapObject)) //캐릭터 중복삽입 방지
-			mapObjectList.Add(mapObject);
+		mapObject.SetCurrentLayer(layer);
 
 		int sortingLayerID = SortingLayer.NameToID(layer.ToString());
 		mapObject.GetComponentInChildren<SpriteRenderer>().sortingLayerID = sortingLayerID;
+
 		if(setTilePos)
 			mapObject.SetTilePosition(_tileX, _tileY);
 	}
 
 	//타일셀 정보에서 제거
-	public void RemoveObject(MapObject mapObject)
+	public void RemoveObject(MapObject mapObject, eTileLayer layer)
 	{
-		eTileLayer currentLayer = mapObject.GetCurrentLayer();
-		if(eTileLayer.NONE != currentLayer)
+		if (eTileLayer.NONE != layer)
 		{
-			if(eTileLayer.ITEM == currentLayer)
+			if (eTileLayer.ITEM == layer)
 			{
 				_itemLayerOrder--;
 			}
 
-			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)currentLayer];
+			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
 			mapObjectList.Remove(mapObject);
 		}
 		else

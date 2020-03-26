@@ -10,11 +10,6 @@ public class Enemy : Character
 		SetMapObjectType(eMapObjectType.ENEMY);
 	}
 
-	void Start()
-	{
-		
-	}
-
 	private void LateUpdate()
 	{
 		GetComponentInChildren<Text>().text = GetCurStateType().ToString();
@@ -27,8 +22,6 @@ public class Enemy : Character
 		ReplaceState(eStateType.IDLE, new PatrolState());
 		ReplaceState(eStateType.CHASE, new ChaseState());
 		_curState = _stateMap[eStateType.IDLE];
-
-		_curState.Start();
 	}
 
 	public override void InitStatus()
