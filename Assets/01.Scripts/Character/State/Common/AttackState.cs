@@ -25,7 +25,6 @@ public class AttackState : State
 		TileHelper.GetNextTilePosByDirection(lookAt, ref nextTilePos);
 
 		TileSystem tileSystem = TileSystem.Instance;
-		//Debug.Log("Attack: " + nextTilePos.tileX + ", " + nextTilePos.tileX);
 		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
 		if (tileCell != null)
 		{

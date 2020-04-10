@@ -292,12 +292,6 @@ public class Character : MapObject
 	public bool IsAttackReady() { return _bAttackReady; }
 	public void ResetAttackCoolTimeDuration() { _attackCoolTimeDuration = 0.0f; }
 
-	//공격, 스킬 시전시간
-	float _castingTime;
-	public void SetCastingTime(float time) { _castingTime = time; }
-	public float GetCastingTime() { return _castingTime; }
-	public void ResetCastingTime() { _castingTime = 0.0f; }
-
 	#endregion
 
 	#region SET DESTINATION OR TARGET, PATHFINDING

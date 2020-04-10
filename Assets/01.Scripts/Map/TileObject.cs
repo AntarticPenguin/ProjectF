@@ -5,7 +5,8 @@ using UnityEngine;
 public class TileObject : MapObject
 {
 	[SerializeField]
-	public List<string> _tileCellInfo;
+	public List<string> _tileCellInfo = new List<string>();
+	public List<string> _tileCellRangeInfo = new List<string>();
 
 	private void Awake()
 	{
@@ -22,14 +23,16 @@ public class TileObject : MapObject
 	void check()
 	{
 		_tileCellInfo.Clear();
-		var list = TileSystem.Instance.GetTileCell(_tileX, _tileY)._mapObjectListByLayer;
-		for (int i = 0; i < list.Count; i++)
+		_tileCellRangeInfo.Clear();
+		var list = TileSystem.Instance.GetTileCell(_tileX, _tileY)._mapObjectListByLayer[(int)eTileLayer.GROUND];
+		var rangeList = TileSystem.Instance.GetTileCell(_tileX, _tileY)._mapObjectListByLayer[(int)eTileLayer.RANGE];
+		for(int i = 0; i < list.Count; i++)
 		{
-			var layer = list[i];
-			for (int j = 0; j < layer.Count; j++)
-			{
-				_tileCellInfo.Add(layer[j].name);
-			}
+			_tileCellInfo.Add(list[i].name);
+		}
+		for (int i = 0; i < rangeList.Count; i++)
+		{
+			_tileCellRangeInfo.Add(rangeList[i].name);
 		}
 	}
 
@@ -41,11 +44,8 @@ public class TileObject : MapObject
 		if (type.Equals(eMapObjectType.PLAYER.ToString()))
 		{
 			var mapObject = collision.gameObject.GetComponentInParent<Player>();
-			if (false == mapObject.GetCurrentTileCell().GetTilePosition().Equals(GetTilePosition()))
-			{
-				//캐릭터와 걸쳐있는 타일
-				TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
-			}
+			//캐릭터와 걸쳐있는 타일
+			TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
 		}
 		check();
 	}
