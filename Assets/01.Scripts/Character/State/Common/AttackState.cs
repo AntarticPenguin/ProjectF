@@ -7,6 +7,7 @@ public class AttackState : State
 	public override void Start()
 	{
 		base.Start();
+		_character.DoAttack();
 
 		Character target = _character.GetAttackTarget();
 		Vector2Int direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), target.GetCurrentTileCell());
@@ -18,7 +19,6 @@ public class AttackState : State
 		{
 			//endEvent
 			_nextState = eStateType.IDLE;
-			_character.ResetAttackCoolTimeDuration();
 		});
 
 		sTilePosition nextTilePos = _character.GetTilePosition();

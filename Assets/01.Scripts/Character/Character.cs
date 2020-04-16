@@ -19,8 +19,6 @@ public class Character : MapObject
 		if (eStateType.NONE != _curState.GetNextState())
 			ChangeState(_curState.GetNextState());
 		_curState.Update();
-
-		UpdateCoolTime();
 	}
 
 	public void Init()
@@ -34,6 +32,8 @@ public class Character : MapObject
 		InitStatus();
 
 		_bHasDestination = false;
+
+		InitCoolTime();
 	}
 	
 	#region STATE
@@ -226,7 +226,6 @@ public class Character : MapObject
 		_status.speed = 2.0f;
 
 		_attackCoolTime = 3.0f;
-		_attackCoolTimeDuration = _attackCoolTime;
 
 		_receiveDamagedInfo.attackPoint = 0;
 		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
@@ -272,25 +271,28 @@ public class Character : MapObject
 	#endregion
 
 	#region Cooltime, CastingTime
-	void UpdateCoolTime()
+
+	void InitCoolTime()
 	{
-		UpdateAttackCoolTime();
+		_bAttackReady = true;
 	}
 
 	protected float _attackCoolTime = 3.0f;
-	float _attackCoolTimeDuration;
 	bool _bAttackReady;
-	void UpdateAttackCoolTime()
-	{
-		_attackCoolTimeDuration += Time.deltaTime;
-		if (_attackCoolTimeDuration >= _attackCoolTime)
-			_bAttackReady = true;
-		else
-			_bAttackReady = false;
-	}
 
 	public bool IsAttackReady() { return _bAttackReady; }
-	public void ResetAttackCoolTimeDuration() { _attackCoolTimeDuration = 0.0f; }
+
+	public void DoAttack()
+	{
+		_bAttackReady = false;
+		StartCoroutine(UpdateAttackCoolTime(_attackCoolTime));
+	}
+
+	IEnumerator UpdateAttackCoolTime(float time)
+	{
+		yield return new WaitForSeconds(time);
+		_bAttackReady = true;
+	}
 
 	#endregion
 
