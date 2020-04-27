@@ -43,7 +43,7 @@ public class DayNightCycle : SingletonMonobehavior<DayNightCycle>
 		_pointLight.transform.position = newPosition;
 
 		onHourChangedCallback += UpdateLight;
-
+		UpdateLight();
 		StartCoroutine(UpdateTime(_interval));
 	}
 

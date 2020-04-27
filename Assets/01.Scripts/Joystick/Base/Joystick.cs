@@ -145,6 +145,37 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
         return Vector2.zero;
     }
+
+	public bool CheckDirection(JoyStickDirection eDirection)
+	{
+		switch (eDirection)
+		{
+			case JoyStickDirection.UP:
+				return (Direction.x == 0 && Direction.y == 1);
+			case JoyStickDirection.DOWN:
+				return (Direction.x == 0 && Direction.y == -1);
+			case JoyStickDirection.LEFT:
+				return (Direction.x == -1 && Direction.y == 0);
+			case JoyStickDirection.RIGHT:
+				return (Direction.x == 1 && Direction.y == 0);
+			case JoyStickDirection.UP_LEFT:
+				return (Direction.x == -1 && Direction.y == 1);
+			case JoyStickDirection.UP_RIGHT:
+				return (Direction.x == 1 && Direction.y == 1);
+			case JoyStickDirection.DOWN_LEFT:
+				return (Direction.x == -1 && Direction.y == -1);
+			case JoyStickDirection.DOWN_RIGHT:
+				return (Direction.x == 1 && Direction.y == -1);
+			default:
+				return false;
+		}
+	}
+
+	public bool IsNeutral()
+	{
+		return (Direction == Vector2.zero);
+	}
 }
 
 public enum AxisOptions { Both, Horizontal, Vertical }
+public enum JoyStickDirection { NEUTRAL, UP, DOWN, LEFT, RIGHT, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT }

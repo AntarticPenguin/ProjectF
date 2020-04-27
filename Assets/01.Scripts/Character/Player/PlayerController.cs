@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	Character _player;
+	public FixedJoystick _joystick;
 
 	void Awake()
 	{
@@ -13,8 +14,15 @@ public class PlayerController : MonoBehaviour
 		//	Debug.Log($"PlayerController::Awake(): {_player.GetType()}");
 	}
 
-    // Update is called once per frame
-    void Update()
+	void Start()
+	{
+		_joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FixedJoystick>();
+		if (null == _joystick)
+			Debug.Log("Cannot find joystick");
+	}
+
+	// Update is called once per frame
+	void Update()
     {
 		Move();
 		Attack();
@@ -23,20 +31,21 @@ public class PlayerController : MonoBehaviour
 		TestFunc();
 	}
 
-	public void Init(Character player)
-	{
-		_player = player;
-	}
-
 	void Move()
 	{
-		if (Input.GetKey(KeyCode.UpArrow) ||
-			Input.GetKey(KeyCode.DownArrow) ||
-			Input.GetKey(KeyCode.LeftArrow) ||
-			Input.GetKey(KeyCode.RightArrow)
-			)
+		//if (Input.GetKey(KeyCode.UpArrow) ||
+		//	Input.GetKey(KeyCode.DownArrow) ||
+		//	Input.GetKey(KeyCode.LeftArrow) ||
+		//	Input.GetKey(KeyCode.RightArrow)
+		//	)
+		//{
+		//	if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+		//		_player.ChangeState(eStateType.MOVE);
+		//}
+
+		if (!_joystick.IsNeutral())
 		{
-			if(eStateType.MOVE == _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+			if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
 				_player.ChangeState(eStateType.MOVE);
 		}
 	}

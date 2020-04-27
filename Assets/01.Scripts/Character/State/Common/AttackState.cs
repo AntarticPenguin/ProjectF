@@ -25,7 +25,7 @@ public class AttackState : State
 		TileHelper.GetNextTilePosByDirection(lookAt, ref nextTilePos);
 
 		TileSystem tileSystem = TileSystem.Instance;
-		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileX);
+		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY);
 		if (tileCell != null)
 		{
 			MapObject enemy = tileCell.FindObjectByType(GetHostileType(), eTileLayer.GROUND);

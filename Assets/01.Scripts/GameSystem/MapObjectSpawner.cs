@@ -68,7 +68,7 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		{
 			case "Player":
 				character = characterObject.AddComponent<Player>();
-				characterObject.AddComponent<PlayerController>();
+				character._playerController = characterObject.AddComponent<PlayerController>();
 				character.name = "Player";
 				break;
 			case "Enemy":

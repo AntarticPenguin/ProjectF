@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MapObject
 {
+	public PlayerController _playerController { get; set; }
 	Transform _transform;
 	Animator _animator;
 	AnimationPlayer _animPlayer;
@@ -195,7 +196,7 @@ public class Character : MapObject
 		switch(msgParam.message)
 		{
 			case "Attack":
-				//Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
+				Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
 				_receiveDamagedInfo = msgParam.attackInfo;
 				ChangeState(eStateType.DAMAGE);
 				break;

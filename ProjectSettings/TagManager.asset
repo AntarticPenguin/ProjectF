@@ -12,6 +12,7 @@ TagManager:
   - ENEMY
   - ITEM
   - PORTAL
+  - Joystick
   layers:
   - Default
   - TransparentFX

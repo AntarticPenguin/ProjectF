@@ -12,6 +12,31 @@ public class MoveState : State
 		Vector2Int lookDirection = new Vector2Int();
 		Vector2 newPosition = new Vector2();
 
+		var joystick = _character._playerController._joystick;
+		if (!joystick.IsNeutral())
+		{ 	
+			newPosition += TileHelper.GetSlopeDirection(joystick.Direction);
+			lookDirection += joystick.Direction.ToVector2Int();
+		}
+
+		//PCMove();
+
+		if (newPosition.Equals(Vector2.zero))
+		{
+			_nextState = eStateType.IDLE;
+			return;
+		}
+
+		_character.UpdateDirectionWithAnimation(lookDirection);
+		_character.UpdatePosition(newPosition);
+	}
+
+	void PCMove()
+	{
+		TileSystem tileSystem = TileSystem.Instance;
+		Vector2Int lookDirection = new Vector2Int();
+		Vector2 newPosition = new Vector2();
+
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
 			if (Input.GetKey(KeyCode.RightArrow))
@@ -19,7 +44,7 @@ public class MoveState : State
 				newPosition += new Vector2(1.0f, tileSystem.GetSlope());
 				lookDirection += new Vector2Int(1, 1);
 			}
-			else if(Input.GetKey(KeyCode.LeftArrow))
+			else if (Input.GetKey(KeyCode.LeftArrow))
 			{
 				newPosition += new Vector2(-1.0f, tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, 1);
@@ -32,12 +57,12 @@ public class MoveState : State
 		}
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
-			if(Input.GetKey(KeyCode.RightArrow))
+			if (Input.GetKey(KeyCode.RightArrow))
 			{
 				newPosition += new Vector2(1.0f, -tileSystem.GetSlope());
 				lookDirection += new Vector2Int(1, -1);
 			}
-			else if(Input.GetKey(KeyCode.LeftArrow))
+			else if (Input.GetKey(KeyCode.LeftArrow))
 			{
 				newPosition += new Vector2(-1.0f, -tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, -1);
@@ -51,7 +76,7 @@ public class MoveState : State
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			if(!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+			if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
 			{
 				newPosition += new Vector2(-1.0f, 0.0f);
 				lookDirection += new Vector2Int(-1, 0);
@@ -65,15 +90,6 @@ public class MoveState : State
 				lookDirection += new Vector2Int(1, 0);
 			}
 		}
-
-		if(newPosition.Equals(Vector2.zero))
-		{
-			_nextState = eStateType.IDLE;
-			return;
-		}
-
-		_character.UpdateDirectionWithAnimation(lookDirection);
-		_character.UpdatePosition(newPosition);
 	}
 
 	public override void Start()
