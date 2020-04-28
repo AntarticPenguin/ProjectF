@@ -196,8 +196,8 @@ public class Character : MapObject
 		switch(msgParam.message)
 		{
 			case "Attack":
-				Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
-				_receiveDamagedInfo = msgParam.attackInfo;
+				//Debug.Log(_transform.name + "..Sender: " + msgParam.sender.name);
+				_receiveDamagedInfo = msgParam.damageInfo;
 				ChangeState(eStateType.DAMAGE);
 				break;
 			default:
@@ -211,7 +211,9 @@ public class Character : MapObject
 	public delegate void OnHpChagned();
 	public OnHpChagned onHpChangedCallback;
 
-	sAttackInfo _receiveDamagedInfo;
+	Character _attackTarget = null;
+	sDamageInfo _receiveDamagedInfo;
+	sAttackInfo _attackInfo;
 
 	public virtual void InitStatus()
 	{
@@ -228,8 +230,8 @@ public class Character : MapObject
 
 		_attackCoolTime = 3.0f;
 
-		_receiveDamagedInfo.attackPoint = 0;
-		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
+		_receiveDamagedInfo.damagePoint = 0;
+		_receiveDamagedInfo.attackType = eDamageType.NORMAL;
 	}
 
 	public ref sStatus GetStatus()
@@ -237,17 +239,21 @@ public class Character : MapObject
 		return ref _status;
 	}
 
-	Character _attackTarget = null;
 	public Character GetAttackTarget() { return _attackTarget; }
 	public void SetAttackTarget(Character target) { _attackTarget = target; }
 	public void ResetAttackTarget() { _attackTarget = null; }
 
-	public sAttackInfo GetReceiveDamagedInfo() { return _receiveDamagedInfo; }
+	public sDamageInfo GetReceiveDamagedInfo() { return _receiveDamagedInfo; }
 	public void ResetDamagedInfo()
 	{
-		_receiveDamagedInfo.attackPoint = 0;
-		_receiveDamagedInfo.attackType = eAttackType.NORMAL;
+		_receiveDamagedInfo.damagePoint = 0;
+		_receiveDamagedInfo.attackType = eDamageType.NORMAL;
 	}
+
+	//다음에 공격할 공격정보를 세팅한다
+	public void SetAttackInfo(sAttackInfo info) { _attackInfo = info; }
+	public ref sAttackInfo GetAttackInfo() { return ref _attackInfo; }
+	
 
 	public void IncreaseHp(int value)
 	{
@@ -315,9 +321,9 @@ public class Character : MapObject
 	}
 
 	MapObject _target;
-	public MapObject GetTarget() { return _target; }
-	public void SetTarget(MapObject target) { _target = target;	}
-	public void ResetTarget() {	_target = null;	}
+	public MapObject GetPathTarget() { return _target; }
+	public void SetPathTarget(MapObject target) { _target = target;	}
+	public void ResetPathTarget() {	_target = null;	}
 
 	Stack<TileCell> _pathStack = new Stack<TileCell>();
 	public void PushPathTileCell(TileCell tileCell)

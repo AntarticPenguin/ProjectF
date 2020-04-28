@@ -21,22 +21,18 @@ public class AttackState : State
 			_nextState = eStateType.IDLE;
 		});
 
-		sTilePosition nextTilePos = _character.GetTilePosition();
-		TileHelper.GetNextTilePosByDirection(lookAt, ref nextTilePos);
-
-		TileSystem tileSystem = TileSystem.Instance;
-		TileCell tileCell = tileSystem.GetTileCell(nextTilePos.tileX, nextTilePos.tileY);
-		if (tileCell != null)
+		HashSet<MapObject> enemies = FindEnemy();
+		if (null != enemies)
 		{
-			MapObject enemy = tileCell.FindObjectByType(GetHostileType(), eTileLayer.GROUND);
-			if (null != enemy)
+			Debug.Log("ENEMY COUNT: " + enemies.Count);
+			foreach(var enemy in enemies)
 			{
 				MessageParam msg = new MessageParam();
 				msg.sender = _character;
 				msg.receiver = enemy;
 				msg.message = "Attack";
-				msg.attackInfo.attackPoint = _character.GetStatus().attack;
-				msg.attackInfo.attackType = eAttackType.NORMAL;
+				msg.damageInfo.damagePoint = _character.GetStatus().attack;
+				msg.damageInfo.attackType = eDamageType.NORMAL;
 
 				MessageSystem.Instance.Send(msg);
 			}
@@ -89,5 +85,26 @@ public class AttackState : State
 			default:
 				return eMapObjectType.NONE;
 		}
+	}
+
+	HashSet<MapObject> FindEnemy()
+	{
+		HashSet<MapObject> list = null;
+
+		var tileSystem = TileSystem.Instance;
+		var attackInfo = _character.GetAttackInfo();
+		switch(attackInfo.attackType)
+		{
+			case eAttackType.NORMAL:
+				list = tileSystem.FindObjectsByRange(GetHostileType(), eTileLayer.GROUND, _character.GetCurrentTileCell(), attackInfo.attackRange);
+				break;
+			case eAttackType.RANGE:
+				list = tileSystem.FindObjectsByRange(GetHostileType(), eTileLayer.RANGE, _character.GetCurrentTileCell(), attackInfo.attackRange);
+				break;
+			default:
+				break;
+		}
+
+		return list;
 	}
 }

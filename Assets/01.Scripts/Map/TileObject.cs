@@ -39,12 +39,10 @@ public class TileObject : MapObject
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		//TODO: 캐릭터와 일정 높이(offset)를 벗어나면 밟고 있지 않다는걸로 표기
-		//캐릭터 중심은  character.cs에서 처리하고 범위부분만 트리거로 처리해야할듯
 		var type = collision.tag;
 		if (type.Equals(eMapObjectType.PLAYER.ToString()))
 		{
 			var mapObject = collision.gameObject.GetComponentInParent<Player>();
-			//캐릭터와 걸쳐있는 타일
 			TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
 		}
 		check();

@@ -27,11 +27,15 @@ public class ChaseState : State
 		{
 			if (_character.IsAttackReady())
 			{
-				_character.SetAttackTarget((Character)mapObjects[0]);
-				_nextState = eStateType.ATTACK;
+				foreach(var target in mapObjects)
+				{
+					_character.SetAttackInfo(new sAttackInfo(eAttackType.NORMAL, 1, _character.GetStatus().attack));
+					_character.SetAttackTarget((Character)target);
+					_nextState = eStateType.ATTACK;
+					break;
+				}
+				
 			}
-			else
-				Debug.Log(_character.gameObject.name + ": Not ready to attack");
 		}
 
 		//위치 보정작업
@@ -51,7 +55,7 @@ public class ChaseState : State
 			_character.UpdatePosition(newPosition);
 		}
 
-		_pathfinder.MakePathToTarget(_character.GetTarget());
+		_pathfinder.MakePathToTarget(_character.GetPathTarget());
 		bool finishMove = _pathfinder.Move();
 		if (finishMove)
 			_nextState = eStateType.IDLE;
@@ -69,14 +73,14 @@ public class ChaseState : State
 						_character.GetTransform().position.y.EqualApproximately(curtilecell.y, 0.1f));
 
 		_pathfinder.Init(_character);
-		_pathfinder.MakePathToTarget(_character.GetTarget());
+		_pathfinder.MakePathToTarget(_character.GetPathTarget());
 	}
 
 	public override void Stop()
 	{
 		base.Stop();
 
-		_character.ResetTarget();
+		_character.ResetPathTarget();
 		_character.ResetPath();
 
 		//test

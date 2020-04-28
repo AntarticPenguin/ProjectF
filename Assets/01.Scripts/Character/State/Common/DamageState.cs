@@ -4,7 +4,7 @@ using UnityEngine;
 public class DamageState : State
 {
 	sStatus _status;
-	protected eAttackType _curDamagedType;
+	protected eDamageType _curDamagedType;
 
 	public override void Update()
 	{
@@ -39,7 +39,7 @@ public class DamageState : State
 		else
 		{
 			var damageInfo = _character.GetReceiveDamagedInfo();
-			int receiveDamage = Mathf.RoundToInt((1 - (_status.armor / 100)) * damageInfo.attackPoint);
+			int receiveDamage = Mathf.RoundToInt((1 - (_status.armor / 100)) * damageInfo.damagePoint);
 			_curDamagedType = damageInfo.attackType;
 			_character.DecreaseHp(receiveDamage);
 		}

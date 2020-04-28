@@ -134,8 +134,8 @@ public class PlayerController : MonoBehaviour
 			msg.sender = null;
 			msg.receiver = _player;
 			msg.message = "Attack";
-			msg.attackInfo.attackPoint = 10;
-			msg.attackInfo.attackType = eAttackType.STUN;
+			msg.damageInfo.damagePoint= 10;
+			msg.damageInfo.attackType = eDamageType.STUN;
 
 			MessageSystem.Instance.Send(msg);
 		}

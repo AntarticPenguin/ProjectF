@@ -58,10 +58,9 @@ public class PatrolState : State
 
 			if (null != mapObjects)
 			{
-				//타겟이 1명
-				if (1 == mapObjects.Count)
+				foreach(var target in mapObjects)
 				{
-					_character.SetTarget(mapObjects[0]);
+					_character.SetPathTarget(target);
 					_nextState = eStateType.CHASE;
 					return;
 				}

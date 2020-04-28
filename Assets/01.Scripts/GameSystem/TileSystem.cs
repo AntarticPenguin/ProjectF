@@ -132,7 +132,7 @@ public class TileSystem : Singleton<TileSystem>
 		return slope;
 	}
 
-	public List<MapObject> FindObjectsByRange(eMapObjectType type, eTileLayer layer, TileCell center, int range = 1)
+	public HashSet<MapObject> FindObjectsByRange(eMapObjectType type, eTileLayer layer, TileCell center, int range = 1)
 	{
 		int minX = center.GetTileX() - range;
 		int minY = center.GetTileY() - range;
@@ -144,7 +144,7 @@ public class TileSystem : Singleton<TileSystem>
 		if (_width <= maxX) maxX = _width;
 		if (_height <= maxY) maxY = _height;
 
-		List<MapObject> mapObjects = new List<MapObject>();
+		HashSet<MapObject> mapObjects = new HashSet<MapObject>();
 		for (int y = minY; y <= maxY; y++)
 		{
 			for (int x = minX; x <= maxX; x++)

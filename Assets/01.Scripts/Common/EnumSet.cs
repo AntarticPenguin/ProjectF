@@ -62,7 +62,7 @@ public enum eBoundary
 	MAX,
 }
 
-enum eTileAsset
+public enum eTileAsset
 {
 	Brick,
 	Dirt,
@@ -84,10 +84,16 @@ public enum eTilemapType
 	BLOCK,
 }
 
+public enum eDamageType
+{
+	NORMAL,			//데미지만 전달
+	STUN,			//스턴 및 짧은 경직 추가
+}
+
 public enum eAttackType
 {
-	NORMAL,			//가장 기본적인 공격. 데미지만 전달
-	STUN,			//스턴 및 짧은 경직 추가
+	NORMAL,			//일반공격
+	RANGE,			//범위공격
 }
 
 public class EnumSet
