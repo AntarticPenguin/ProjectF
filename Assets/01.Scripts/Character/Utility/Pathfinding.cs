@@ -72,7 +72,7 @@ public class Pathfinding
 					return;
 				}
 
-				for (int direction = 0; direction < 8; direction++)
+				for (int direction = 0; direction < (int)eDirection.MAX; direction++)
 				{
 					sTilePosition nextTilePos = new sTilePosition(command.tileCell.GetTileX(), command.tileCell.GetTileY());
 					TileHelper.GetNextTilePosByDirection((eDirection)direction, ref nextTilePos);

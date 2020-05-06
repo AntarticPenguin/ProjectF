@@ -29,7 +29,7 @@ public class ChaseState : State
 			{
 				foreach(var target in mapObjects)
 				{
-					_character.SetAttackInfo(new sAttackInfo(eAttackType.NORMAL, 1, _character.GetStatus().attack));
+					_character.SetAttackInfo(new sAttackInfo(eAttackRangeType.STRAIGHT, 1, _character.GetStatus().attack));
 					_character.SetAttackTarget((Character)target);
 					_nextState = eStateType.ATTACK;
 					break;

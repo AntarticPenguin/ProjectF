@@ -12,14 +12,19 @@ public class MoveState : State
 		Vector2Int lookDirection = new Vector2Int();
 		Vector2 newPosition = new Vector2();
 
-		var joystick = _character._playerController._joystick;
-		if (!joystick.IsNeutral())
-		{ 	
-			newPosition += TileHelper.GetSlopeDirection(joystick.Direction);
-			lookDirection += joystick.Direction.ToVector2Int();
+		if (_character._playerController.bIsPC)
+		{
+			PCMove(out newPosition, out lookDirection);
 		}
-
-		//PCMove();
+		else
+		{
+			var joystick = _character._playerController._joystick;
+			if (!joystick.IsNeutral())
+			{
+				newPosition += TileHelper.GetSlopeDirection(joystick.Direction);
+				lookDirection += joystick.Direction.ToVector2Int();
+			}
+		}
 
 		if (newPosition.Equals(Vector2.zero))
 		{
@@ -31,11 +36,14 @@ public class MoveState : State
 		_character.UpdatePosition(newPosition);
 	}
 
-	void PCMove()
+	void PCMove(out Vector2 newPosition, out Vector2Int lookDirection)
 	{
 		TileSystem tileSystem = TileSystem.Instance;
-		Vector2Int lookDirection = new Vector2Int();
-		Vector2 newPosition = new Vector2();
+		//Vector2Int lookDirection = new Vector2Int();
+		//Vector2 newPosition = Vector2.zero
+
+		lookDirection = Vector2Int.zero;
+		newPosition = Vector2.zero;
 
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
@@ -49,11 +57,11 @@ public class MoveState : State
 				newPosition += new Vector2(-1.0f, tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, 1);
 			}
-			else
-			{
-				newPosition += new Vector2(0.0f, 1.0f);
-				lookDirection += new Vector2Int(0, 1);
-			}
+			//else
+			//{
+			//	newPosition += new Vector2(0.0f, 1.0f);
+			//	lookDirection += new Vector2Int(0, 1);
+			//}
 		}
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
@@ -67,29 +75,29 @@ public class MoveState : State
 				newPosition += new Vector2(-1.0f, -tileSystem.GetSlope());
 				lookDirection += new Vector2Int(-1, -1);
 			}
-			else
-			{
-				newPosition += new Vector2(0.0f, -1.0f);
-				lookDirection += new Vector2Int(0, -1);
-			}
+			//else
+			//{
+			//	newPosition += new Vector2(0.0f, -1.0f);
+			//	lookDirection += new Vector2Int(0, -1);
+			//}
 		}
 
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
-			{
-				newPosition += new Vector2(-1.0f, 0.0f);
-				lookDirection += new Vector2Int(-1, 0);
-			}
-		}
-		else if (Input.GetKey(KeyCode.RightArrow))
-		{
-			if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
-			{
-				newPosition += new Vector2(1.0f, 0.0f);
-				lookDirection += new Vector2Int(1, 0);
-			}
-		}
+		//if (Input.GetKey(KeyCode.LeftArrow))
+		//{
+		//	if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+		//	{
+		//		newPosition += new Vector2(-1.0f, 0.0f);
+		//		lookDirection += new Vector2Int(-1, 0);
+		//	}
+		//}
+		//else if (Input.GetKey(KeyCode.RightArrow))
+		//{
+		//	if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+		//	{
+		//		newPosition += new Vector2(1.0f, 0.0f);
+		//		lookDirection += new Vector2Int(1, 0);
+		//	}
+		//}
 	}
 
 	public override void Start()

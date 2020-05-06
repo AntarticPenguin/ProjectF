@@ -86,31 +86,31 @@ public static class TileHelper
 	{
 		switch (direction)
 		{
-			case eDirection.NORTH:
-				tilePos.tileX++;
-				tilePos.tileY++;
-				break;
+			//case eDirection.NORTH:
+			//	tilePos.tileX++;
+			//	tilePos.tileY++;
+			//	break;
 			case eDirection.NORTH_EAST:
 				tilePos.tileX++;
 				break;
-			case eDirection.EAST:
-				tilePos.tileX++;
-				tilePos.tileY--;
-				break;
+			//case eDirection.EAST:
+			//	tilePos.tileX++;
+			//	tilePos.tileY--;
+			//	break;
 			case eDirection.SOUTH_EAST:
 				tilePos.tileY--;
 				break;
-			case eDirection.SOUTH:
-				tilePos.tileX--;
-				tilePos.tileY--;
-				break;
+			//case eDirection.SOUTH:
+			//	tilePos.tileX--;
+			//	tilePos.tileY--;
+			//	break;
 			case eDirection.SOUTH_WEST:
 				tilePos.tileX--;
 				break;
-			case eDirection.WEST:
-				tilePos.tileX--;
-				tilePos.tileY++;
-				break;
+			//case eDirection.WEST:
+			//	tilePos.tileX--;
+			//	tilePos.tileY++;
+			//	break;
 			case eDirection.NORTH_WEST:
 				tilePos.tileY++;
 				break;
@@ -194,14 +194,14 @@ public static class TileHelper
 
 	public static eDirection ConvertToeDirection(Vector2Int direction)
 	{
-		if (direction.x == 0 && direction.y == 1)
-			return eDirection.NORTH;
-		if (direction.x == 0 && direction.y == -1)
-			return eDirection.SOUTH;
-		if (direction.x == -1 && direction.y == 0)
-			return eDirection.WEST;
-		if (direction.x == 1 && direction.y == 0)
-			return eDirection.EAST;
+		//if (direction.x == 0 && direction.y == 1)
+		//	return eDirection.NORTH;
+		//if (direction.x == 0 && direction.y == -1)
+		//	return eDirection.SOUTH;
+		//if (direction.x == -1 && direction.y == 0)
+		//	return eDirection.WEST;
+		//if (direction.x == 1 && direction.y == 0)
+		//	return eDirection.EAST;
 		if (direction.x == 1 && direction.y == 1)
 			return eDirection.NORTH_EAST;
 		if (direction.x == -1 && direction.y == 1)
@@ -211,6 +211,6 @@ public static class TileHelper
 		if (direction.x == -1 && direction.y == -1)
 			return eDirection.SOUTH_WEST;
 
-		return eDirection.NORTH;
+		return eDirection.NORTH_EAST;
 	}
 }

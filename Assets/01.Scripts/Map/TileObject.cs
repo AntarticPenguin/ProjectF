@@ -13,6 +13,15 @@ public class TileObject : MapObject
 		_objectType = eMapObjectType.TILEOBJECT;
 	}
 
+	private void Update()
+	{
+		//TEST
+		if(Input.GetKeyDown(KeyCode.E))
+		{
+			check();
+		}
+	}
+
 	sTileProperties _tileProperties;
 	public sTileProperties GetProperties() { return _tileProperties; }
 	public void SetTileProperties(float speed)
@@ -20,7 +29,7 @@ public class TileObject : MapObject
 		_tileProperties.speed = speed;
 	}
 
-	void check()
+	public void check()
 	{
 		_tileCellInfo.Clear();
 		_tileCellRangeInfo.Clear();
@@ -45,7 +54,6 @@ public class TileObject : MapObject
 			var mapObject = collision.gameObject.GetComponentInParent<Player>();
 			TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
 		}
-		check();
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
@@ -57,6 +65,5 @@ public class TileObject : MapObject
 			var mapObject = collision.gameObject.GetComponentInParent<Player>();
 			TileSystem.Instance.GetTileCell(_tileX, _tileY).RemoveObject(mapObject, eTileLayer.RANGE);
 		}
-		check();
 	}
 }

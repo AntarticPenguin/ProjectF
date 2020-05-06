@@ -148,26 +148,26 @@ public class Character : MapObject
 			trigger = "NORTH_WEST";
 			_lookAt = eDirection.NORTH_WEST;
 		}
-		else if ((x == 0) && (y == -1))
-		{
-			trigger = "SOUTH";
-			_lookAt = eDirection.SOUTH;
-		}
-		else if ((x == 0) && (y == 1))
-		{
-			trigger = "NORTH";
-			_lookAt = eDirection.NORTH;
-		}
-		else if ((x == 1) && (y == 0))
-		{
-			trigger = "EAST";
-			_lookAt = eDirection.EAST;
-		}
-		else if ((x == -1) && (y == 0))
-		{
-			trigger = "WEST";
-			_lookAt = eDirection.WEST;
-		}
+		//else if ((x == 0) && (y == -1))
+		//{
+		//	trigger = "SOUTH";
+		//	_lookAt = eDirection.SOUTH;
+		//}
+		//else if ((x == 0) && (y == 1))
+		//{
+		//	trigger = "NORTH";
+		//	_lookAt = eDirection.NORTH;
+		//}
+		//else if ((x == 1) && (y == 0))
+		//{
+		//	trigger = "EAST";
+		//	_lookAt = eDirection.EAST;
+		//}
+		//else if ((x == -1) && (y == 0))
+		//{
+		//	trigger = "WEST";
+		//	_lookAt = eDirection.WEST;
+		//}
 
 		if (!trigger.Equals(""))
 		{

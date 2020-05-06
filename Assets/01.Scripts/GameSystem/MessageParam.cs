@@ -14,14 +14,14 @@ public struct sDamageInfo
 
 public struct sAttackInfo
 {
-	public sAttackInfo(eAttackType type, int attackRange, int attackPoint)
+	public sAttackInfo(eAttackRangeType rangeType, int attackRange, int attackPoint)
 	{
-		attackType = type;
+		attackRangeType = rangeType;
 		this.attackRange = attackRange;
 		this.attackPoint = attackPoint;
 	}
 
-	public eAttackType attackType;
+	public eAttackRangeType attackRangeType;
 	public int attackRange;
 	public float attackPoint;
 }

@@ -7,11 +7,20 @@ public class PlayerController : MonoBehaviour
 	Character _player;
 	public FixedJoystick _joystick;
 
+	//TEST
+	public bool bIsPC;
+
 	void Awake()
 	{
 		_player = GetComponent<Character>();
 		//if (_player)
 		//	Debug.Log($"PlayerController::Awake(): {_player.GetType()}");
+
+#if UNITY_EDITOR_WIN
+		bIsPC = true;
+#else
+		bIsPC = false;
+#endif
 	}
 
 	void Start()
@@ -33,20 +42,25 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		//if (Input.GetKey(KeyCode.UpArrow) ||
-		//	Input.GetKey(KeyCode.DownArrow) ||
-		//	Input.GetKey(KeyCode.LeftArrow) ||
-		//	Input.GetKey(KeyCode.RightArrow)
-		//	)
-		//{
-		//	if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
-		//		_player.ChangeState(eStateType.MOVE);
-		//}
-
-		if (!_joystick.IsNeutral())
+		if(bIsPC)
 		{
-			if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
-				_player.ChangeState(eStateType.MOVE);
+			if (Input.GetKey(KeyCode.UpArrow) ||
+			Input.GetKey(KeyCode.DownArrow) ||
+			Input.GetKey(KeyCode.LeftArrow) ||
+			Input.GetKey(KeyCode.RightArrow)
+			)
+			{
+				if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+					_player.ChangeState(eStateType.MOVE);
+			}
+		}
+		else
+		{
+			if (!_joystick.IsNeutral())
+			{
+				if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+					_player.ChangeState(eStateType.MOVE);
+			}
 		}
 	}
 

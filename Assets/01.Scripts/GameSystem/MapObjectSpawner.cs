@@ -75,10 +75,6 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 				character = characterObject.AddComponent<Enemy>();
 				character.name = "Enemy";
 				break;
-			case "Pathfinder":
-				character = characterObject.AddComponent<Pathfinder>();
-				character.name = "Pathfinder";
-				break;
 			default:
 				break;
 		}

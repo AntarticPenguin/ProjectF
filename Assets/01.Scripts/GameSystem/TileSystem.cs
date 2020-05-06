@@ -163,6 +163,26 @@ public class TileSystem : Singleton<TileSystem>
 		return mapObjects;
 	}
 
+	public List<TileCell> GetTilecellInAttackRange(TileCell startCell, eDirection direction, eAttackRangeType rangeType, int range)
+	{
+		List<TileCell> tileCells = new List<TileCell>();
+		tileCells.Add(startCell);       //캐릭터가 밟고있는 셀을 넣어준다.
+
+		sTilePosition tilePos = startCell.GetTilePosition();
+		//STRAIGHT
+		for(int i = 0; i < range; i++)
+		{
+			TileHelper.GetNextTilePosByDirection(direction, ref tilePos);
+			TileCell tilecell = GetTileCell(tilePos.tileX, tilePos.tileY);
+			if(null != tilecell)
+			{
+				tileCells.Add(tilecell);
+			}
+		}
+
+		return tileCells;
+	}
+
 	#region PATHFINDING
 
 	public void ResetPathfindInfo()

@@ -10,6 +10,7 @@
 	MAXCOUNT,
 }
 
+//타일 안, 밖(모서리)
 public enum eTileDirection
 {
 	NORTH_WEST,
@@ -19,16 +20,18 @@ public enum eTileDirection
 	IN_TILE,
 }
 
+//캐릭터들의 움직이는 방향
 public enum eDirection
 {
-	NORTH,
-	NORTH_EAST,
-	EAST,
+	//NORTH,
+	NORTH_EAST = 0,
+	//EAST,
 	SOUTH_EAST,
-	SOUTH,
+	//SOUTH,
 	SOUTH_WEST,
-	WEST,
+	//WEST,
 	NORTH_WEST,
+	MAX
 }
 
 public enum eMapObjectType
@@ -90,10 +93,9 @@ public enum eDamageType
 	STUN,			//스턴 및 짧은 경직 추가
 }
 
-public enum eAttackType
+public enum eAttackRangeType
 {
-	NORMAL,			//일반공격
-	RANGE,			//범위공격
+	STRAIGHT,
 }
 
 public class EnumSet

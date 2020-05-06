@@ -51,17 +51,13 @@ public class AttackState : State
 
 		switch (lookAt)
 		{
-			case eDirection.NORTH:
 			case eDirection.NORTH_EAST:
-			case eDirection.EAST:
 				trigger = "ATTACK_NORTH_EAST";
 				break;
 			case eDirection.NORTH_WEST:
-			case eDirection.WEST:
 				trigger = "ATTACK_NORTH_WEST";
 				break;
 			case eDirection.SOUTH_EAST:
-			case eDirection.SOUTH:
 				trigger = "ATTACK_SOUTH_EAST";
 				break;
 			case eDirection.SOUTH_WEST:
@@ -89,22 +85,19 @@ public class AttackState : State
 
 	HashSet<MapObject> FindEnemy()
 	{
-		HashSet<MapObject> list = null;
-
 		var tileSystem = TileSystem.Instance;
 		var attackInfo = _character.GetAttackInfo();
-		switch(attackInfo.attackType)
+
+		List<TileCell> tileCells = tileSystem.GetTilecellInAttackRange(_character.GetCurrentTileCell(), _character.LookAt(), attackInfo.attackRangeType, attackInfo.attackRange);
+
+		HashSet<MapObject> enemies = new HashSet<MapObject>();
+		for(int i = 0; i < tileCells.Count; i++)
 		{
-			case eAttackType.NORMAL:
-				list = tileSystem.FindObjectsByRange(GetHostileType(), eTileLayer.GROUND, _character.GetCurrentTileCell(), attackInfo.attackRange);
-				break;
-			case eAttackType.RANGE:
-				list = tileSystem.FindObjectsByRange(GetHostileType(), eTileLayer.RANGE, _character.GetCurrentTileCell(), attackInfo.attackRange);
-				break;
-			default:
-				break;
+			var findObject = tileCells[i].FindObjectByType(GetHostileType(), eTileLayer.RANGE);
+			if (null != findObject)
+				enemies.Add(findObject);
 		}
 
-		return list;
+		return enemies;
 	}
 }
