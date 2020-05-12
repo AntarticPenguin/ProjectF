@@ -25,10 +25,11 @@ public class Character : MapObject
 	public void Init()
 	{
 		_transform = GetComponent<Transform>();
-
-		InitState();
 		_animator = GetComponentInChildren<Animator>();
 		_animPlayer = GetComponent<AnimationPlayer>();
+
+		InitState();
+		_curState.Start();
 
 		InitStatus();
 

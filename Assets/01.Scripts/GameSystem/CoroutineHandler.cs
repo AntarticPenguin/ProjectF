@@ -2,10 +2,8 @@
 
 public class CoroutineHandler : SingletonMonobehavior<CoroutineHandler>
 {
-	public override void Init()
+	public override void InitStart()
 	{
-		base.Init();
-
 		DontDestroyOnLoad(this);
 	}
 

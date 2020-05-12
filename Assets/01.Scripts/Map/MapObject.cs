@@ -10,16 +10,34 @@ public class MapObject : MonoBehaviour
 		_currentLayer = eTileLayer.NONE;
 	}
 
-	protected Vector2 _position;
+	protected Vector3 _position;
 	protected int _tileX;
 	protected int _tileY;
 	sTilePosition _tilePosition;
 	protected eMapObjectType _objectType;
 
-	public void SetPosition(Vector2 position)
+	public void SetPosition(Vector3 position)
 	{
+		switch (_objectType)
+		{
+			case eMapObjectType.NONE:
+				break;
+			case eMapObjectType.TILEOBJECT:
+				break;
+			case eMapObjectType.CHARACTER:
+			case eMapObjectType.PLAYER:
+			case eMapObjectType.ENEMY:
+				position.z = -1.0f;
+				break;
+			case eMapObjectType.ITEM:
+				break;
+			case eMapObjectType.PORTAL:
+				break;
+			default:
+				break;
+		}
 		_position = position;
-		transform.position = _position;
+		transform.position = position;
 	}
 
 	public void SetTilePosition(int tileX, int tileY)

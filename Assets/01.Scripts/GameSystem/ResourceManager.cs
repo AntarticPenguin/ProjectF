@@ -6,7 +6,7 @@ public class ResourceManager : SingletonMonobehavior<ResourceManager>
 {
 	Dictionary<string, Sprite> _spriteMap = new Dictionary<string, Sprite>();
 
-	public override void Init()
+	public override void InitStart()
 	{
 		gameObject.name = "ResourceManager";
 		DontDestroyOnLoad(gameObject);

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 {
-	public override void Init()
+	Vector3 _groundTilemapTransform;
+
+	public override void InitStart()
 	{
 		gameObject.name = "MapObjectSpanwer";
 		DontDestroyOnLoad(gameObject);
@@ -59,7 +61,6 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		characterObject.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
 
 		Vector3 position = characterObject.transform.position;
-		position.z = -1.0f;
 		characterObject.transform.position = position;
 		characterObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
 
@@ -86,5 +87,28 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		tileSystem.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
 		return character;
+	}
+
+	public void SpawnObject(GameObject monsterPrefab, TileObject tileObject)
+	{
+		var tileSystem = TileSystem.Instance;
+
+		GameObject monsterObj = Instantiate(monsterPrefab);
+		monsterObj.InitTransformAsChild(tileSystem.GetTilemap(eTilemapType.GROUND).transform);
+
+		Vector3 pos = monsterObj.transform.position;
+		monsterObj.transform.position = pos;
+		monsterObj.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+
+		Character monster = monsterObj.AddComponent<Enemy>();
+		monster.name = "Enemy";
+		monster.Init();
+		
+		var spriteRenderers = monster.GetComponentsInChildren<SpriteRenderer>(true);
+		foreach (var spriteRenderer in spriteRenderers)
+		{
+			spriteRenderer.sortingOrder = tileSystem.GetTileCell(tileObject.GetTilePosition()).GetGroundLayerOrder();
+		}
+		tileSystem.GetTileCell(tileObject.GetTilePosition()).SetObject(monster, eTileLayer.GROUND);
 	}
 }

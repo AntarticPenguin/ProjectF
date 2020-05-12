@@ -5,13 +5,44 @@ using UnityEngine.Tilemaps;
 using Cinemachine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class PrepareScene : MonoBehaviour
+public class PrepareScene : EditorWindow
 {
 	public Transform rootScene;
 	public int width;
 	public int height;
 
 	public Tilemap groundTilemap;
+
+	[MenuItem("PrepareScene/MakeDefaultTileScene")]
+	public static void ShowWindow()
+	{
+		GetWindow<PrepareScene>("MakeTileScene");
+	}
+
+	private void OnGUI()
+	{
+		GUILayout.Label("타일맵 디폴트 씬 생성", EditorStyles.boldLabel);
+
+		EditorGUILayout.Space();
+		rootScene = EditorGUILayout.ObjectField(rootScene, typeof(Transform), true) as Transform;
+
+		EditorGUILayout.Space();
+		width = EditorGUILayout.IntField("Width", width);
+		height = EditorGUILayout.IntField("Height", height);
+
+		EditorGUILayout.Space();
+		if (GUILayout.Button("Prepare Default Tilemap"))
+		{
+			Prepare();
+		}
+
+		EditorGUILayout.Space();
+		groundTilemap = EditorGUILayout.ObjectField(groundTilemap, typeof(Tilemap), true) as Tilemap;
+		if (GUILayout.Button("sort with Ground tiles' order"))
+		{
+			SortOrder();
+		}
+	}
 
 	public void Prepare()
 	{
@@ -31,6 +62,7 @@ public class PrepareScene : MonoBehaviour
 		grid.cellLayout = GridLayout.CellLayout.Isometric;
 		if (rootScene)
 		{
+			rootScene.name = "MainGameScene";
 			gridGo.InitTransformAsChild(rootScene);
 		}
 
@@ -68,13 +100,13 @@ public class PrepareScene : MonoBehaviour
 			var renderer = tilemapGo.AddComponent<TilemapRenderer>();
 			renderer.sortOrder = TilemapRenderer.SortOrder.TopRight;
 			renderer.sortingLayerID = SortingLayer.NameToID("BLOCK");
-			var collider = tilemapGo.AddComponent<TilemapCollider2D>();
-			collider.usedByComposite = false;
+			//var collider = tilemapGo.AddComponent<TilemapCollider2D>();
+			//collider.usedByComposite = false;
 
-			Rigidbody2D rigid = tilemapGo.AddComponent<Rigidbody2D>();
-			tilemapGo.AddComponent<CompositeCollider2D>();
-			rigid.bodyType = RigidbodyType2D.Kinematic;
-			rigid.simulated = true;
+			//Rigidbody2D rigid = tilemapGo.AddComponent<Rigidbody2D>();
+			//tilemapGo.AddComponent<CompositeCollider2D>();
+			//rigid.bodyType = RigidbodyType2D.Kinematic;
+			//rigid.simulated = true;
 
 			Tile tile = Resources.Load("TilePalette/BlockTile") as Tile;
 			int blockHeight = height + 1;
@@ -155,9 +187,11 @@ public class PrepareScene : MonoBehaviour
 	{
 		GameObject canvasPrefab = Resources.Load("Prefabs/UI/UICanvas") as GameObject;
 		var go = PrefabUtility.InstantiatePrefab(canvasPrefab) as GameObject;
-		var timeSystem = go.GetComponentInChildren<DayNightCycle>();
+		GameObject timeSystemGo = new GameObject("TimeSystem");
+		var timeSystem = timeSystemGo.AddComponent<DayNightCycle>();
 		if(rootScene)
 		{
+			timeSystemGo.InitTransformAsChild(rootScene);
 			var litGroup = rootScene.Find("LightGroup");
 			var globalLit = litGroup.Find("Global Light 2D").GetComponent<Light2D>();
 			var pointLit = litGroup.Find("Point Light 2D").GetComponent<Light2D>();
@@ -211,26 +245,6 @@ public class PrepareScene : MonoBehaviour
 			GameObject go = sortlist[i].gameObject;
 			int siblingIndex = sortlist[i].siblingIndex;
 			go.transform.SetSiblingIndex(siblingIndex);
-		}
-	}
-}
-
-[CustomEditor(typeof(PrepareScene))]
-public class PrepareSceneEditor : Editor
-{
-	public override void OnInspectorGUI()
-	{
-		DrawDefaultInspector();
-
-		PrepareScene myScript = (PrepareScene)target;
-		if (GUILayout.Button("Prepare Default Tilemap"))
-		{
-			myScript.Prepare();
-		}
-
-		if (GUILayout.Button("sort with Ground tiles' order"))
-		{
-			myScript.SortOrder();
 		}
 	}
 }

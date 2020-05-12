@@ -20,12 +20,22 @@ public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBeh
 		}
 	}
 
-	void Start()
+	void Awake()
 	{
-		Init();
+		InitAwake();
 	}
 
-	public virtual void Init()
+	void Start()
+	{
+		InitStart();
+	}
+
+	public virtual void InitAwake()
+	{
+
+	}
+
+	public virtual void InitStart()
 	{
 
 	}

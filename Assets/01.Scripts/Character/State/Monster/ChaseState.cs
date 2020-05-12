@@ -19,6 +19,12 @@ public class ChaseState : State
 			return;
 		}
 
+		_character.ResetPath();
+		_pathfinder.MakePathToTarget(_character.GetPathTarget());
+		bool finishMove = _pathfinder.Move();
+		if (finishMove)
+			_nextState = eStateType.IDLE;
+
 		//player in attack range
 		var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, eTileLayer.GROUND, _character.GetCurrentTileCell(),
 			_character.GetStatus().attackRange);
@@ -27,14 +33,14 @@ public class ChaseState : State
 		{
 			if (_character.IsAttackReady())
 			{
-				foreach(var target in mapObjects)
+				foreach (var target in mapObjects)
 				{
 					_character.SetAttackInfo(new sAttackInfo(eAttackRangeType.STRAIGHT, 1, _character.GetStatus().attack));
 					_character.SetAttackTarget((Character)target);
 					_nextState = eStateType.ATTACK;
 					break;
 				}
-				
+
 			}
 		}
 
@@ -54,11 +60,6 @@ public class ChaseState : State
 			Vector2 newPosition = new Vector2(diffX, diffY);
 			_character.UpdatePosition(newPosition);
 		}
-
-		_pathfinder.MakePathToTarget(_character.GetPathTarget());
-		bool finishMove = _pathfinder.Move();
-		if (finishMove)
-			_nextState = eStateType.IDLE;
 	}
 
 	public override void Start()
@@ -82,9 +83,9 @@ public class ChaseState : State
 
 		_character.ResetPathTarget();
 		_character.ResetPath();
+		_pathfinder.ResetPathColor();
 
 		//test
-		TileSystem.Instance.ResetAllColor();
 		_character.GetSpriteRenderer().color = Color.white;
 	}
 }

@@ -20,7 +20,9 @@ public class Pathfinding
 	public void MakePathToTarget(TileCell destination)
 	{
 		TileSystem.Instance.ResetPathfindInfo();
-		TileSystem.Instance.ResetAllColor();
+		#if UNITY_EDITOR
+			ResetPathColor();
+		#endif
 		_pathfindingQueue.Clear();
 
 		_targetTileCell = destination;
@@ -41,10 +43,11 @@ public class Pathfinding
 		MakePathToTarget(target.GetCurrentTileCell());
 	}
 
-	#region PATHFIND ALGORITHM
+#region PATHFIND ALGORITHM
 	List<sPathCommand> _pathfindingQueue = new List<sPathCommand>();
 	TileCell _targetTileCell;
 	TileCell _reverseTileCell;
+	Color _drawColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
 
 	void PushCommand(sPathCommand command)
 	{
@@ -93,8 +96,6 @@ public class Pathfinding
 							newCommand.heuristic = newHeuristic;
 							newCommand.tileCell = nextTileCell;
 							PushCommand(newCommand);
-
-							//nextTileCell.DrawColor(Color.blue);
 						}
 					}
 				}
@@ -122,7 +123,11 @@ public class Pathfinding
 	{
 		while (null != _reverseTileCell)
 		{
-			_reverseTileCell.DrawColor(Color.red);
+			#if UNITY_EDITOR
+				_reverseTileCell.DrawColor(_drawColor);
+				_drawTilecell.Add(_reverseTileCell);
+			#endif
+
 
 			_character.PushPathTileCell(_reverseTileCell);
 			_reverseTileCell = _reverseTileCell.GetPrevCell();
@@ -132,9 +137,17 @@ public class Pathfinding
 			_character.GetPathStack().Pop();        //자기 위치 타일 빼주기
 	}
 
-	#endregion
+	List<TileCell> _drawTilecell = new List<TileCell>();
+	public void ResetPathColor()
+	{
+		for (int i = 0; i < _drawTilecell.Count; i++)
+			_drawTilecell[i].ResetColor();
+		_drawTilecell.Clear();
+	}
 
-	#region PATH MOVE
+#endregion
+
+#region PATH MOVE
 	Stack<TileCell> _pathStack;
 	TileCell _pathTargetCell;
 	Vector2Int _direction;
@@ -171,5 +184,5 @@ public class Pathfinding
 		return false;
 	}
 
-	#endregion
+#endregion
 }

@@ -6,17 +6,14 @@ using UnityEngine.Tilemaps;
 public class TileSystem : Singleton<TileSystem>
 {
 	TileCell[,] _tileCellList;
-	int _width;
-	int _height;
+	public int _width;
+	public int _height;
 
 	Grid _grid;
 	Dictionary<eTilemapType, Tilemap> _tilemaps = new Dictionary<eTilemapType, Tilemap>();
 
 	public void Init()
 	{
-		//TEST
-		_width = 16;
-		_height = 16;
 		_tileCellList = new TileCell[_height, _width];
 		for(int y = 0; y < _height; y++)
 		{

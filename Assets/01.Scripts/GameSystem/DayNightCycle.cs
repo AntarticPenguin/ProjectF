@@ -23,7 +23,7 @@ public class DayNightCycle : SingletonMonobehavior<DayNightCycle>
 	float _globalMinLight;
 	float _globalMaxLight;
 
-	public override void Init()
+	public override void InitStart()
 	{
 		gameObject.name = "TimeSystem";
 		DontDestroyOnLoad(gameObject);

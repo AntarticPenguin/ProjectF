@@ -35,7 +35,7 @@ public class PatrolState : State
 		else
 		{
 			TileCell destination = null;
-			eDirection direction = (eDirection)Random.Range(0, 9);
+			eDirection direction = (eDirection)Random.Range(0, (int)eDirection.MAX);
 			sTilePosition nextTile = _character.GetTilePosition();
 			TileHelper.GetNextTilePosByDirection(direction, ref nextTile);
 			destination = TileSystem.Instance.GetTileCell(nextTile);
@@ -75,7 +75,7 @@ public class PatrolState : State
 		_patrolCooltime = 1.0f;
 		_patrolDuration = _patrolCooltime;
 		_searchingDuration = 0.0f;
-		_searchingCooltime = 5.0f;
+		_searchingCooltime = 2.0f;
 
 		_character.GetAnimPlayer().Play(_character.LookAt().ToString());
 	}

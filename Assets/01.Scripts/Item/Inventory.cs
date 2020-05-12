@@ -11,7 +11,7 @@ public class Inventory : SingletonMonobehavior<Inventory>
 	public delegate void OnItemChanged();
 	public OnItemChanged onItemChangedCallback;
 
-	public override void Init()
+	public override void InitStart()
 	{
 		gameObject.name = "Player Inventory";
 		DontDestroyOnLoad(gameObject);
