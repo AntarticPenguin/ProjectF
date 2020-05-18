@@ -10,7 +10,7 @@ public class TileObject : MapObject
 
 	private void Awake()
 	{
-		_objectType = eMapObjectType.TILEOBJECT;
+		SetMapObjectType(eMapObjectType.TILEOBJECT);
 	}
 
 	private void Update()
@@ -48,22 +48,38 @@ public class TileObject : MapObject
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		//TODO: 캐릭터와 일정 높이(offset)를 벗어나면 밟고 있지 않다는걸로 표기
-		var type = collision.tag;
-		if (type.Equals(eMapObjectType.PLAYER.ToString()))
+		var mapObject = collision.gameObject.GetComponentInParent<Character>();
+		if(mapObject)
 		{
-			var mapObject = collision.gameObject.GetComponentInParent<Player>();
-			TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
+			var type = mapObject.GetMapObjectType();
+			switch (type)
+			{
+				case eMapObjectType.PLAYER:
+				case eMapObjectType.ENEMY:
+					TileSystem.Instance.GetTileCell(_tileX, _tileY).AddObject(mapObject, eTileLayer.RANGE, false);
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		var type = collision.tag;
-		if (type.Equals(eMapObjectType.PLAYER.ToString()))
+		var mapObject = collision.gameObject.GetComponentInParent<Character>();
+		if(mapObject)
 		{
-			//걸쳐있는 타일 정보 제거
-			var mapObject = collision.gameObject.GetComponentInParent<Player>();
-			TileSystem.Instance.GetTileCell(_tileX, _tileY).RemoveObject(mapObject, eTileLayer.RANGE);
+			var type = mapObject.GetMapObjectType();
+			switch (type)
+			{
+				case eMapObjectType.PLAYER:
+				case eMapObjectType.ENEMY:
+					TileSystem.Instance.GetTileCell(_tileX, _tileY).RemoveObject(mapObject, eTileLayer.RANGE);
+					break;
+				default:
+					break;
+			}
 		}
+		
 	}
 }

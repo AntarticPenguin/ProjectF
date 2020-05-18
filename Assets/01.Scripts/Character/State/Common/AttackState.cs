@@ -9,40 +9,34 @@ public class AttackState : State
 		base.Start();
 		_character.DoAttack();
 
-		Character target = _character.GetAttackTarget();
-		Vector2Int direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), target.GetCurrentTileCell());
-		_character.UpdateDirectionWithAnimation(direction);
-		eDirection lookAt = TileHelper.ConvertToeDirection(direction);
+		//Play Animation
+		_character.GetAnimPlayer().Play(GetTriggerName(_character.LookAt()), 
+		() =>
+		{
+			//beginEvent
+			HashSet<MapObject> enemies = FindEnemy();
+			if (null != enemies)
+			{
+				Debug.Log("ENEMY COUNT: " + enemies.Count);
+				foreach (var enemy in enemies)
+				{
+					MessageParam msg = new MessageParam();
+					msg.sender = _character;
+					msg.receiver = enemy;
+					msg.message = "Attack";
+					msg.damageInfo.damagePoint = _character.GetStatus().attack;
+					msg.damageInfo.attackType = eDamageType.NORMAL;
 
-		_character.GetAnimPlayer().Play(GetTriggerName(lookAt), null, null,
+					MessageSystem.Instance.Send(msg);
+				}
+			}
+		},
+		null,
 		() =>
 		{
 			//endEvent
 			_nextState = eStateType.IDLE;
 		});
-
-		HashSet<MapObject> enemies = FindEnemy();
-		if (null != enemies)
-		{
-			Debug.Log("ENEMY COUNT: " + enemies.Count);
-			foreach(var enemy in enemies)
-			{
-				MessageParam msg = new MessageParam();
-				msg.sender = _character;
-				msg.receiver = enemy;
-				msg.message = "Attack";
-				msg.damageInfo.damagePoint = _character.GetStatus().attack;
-				msg.damageInfo.attackType = eDamageType.NORMAL;
-
-				MessageSystem.Instance.Send(msg);
-			}
-		}
-	}
-
-	public override void Stop()
-	{
-		base.Stop();
-		_character.ResetAttackTarget();
 	}
 
 	string GetTriggerName(eDirection lookAt)

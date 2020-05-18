@@ -25,7 +25,7 @@ public class ChaseState : State
 		if (finishMove)
 			_nextState = eStateType.IDLE;
 
-		//player in attack range
+		//check if player in attack range
 		var mapObjects = TileSystem.Instance.FindObjectsByRange(eMapObjectType.PLAYER, eTileLayer.GROUND, _character.GetCurrentTileCell(),
 			_character.GetStatus().attackRange);
 
@@ -33,14 +33,16 @@ public class ChaseState : State
 		{
 			if (_character.IsAttackReady())
 			{
+				//TODO: 다수 처리는 어떻게? 일단은 가장 처음 원소만
 				foreach (var target in mapObjects)
 				{
+					Vector2Int direction = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), target.GetCurrentTileCell());
+					_character.UpdateDirection(direction);
+
 					_character.SetAttackInfo(new sAttackInfo(eAttackRangeType.STRAIGHT, 1, _character.GetStatus().attack));
-					_character.SetAttackTarget((Character)target);
 					_nextState = eStateType.ATTACK;
 					break;
 				}
-
 			}
 		}
 

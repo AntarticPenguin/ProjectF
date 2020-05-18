@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class DayNightCycle : SingletonMonobehavior<DayNightCycle>
+public class DayNightCycle : MonoBehaviour
 {
 	public Text _hourText;
 	public Text _minText;
@@ -23,10 +23,9 @@ public class DayNightCycle : SingletonMonobehavior<DayNightCycle>
 	float _globalMinLight;
 	float _globalMaxLight;
 
-	public override void InitStart()
+	void Start()
 	{
 		gameObject.name = "TimeSystem";
-		DontDestroyOnLoad(gameObject);
 
 		_hourText.text = _hour.ToString("D2") + " : ";
 		_minText.text = _minute.ToString("D2");

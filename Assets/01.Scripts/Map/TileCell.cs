@@ -84,9 +84,15 @@ public class TileCell
 			List<MapObject> mapObjectList = _mapObjectListByLayer[(int)layer];
 			mapObjectList.Remove(mapObject);
 		}
-		else
+	}
+
+	//모든 레이어에서 정보 제거
+	public void RemoveObject(MapObject mapObject)
+	{
+		for(int i = 0; i < _mapObjectListByLayer.Count; i++)
 		{
-			Debug.Log("TileLayer is NONE");
+			var mapObjectList = _mapObjectListByLayer[i];
+			mapObjectList.Remove(mapObject);
 		}
 	}
 

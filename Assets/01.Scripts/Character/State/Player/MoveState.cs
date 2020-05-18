@@ -32,7 +32,7 @@ public class MoveState : State
 			return;
 		}
 
-		_character.UpdateDirectionWithAnimation(lookDirection);
+		_character.UpdateDirection(lookDirection);
 		_character.UpdatePosition(newPosition);
 	}
 

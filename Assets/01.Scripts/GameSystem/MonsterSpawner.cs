@@ -5,11 +5,16 @@ using System;
 
 public class MonsterSpawner : MonoBehaviour
 {
+	[Header("웨이브 간격")]
+	[SerializeField]
+	private float _waveInterval = 0.0f;
+
 	[Header("WAVE LIST")]
 	[SerializeField]
-	public List<SpawnInfoList> _spawnLists = new List<SpawnInfoList>();
+	private List<SpawnInfoList> _spawnLists = new List<SpawnInfoList>();
 
 	int _curWave;
+	int _remainEnemy;
 
 	//다음 웨이브 요청 이벤트
 	public delegate void OnSpawnNextWave();
@@ -19,12 +24,19 @@ public class MonsterSpawner : MonoBehaviour
 	public delegate void OnSpawnEnd();
 	public OnSpawnEnd onSpawnEndCallback;
 
+	//몬스터 KILL 이벤트
+	public delegate void OnKillEnemy();
+	public OnKillEnemy onKillEnemyCallback;
+
 	// Start is called before the first frame update
 	void Start()
     {
 		_curWave = 0;
+		_remainEnemy = 0;
 		MainGameMode.Instance.onStageStartCallback += Spawn;
 		onSpawnNextWaveCallback += NextWave;
+		onSpawnEndCallback += MainGameMode.Instance.OpenPortal;
+		onKillEnemyCallback += DecreaseCount;
     }
 
 	void Spawn()
@@ -49,47 +61,64 @@ public class MonsterSpawner : MonoBehaviour
 		}
 	}
 
-	void NextWave()
+	IEnumerator SpawnSingle(SpawnInfoList info, float interval)
 	{
-		_curWave++;
-		if (_curWave < _spawnLists.Count)
-			Spawn();
-		else
-			onSpawnEndCallback?.Invoke();
-	}
+		yield return new WaitForSeconds(_waveInterval);
 
-	IEnumerator SpawnSingle(SpawnInfoList spawnList, float interval)
-	{
-		var infoList = spawnList.list;
-		for(int i = 0; i < infoList.Count; i++)
+		var wave = info.waveList;
+		_remainEnemy = wave.Count;
+		for (int i = 0; i < wave.Count; i++)
 		{
-			MapObjectSpawner.Instance.SpawnObject(infoList[i].monster, infoList[i].tilePos);
+			MapObjectSpawner.Instance.SpawnObject(wave[i].monster, wave[i].tilePos, this);
 			yield return new WaitForSeconds(interval);
 		}
 	}
 
-	IEnumerator SpawnPair(SpawnInfoList spawnList, float interval, int pairCount)
+	IEnumerator SpawnPair(SpawnInfoList info, float interval, int pairCount)
 	{
-		var infoList = spawnList.list;
-		for(int i = 0; i < infoList.Count; i++)
-		{
-			MapObjectSpawner.Instance.SpawnObject(infoList[i].monster, infoList[i].tilePos);
+		yield return new WaitForSeconds(_waveInterval);
 
-			if ((i+1) % pairCount == 0)
+		var wave = info.waveList;
+		_remainEnemy = wave.Count;
+		for (int i = 0; i < wave.Count; i++)
+		{
+			MapObjectSpawner.Instance.SpawnObject(wave[i].monster, wave[i].tilePos, this);
+
+			if ((i + 1) % pairCount == 0)
 				yield return new WaitForSeconds(interval);
 		}
 	}
 
-	IEnumerator SpawnAll(SpawnInfoList spawnList)
+	IEnumerator SpawnAll(SpawnInfoList info)
 	{
-		var infoList = spawnList.list;
-		for(int i = 0; i < infoList.Count; i++)
+		yield return new WaitForSeconds(_waveInterval);
+
+		var wave = info.waveList;
+		_remainEnemy = wave.Count;
+		for (int i = 0; i < wave.Count; i++)
 		{
-			MapObjectSpawner.Instance.SpawnObject(infoList[i].monster, infoList[i].tilePos);
+			MapObjectSpawner.Instance.SpawnObject(wave[i].monster, wave[i].tilePos, this);
 		}
-
-
 		yield return null;
+	}
+
+	void NextWave()
+	{
+		if(0 == _remainEnemy)
+		{
+			Debug.Log("Next wave Start!!");
+			_curWave++;
+			if (_curWave < _spawnLists.Count)
+				Spawn();
+			else
+				onSpawnEndCallback?.Invoke();
+		}
+	}
+
+	void DecreaseCount()
+	{
+		_remainEnemy--;
+		onSpawnNextWaveCallback?.Invoke();
 	}
 }
 
@@ -113,8 +142,10 @@ public class SpawnInfoList
 {
 	[Header("MODE")]
 	public eSpawnMode spawnMode;
+
+	[Header("소환 간격")]
 	public float interval;
 	public int pairCount;
 
-	public List<sSpawnInfo> list;
+	public List<sSpawnInfo> waveList;
 }

@@ -6,13 +6,13 @@ TagManager:
   tags:
   - FollowingCamera
   - UI Canvas
-  - TILEOBJCT
   - CHARACTER
   - PLAYER
   - ENEMY
   - ITEM
   - PORTAL
   - Joystick
+  - TILEOBJECT
   layers:
   - Default
   - TransparentFX
@@ -53,14 +53,14 @@ TagManager:
   - name: GROUND
     uniqueID: 696829551
     locked: 0
+  - name: TRIGGER
+    uniqueID: 4251107983
+    locked: 0
   - name: ITEM
     uniqueID: 1383184789
     locked: 0
   - name: ON_GROUND
     uniqueID: 1726549507
-    locked: 0
-  - name: TRIGGER
-    uniqueID: 4251107983
     locked: 0
   - name: BLOCK
     uniqueID: 140370897

@@ -52,6 +52,7 @@ public enum eStateType
 	MOVE,
 	ATTACK,
 	DAMAGE,
+	DEAD,
 	CHASE,
 	PATHFIND,
 }

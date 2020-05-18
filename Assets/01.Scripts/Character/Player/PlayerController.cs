@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 			Input.GetKey(KeyCode.RightArrow)
 			)
 			{
-				if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+				if (eStateType.IDLE == _player.GetCurStateType())
 					_player.ChangeState(eStateType.MOVE);
 			}
 		}
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (!_joystick.IsNeutral())
 			{
-				if (eStateType.MOVE != _player.GetCurStateType() || eStateType.IDLE == _player.GetCurStateType())
+				if (eStateType.IDLE == _player.GetCurStateType())
 					_player.ChangeState(eStateType.MOVE);
 			}
 		}

@@ -9,6 +9,8 @@ public class Character : MapObject
 	Animator _animator;
 	AnimationPlayer _animPlayer;
 
+	List<TileCell> _colliderRange = new List<TileCell>();
+
 	private void Awake()
 	{
 		SetMapObjectType(eMapObjectType.CHARACTER);
@@ -49,6 +51,7 @@ public class Character : MapObject
 		ReplaceState(eStateType.MOVE, new MoveState());
 		ReplaceState(eStateType.ATTACK, new AttackState());
 		ReplaceState(eStateType.DAMAGE, new DamageState());
+		ReplaceState(eStateType.DEAD, new DeadState());
 
 		_curState = _stateMap[eStateType.IDLE];
 		_curStateType = eStateType.IDLE;
@@ -87,7 +90,7 @@ public class Character : MapObject
 		Vector2 destination = (Vector2)(_transform.position) + (position.normalized * speed * Time.deltaTime);
 
 		TileSystem tileSystem = TileSystem.Instance;
-		TileCell curTileCell = tileSystem.GetTileCell(_tileX, _tileY);
+		TileCell curTileCell = GetCurrentTileCell();
 		eTileDirection boundaryDirection = curTileCell.CheckTileBoundary(destination);
 		sTilePosition nextTilePos = new sTilePosition(_tileX, _tileY);
 		TileHelper.GetNextTilePosByTileDirection(boundaryDirection, ref nextTilePos);
@@ -123,8 +126,9 @@ public class Character : MapObject
 
 	eDirection _lookAt;
 	Vector2Int _lookDirection = new Vector2Int();
-	public void UpdateDirectionWithAnimation(Vector2Int direction)
+	public void UpdateDirection(Vector2Int direction)
 	{
+		//방향 및 애니메이션 업데이트
 		string trigger = "";
 		int x = direction.x;
 		int y = direction.y;
@@ -212,7 +216,6 @@ public class Character : MapObject
 	public delegate void OnHpChagned();
 	public OnHpChagned onHpChangedCallback;
 
-	Character _attackTarget = null;
 	sDamageInfo _receiveDamagedInfo;
 	sAttackInfo _attackInfo;
 
@@ -240,10 +243,6 @@ public class Character : MapObject
 		return ref _status;
 	}
 
-	public Character GetAttackTarget() { return _attackTarget; }
-	public void SetAttackTarget(Character target) { _attackTarget = target; }
-	public void ResetAttackTarget() { _attackTarget = null; }
-
 	public sDamageInfo GetReceiveDamagedInfo() { return _receiveDamagedInfo; }
 	public void ResetDamagedInfo()
 	{
@@ -268,10 +267,14 @@ public class Character : MapObject
 
 	public void DecreaseHp(int damage)
 	{
-		Debug.Log("<color=red> Damaged: " + damage + "</color>");
+		//Debug.Log("<color=red> Damaged: " + damage + "</color>");
 		_status.hp -= damage;
 		if (_status.hp <= 0)
+		{
 			_status.hp = 0;
+			ChangeState(eStateType.DEAD);
+		}
+			
 
 		if (onHpChangedCallback != null)
 			onHpChangedCallback.Invoke();
@@ -347,16 +350,38 @@ public class Character : MapObject
 		bool result = Inventory.Instance.AddItem(item);
 		if (result)
 		{
-			sTilePosition tilePos = item.GetTilePosition();
-			TileCell tileCell = TileSystem.Instance.GetTileCell(tilePos);
-			tileCell.RemoveObject(item, item.GetCurrentLayer());
+			item.GetCurrentTileCell().RemoveObject(item, item.GetCurrentLayer());
 			Destroy(item.gameObject);
 		}
 	}
 
-	private void OnTriggerEnter(Collider other)
+	public virtual void Kill()
 	{
-		
+		//타일셀(걸쳐있는 타일셀 포함) 정보를 제거해준다.
+		for(int i = 0; i < _colliderRange.Count; i++)
+		{
+			Debug.Log(_colliderRange[i].GetTilePosition().ToString() + ": delete " + name);
+			_colliderRange[i].RemoveObject(this);
+		}
+		Destroy(gameObject, 3.0f);
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		TileObject tileObject = collision.gameObject.GetComponent<TileObject>();
+		if (tileObject)
+		{
+			_colliderRange.Add(tileObject.GetCurrentTileCell());
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		TileObject tileObject = collision.gameObject.GetComponent<TileObject>();
+		if (tileObject)
+		{
+			_colliderRange.Remove(tileObject.GetCurrentTileCell());
+		}
 	}
 }
 

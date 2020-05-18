@@ -31,7 +31,6 @@ public class LevelLoader : MonoBehaviour
 
 			yield return null;
 		}
-		Debug.Log("Load done");
 		_loadingScreen.SetActive(false);
 	}
 }

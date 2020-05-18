@@ -86,10 +86,11 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		}
 		tileSystem.GetTileCell(tileX, tileY).SetObject(character, eTileLayer.GROUND);
 
+		Debug.Log("SPAWN::Create " + character.name);
 		return character;
 	}
 
-	public void SpawnObject(GameObject monsterPrefab, TileObject tileObject)
+	public void SpawnObject(GameObject monsterPrefab, TileObject tileObject, MonsterSpawner spawner)
 	{
 		var tileSystem = TileSystem.Instance;
 
@@ -100,10 +101,11 @@ public class MapObjectSpawner : SingletonMonobehavior<MapObjectSpawner>
 		monsterObj.transform.position = pos;
 		monsterObj.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
 
-		Character monster = monsterObj.AddComponent<Enemy>();
+		Enemy monster = monsterObj.AddComponent<Enemy>();
 		monster.name = "Enemy";
 		monster.Init();
-		
+		monster.SetSpawner(spawner);
+
 		var spriteRenderers = monster.GetComponentsInChildren<SpriteRenderer>(true);
 		foreach (var spriteRenderer in spriteRenderers)
 		{

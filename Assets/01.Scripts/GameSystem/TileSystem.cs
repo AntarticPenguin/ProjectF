@@ -14,6 +14,9 @@ public class TileSystem : Singleton<TileSystem>
 
 	public void Init()
 	{
+		if(_tilemaps.Count > 0)
+			_tilemaps.Clear();
+
 		_tileCellList = new TileCell[_height, _width];
 		for(int y = 0; y < _height; y++)
 		{

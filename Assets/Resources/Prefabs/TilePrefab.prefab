@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -94,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4e25cab8808de438707a724e4d8a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tileCellInfo: []
+  _tileCellRangeInfo: []
 --- !u!60 &3733356834719767387
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -105,12 +108,12 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.8}
+    pivot: {x: 0.5, y: 0.77}
     oldSize: {x: 1.15625, y: 1.28125}
     newSize: {x: 1.15625, y: 1.28125}
     adaptiveTilingThreshold: 0.5

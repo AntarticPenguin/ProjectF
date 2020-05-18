@@ -6,7 +6,7 @@ public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBeh
 	public static T Instance
 	{
 		get
-		{
+		{ 
 			if (null == _instance)
 			{
 				_instance = FindObjectOfType<T>();
@@ -39,7 +39,6 @@ public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBeh
 	{
 
 	}
-
 	//이름 , Init, Don't destory 설정은 따로
 }
 

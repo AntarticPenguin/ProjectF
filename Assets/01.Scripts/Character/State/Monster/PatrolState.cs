@@ -48,7 +48,7 @@ public class PatrolState : State
 
 			//update animation
 			Vector2Int lookDirection = TileHelper.GetDirectionVector(_character.GetCurrentTileCell(), destination);
-			_character.UpdateDirectionWithAnimation(lookDirection);
+			_character.UpdateDirection(lookDirection);
 		}
 
 		if (_searchingCooltime < _searchingDuration)

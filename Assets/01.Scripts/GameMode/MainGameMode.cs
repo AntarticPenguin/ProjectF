@@ -8,16 +8,11 @@ public class MainGameMode : SingletonMonobehavior<MainGameMode>
 	public int _playerSpawnX;
 	public int _playerSpawnY;
 
-	[Header("Enemy Spawn Position")]
-	public int _enemySpawnX;
-	public int _enemySpawnY;
-
-	[Header("Must Put Tile Size")]
+	[Header("Must Put Tilemap Size")]
 	public int _width;
 	public int _height;
 
-	[Header("Stage Start: Wait Time")]
-	public float _waitTime;
+	GameObject _portalObject;
 
 	public delegate void OnStageStart();
 	public OnStageStart onStageStartCallback;
@@ -30,6 +25,7 @@ public class MainGameMode : SingletonMonobehavior<MainGameMode>
 
 	public override void InitAwake()
 	{
+		Debug.Log("Gamemode awake");
 		GameManager.Instance.Init();
 
 		TileSystem.Instance._width = _width;
@@ -41,12 +37,17 @@ public class MainGameMode : SingletonMonobehavior<MainGameMode>
 		GameManager.Instance.SetPlayer(player);
 		GameManager.Instance.BecomeViewer(player);
 
-		StartCoroutine(StageStart(_waitTime));
+		_portalObject = GameObject.FindGameObjectWithTag(eMapObjectType.PORTAL.ToString());
+		_portalObject.SetActive(false);
 	}
 
-	IEnumerator StageStart(float waitTime)
+	public override void InitStart()
 	{
-		yield return new WaitForSeconds(waitTime);
 		onStageStartCallback?.Invoke();
+	}
+
+	public void OpenPortal()
+	{
+		_portalObject.SetActive(true);
 	}
 }

@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -224,6 +229,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -320,6 +330,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -416,6 +431,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -608,6 +628,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -896,6 +921,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1184,6 +1214,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1376,6 +1411,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1568,6 +1608,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1664,6 +1709,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1856,6 +1906,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -1952,6 +2007,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2048,6 +2108,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2144,6 +2209,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2432,6 +2502,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2528,6 +2603,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2624,6 +2704,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2809,6 +2894,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 254347732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &254548500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6660465991309770383, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+    type: 3}
+  m_PrefabInstance: {fileID: 594133790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4e25cab8808de438707a724e4d8a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &258096929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3008,6 +3105,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3104,6 +3206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3392,6 +3499,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3488,6 +3600,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3584,6 +3701,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3686,6 +3808,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3782,6 +3909,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3878,6 +4010,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -3974,6 +4111,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -4358,6 +4500,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -4550,6 +4697,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -4838,6 +4990,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -4934,6 +5091,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -5042,6 +5204,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -5342,6 +5509,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -5438,6 +5610,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -5822,6 +5999,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -5918,6 +6100,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6014,6 +6201,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6110,6 +6302,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6302,6 +6499,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6398,6 +6600,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6686,6 +6893,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6782,6 +6994,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6878,6 +7095,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -6974,6 +7196,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7070,6 +7297,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7159,18 +7391,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 574900946}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &575288436 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6660465991309770383, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
-    type: 3}
-  m_PrefabInstance: {fileID: 2037223266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4e25cab8808de438707a724e4d8a6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &578347566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7178,6 +7398,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7466,6 +7691,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7562,6 +7792,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7653,6 +7888,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7838,18 +8078,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 598927048}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &601236091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6660465991309770383, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
-    type: 3}
-  m_PrefabInstance: {fileID: 2069080504}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4e25cab8808de438707a724e4d8a6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &609051679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7857,6 +8085,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -7953,6 +8186,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -8241,6 +8479,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -8433,6 +8676,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -8529,6 +8777,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -8721,6 +8974,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -8913,6 +9171,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9009,6 +9272,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9201,6 +9469,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9297,6 +9570,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9393,6 +9671,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9489,6 +9772,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9681,6 +9969,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9777,6 +10070,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9873,6 +10171,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -9975,6 +10278,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10167,6 +10475,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10263,6 +10576,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10455,6 +10773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10551,6 +10874,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10743,6 +11071,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10839,6 +11172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -10935,6 +11273,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11127,6 +11470,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11223,6 +11571,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11511,6 +11864,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11709,6 +12067,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11805,6 +12168,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11901,6 +12269,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -11997,6 +12370,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12093,6 +12471,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12189,6 +12572,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12285,6 +12673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12477,6 +12870,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12669,6 +13067,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -12861,6 +13264,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -13053,6 +13461,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -13522,6 +13935,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -13618,6 +14036,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -13714,6 +14137,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -13810,6 +14238,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -14002,6 +14435,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -14290,6 +14728,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -14386,6 +14829,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -14482,6 +14930,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -14782,6 +15235,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 172.92361
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721633238604136716, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: _globalLight
+      value: 
+      objectReference: {fileID: 1293580127}
+    - target: {fileID: 1721633238604136716, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: _pointLight
+      value: 
+      objectReference: {fileID: 403496262}
+    - target: {fileID: 1721633238604136716, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: _interval
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1792527566104473822, guid: 37dcec92101067946ae1ec3c08f83cd0,
         type: 3}
@@ -15276,7 +15744,7 @@ PrefabInstance:
     - target: {fileID: 5020516624426104133, guid: 37dcec92101067946ae1ec3c08f83cd0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5020516624426104133, guid: 37dcec92101067946ae1ec3c08f83cd0,
         type: 3}
@@ -15588,6 +16056,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 6830189226002261992, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830189226849030609, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830189226849030609, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6939916074176658473, guid: 37dcec92101067946ae1ec3c08f83cd0,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -15832,6 +16315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169026149341388513, guid: 37dcec92101067946ae1ec3c08f83cd0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37dcec92101067946ae1ec3c08f83cd0, type: 3}
@@ -16130,6 +16618,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16226,6 +16719,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16418,6 +16916,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16514,6 +17017,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16610,6 +17118,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16706,6 +17219,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16802,6 +17320,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -16898,6 +17421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -17090,6 +17618,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -17208,17 +17741,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6833af547d899164092b91a28482551b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveInterval: 5
   _spawnLists:
-  - spawnMode: 2
-    interval: 5
+  - spawnMode: 0
+    interval: 3
     pairCount: 2
-    list:
+    waveList:
     - monster: {fileID: 2127227324854920478, guid: d8c0b875f776f9249881f523d8506524,
         type: 3}
-      tilePos: {fileID: 575288436}
+      tilePos: {fileID: 254548500}
     - monster: {fileID: 2127227324854920478, guid: d8c0b875f776f9249881f523d8506524,
         type: 3}
-      tilePos: {fileID: 601236091}
+      tilePos: {fileID: 1411709423}
+  - spawnMode: 0
+    interval: 3
+    pairCount: 2
+    waveList:
+    - monster: {fileID: 2127227324854920478, guid: d8c0b875f776f9249881f523d8506524,
+        type: 3}
+      tilePos: {fileID: 254548500}
+    - monster: {fileID: 2127227324854920478, guid: d8c0b875f776f9249881f523d8506524,
+        type: 3}
+      tilePos: {fileID: 1411709423}
 --- !u!4 &1187305341
 Transform:
   m_ObjectHideFlags: 0
@@ -17231,7 +17775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1202201253
 PrefabInstance:
@@ -17240,6 +17784,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -17528,6 +18077,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -17624,6 +18178,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -17720,6 +18279,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -18008,6 +18572,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -18104,6 +18673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -18596,6 +19170,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -18788,6 +19367,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -18884,6 +19468,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19172,6 +19761,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19268,6 +19862,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19364,6 +19963,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19549,6 +20153,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1406903531}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1411709423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6660465991309770383, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+    type: 3}
+  m_PrefabInstance: {fileID: 1139326938}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4e25cab8808de438707a724e4d8a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1414489281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19556,6 +20172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19814,6 +20435,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19910,6 +20536,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -19999,57 +20630,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1444147487}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1452798589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1452798590}
-  - component: {fileID: 1452798591}
-  m_Layer: 0
-  m_Name: TimeSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1452798590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452798589}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 528.7704, y: 323.9333, z: -21.57432}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1452798591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452798589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad14b36b6117b8d44b2c9321ff6386ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hourText: {fileID: 1610301843}
-  _minText: {fileID: 2081782468}
-  _meridiem: {fileID: 434968266}
-  _globalLight: {fileID: 1293580127}
-  _pointLight: {fileID: 403496262}
-  _hour: 18
-  _minute: 0
-  _interval: 1
 --- !u!1001 &1457504763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20057,6 +20637,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -20345,6 +20930,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -20441,6 +21031,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -20729,6 +21324,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -20825,6 +21425,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -20921,6 +21526,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -21198,6 +21808,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -21838,6 +22453,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22030,6 +22650,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22126,6 +22751,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22398,6 +23028,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22590,6 +23225,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22686,6 +23326,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22824,11 +23469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSpawnX: 8
   _playerSpawnY: 7
-  _enemySpawnX: 8
-  _enemySpawnY: 7
   _width: 16
   _height: 16
-  _waitTime: 5
 --- !u!1001 &1797821182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22836,6 +23478,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -22932,6 +23579,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23028,6 +23680,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23191,6 +23848,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23287,6 +23949,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23383,6 +24050,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2010368260}
     m_Modifications:
+    - target: {fileID: 2004705663324320606, guid: 8c4f1582f1309d6489c73d975ef6d3ff,
+        type: 3}
+      propertyPath: _sceneName
+      value: Stage02
+      objectReference: {fileID: 0}
     - target: {fileID: 7043284143344691587, guid: 8c4f1582f1309d6489c73d975ef6d3ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23554,6 +24226,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23746,6 +24423,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -23842,6 +24524,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -24130,6 +24817,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -24226,6 +24918,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -24712,6 +25409,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -25000,6 +25702,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -25096,6 +25803,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -25288,6 +26000,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -25543,7 +26260,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -43859313
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -25790,6 +26507,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -26078,6 +26800,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -26174,6 +26901,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -26462,6 +27194,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -26666,6 +27403,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -26858,6 +27600,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -29084,6 +29831,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -29276,6 +30028,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997469596}
     m_Modifications:
+    - target: {fileID: 3733356834719767387, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6660465991309770380, guid: 0a7dcc83fff49b448ad1df7b5cf8d104,
         type: 3}
       propertyPath: m_SortingLayerID
